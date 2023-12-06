@@ -17,7 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
+
     "allowJs": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -26,6 +26,7 @@
     "types": [
       "vitest/globals",
       "@testing-library/jest-dom",
+      "vite-plugin-svgr/client"
     ]
   },
   "include": ["src"],
