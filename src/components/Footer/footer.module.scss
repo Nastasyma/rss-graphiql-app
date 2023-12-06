@@ -1,0 +1,11 @@
+footer {
+  background-color: var(--bg-footer);
+  color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  min-height: 80px;
+  align-items: center;
+}
