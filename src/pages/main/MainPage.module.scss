@@ -1,0 +1,33 @@
+.container {
+  border: 1px solid rgb(192, 184, 184);
+  height: 95vh;
+  width: 100%;
+
+  .docContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+    .docButton {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: plum;
+      border: 2px solid black;
+
+      .docIcon {
+        width: 24px;
+        height: 30px;
+      }
+    }
+  }
+
+  .responseContainer {
+    height: 100%;
+    background-color: rgb(236, 233, 233);
+  }
+}
