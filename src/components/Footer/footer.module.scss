@@ -5,7 +5,28 @@ footer {
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   min-height: 80px;
   align-items: center;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    margin-right: 10px;
+  }
+
+  a {
+    &:hover{
+      color: black;
+      transition: 0.5s;
+    }
+    &:not(:first-of-type):before {
+      content: "|";
+      padding: 0px 10px;
+      color: aliceblue;
+    }
+  }
 }

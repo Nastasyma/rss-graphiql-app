@@ -8,6 +8,7 @@ import s from './header.module.scss';
 import SwitchTheme from '../SwitchTheme/SwitchTheme';
 import SelectLang from '../SelectLang/SelectLang';
 import { useAuth } from '../../hooks/useAuth';
+import logo from '../../../public/logo.svg';
 
 export default function Header() {
 
@@ -32,7 +33,7 @@ export default function Header() {
     <header>
       <div className={`${s.header} conteiner`}>
         <div className={s.logo}>
-          <img src="./logo.svg" alt="logo" width={50} />
+          <img src={logo} alt="logo" width={50} />
         </div>
         {isAuth ? AuthTrue : AuthFalse}
       </div>
