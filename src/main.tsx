@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/App.tsx';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary.tsx';
 import './styles/global.scss';
+// import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
+import router from './router/router.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <App />
+      {/* <Provider store={store}> */}
+      <RouterProvider router={router} />
+      {/* </Provider> */}
     </ErrorBoundary>
   </React.StrictMode>
 );
