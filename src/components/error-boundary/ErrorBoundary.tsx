@@ -19,11 +19,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps> {
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div >
+        <div>
           <h2>Something went wrong</h2>
-          <button onClick={this.onResetButtonClick}>
-            Reset
-          </button>
+          <button onClick={this.onResetButtonClick}>Reset</button>
         </div>
       );
     }
