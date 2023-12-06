@@ -1,3 +1,109 @@
 @import './normalize.scss';
 @import './variables.scss';
 @import './fonts.scss';
+
+@import './normalize.scss';
+@import './fonts.scss';
+@import './varaibles.scss';
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a,
+a:visited,
+a:hover {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+html,
+body {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  font-family: 'Roboto', 'Times New Roman', Times, serif;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--bg);
+  color: var(--color);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.conteiner {
+  max-width: var(--max-content-width);
+  padding: var(--max-content-padding);
+  margin: 0px auto;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+}
+
+.link {
+  background: linear-gradient(to right, #77a1d3 0%, #79cbca 51%, #77a1d3 100%);
+  padding: 5px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    box-shadow: 0 0 10px #eee;
+  }
+
+  &:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 10px #eee;
+  }
+}
