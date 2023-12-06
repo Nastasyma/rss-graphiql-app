@@ -3,31 +3,59 @@
   height: 95vh;
   width: 100%;
 
+  .requestContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+
+    .request {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      .requestEditor {
+        flex: 1;
+      }
+
+      .requestButtons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+
   .docContainer {
     height: 100%;
     display: flex;
     justify-content: center;
     padding: 10px;
 
-    .docButton {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: plum;
-      border: 2px solid black;
-
-      .docIcon {
-        width: 24px;
-        height: 30px;
-      }
+    .docIcon {
+      width: 24px;
+      height: 30px;
     }
   }
 
   .responseContainer {
     height: 100%;
     background-color: rgb(236, 233, 233);
+  }
+
+  button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9c27b0;
+    border: 2px solid black;
   }
 }
