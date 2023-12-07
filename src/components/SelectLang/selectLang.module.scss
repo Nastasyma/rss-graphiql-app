@@ -1,0 +1,20 @@
+.lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+  &.active {
+    transform: rotate(180deg);
+  }
+}
