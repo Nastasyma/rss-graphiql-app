@@ -1,5 +1,15 @@
-import React from 'react';
+import React from "react"
+import s from './not-found.module.scss'
+import { Link } from "react-router-dom"
 
 export default function NotFound() {
-  return <div>NotFound</div>;
+  return (
+  <div className = {`conteiner ${s.notFoundBlock}`} >
+    <div>
+      <img className={s.image} src="./not-found.png" alt="" />
+      <h1 className={s.header}>Oops! That page can’t be found.</h1>
+      <Link to='/' className={s.link}>Go to the main page    →</Link>
+    </div>
+  </div>
+  )
 }
