@@ -8,6 +8,7 @@
 import { Link } from 'react-router-dom';
 import s from './welcome.module.scss';
 import { useAuth } from '../../hooks/useAuth';
+import { useInView } from 'react-intersection-observer';
 
 const AuthFalse = (
   <nav className={s.navigation}>
@@ -22,7 +23,20 @@ const AuthFalse = (
 
 const AuthTrue = <button>Home</button>;
 
+
 export default function Welcome() {
+  const [ref1, inView1] = useInView({
+    triggerOnce: true,
+    rootMargin: '-100px 0px',
+  });
+  const [ref2, inView2] = useInView({
+    triggerOnce: true,
+    rootMargin: '-100px 0px',
+  });
+  const [ref3, inView3] = useInView({
+    triggerOnce: true,
+    rootMargin: '-100px 0px',
+  });
   const { isAuth } = useAuth();
   return (
     <div className={s.welcomePage}>
@@ -41,7 +55,7 @@ export default function Welcome() {
       </div>
       <div className={s.team}>
         <h2 className={s.teamHeader}>Our team</h2>
-        <div className={s.memberBlock}>
+        <div ref={ref1} className={`${s.memberBlock} ${s.fadeIn1} ${inView1 ? s.visible : ''}`}>
           <div className={s.teamMember}>
             <div className={s.teamImageBlock}>
               <img
@@ -60,7 +74,7 @@ export default function Welcome() {
             </div>
           </div>
         </div>
-        <div className={s.memberBlock}>
+        <div ref={ref2} className={`${s.memberBlock} ${s.fadeIn2} ${inView2 ? s.visible : ''}`}>
           <div className={s.teamMember}>
             <div className={s.teamImageBlock}>
               <img
@@ -79,7 +93,7 @@ export default function Welcome() {
             </div>
           </div>
         </div>
-        <div className={s.memberBlock}>
+        <div ref={ref3} className={`${s.memberBlock} ${s.fadeIn3} ${inView3 ? s.visible : ''}`}>
           <div className={s.teamMember}>
             <div className={s.teamImageBlock}>
               <img
