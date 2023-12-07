@@ -1,0 +1,60 @@
+header {
+  height: 100px;
+  position: sticky;
+  background-color: rgb(58 55 69);
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+}
+
+.header {
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0px 20px;
+}
+
+.navigation {
+  display: flex;
+  gap: 30px;
+}
+
+.logo {
+  position: relative;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    background: rgba(22, 21, 21, 0.574);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 55px;
+  }
+
+  &::before {
+    content: 'GraphiQL';
+    font-size: 20px;
+    position: absolute;
+    top: 70%;
+    color: rgb(208, 197, 212);
+    z-index: 2;
+    background-color: #2aa5a0;
+    background-image: linear-gradient(90deg, #e353c4, #2aa5a0);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    text-shadow: 3px -2px 5px #ffffff3c;
+    -webkit-text-stroke: 0.3px #ffffff;
+  }
+}
