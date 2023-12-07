@@ -26,16 +26,23 @@ export default function Welcome() {
   const { isAuth } = useAuth();
   return (
     <div className={s.welcomePage}>
-      <div className={s.imageBlock}>
-        <img className={s.image} src="./earth.png" alt="night" />
-      </div>
       <div className={s.welcomeBlock}>
-        <span className={s.h1}></span>
-        <h2 className={s.header}>Application for your queries</h2>
-        <h3 className={s.header}>
-          To use the application, sign up or sign in to your account
-        </h3>
-        {isAuth ? AuthTrue : AuthFalse}
+        <div className={s.imageBlock}>
+          <img className={s.image} src="./earth.png" alt="night" />
+        </div>
+        <div className={s.welcomeContent}>
+          <span className={s.h1}></span>
+          <h2 className={s.header}>Application for your queries</h2>
+          <h3 className={s.header}>
+            To use the application, sign up or sign in to your account
+          </h3>
+          {isAuth ? AuthTrue : AuthFalse}
+        </div>
+      </div>
+      <div className={s.ourTeam}>
+        <h2 className={s.header}>Our team</h2>
+      <p>Hello</p>
+      <p>Hello</p><p>Hello</p>
       </div>
     </div>
   );

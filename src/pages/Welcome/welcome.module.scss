@@ -1,29 +1,30 @@
 .welcomePage {
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Roboto', 'Times New Roman', Times, serif;
-  .imageBlock {
-    width: 60vw;
-    height: 100%;
-    position: relative;
-    left: -27%;
-    .image {
-      overflow: hidden;
-      width: 100%;
-      animation: rotatePlanet 20s linear infinite;
-    }
-  }
   .welcomeBlock {
-    padding-bottom: 100px;
-    .h1::before {
-        content: "GraphiQL";
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', 'Times New Roman', Times, serif;
+    height: 90vh;
+    .imageBlock {
+      width: 47vw;
+      position: relative;
+      left: -27%;
+      .image {
+        overflow: hidden;
+        width: 100%;
+        animation: rotatePlanet 70s linear infinite;
+      }
+    }
+    .welcomeContent {
+      padding: 20px;
+      .h1::before {
+        content: 'GraphiQL';
         font-size: 5em;
         font-weight: 900;
         position: absolute;
-        top: 25%;
+        top: 100px;
         color: rgb(208, 197, 212);
         z-index: 2;
         background-color: #2aa5a0;
@@ -34,8 +35,9 @@
         text-shadow: 3px -2px 5px rgba(255, 255, 255, 0.2352941176);
         -webkit-text-stroke: 0.3px #ffffff;
       }
-    .header {
-      margin-bottom: 20px;
+      .header {
+        margin-bottom: 20px;
+      }
     }
   }
 }
@@ -52,3 +54,36 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 900px) {
+  .welcomePage {
+    .welcomeBlock {
+      .imageBlock {
+        width: 100vw;
+        left: -20%;
+      }
+      .welcomeContent {
+        .h1::before {
+          font-size: 3em;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+    .welcomePage {
+      .welcomeBlock {
+        .imageBlock {
+            
+          display: none;
+          opacity: 0;
+        }
+        .welcomeContent {
+          .h1::before {
+            font-size: 3em;
+          }
+        }
+      }
+    }
+  }
