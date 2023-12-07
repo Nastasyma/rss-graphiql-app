@@ -3,11 +3,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 interface IEditor {
   isDocOpen?: boolean;
   querySectionSize?: number;
+  isQueryOpen?: boolean;
 }
 
 const initialState: IEditor = {
   isDocOpen: false,
   querySectionSize: 150,
+  isQueryOpen: false,
 };
 
 const userSlice = createSlice({
@@ -20,9 +22,12 @@ const userSlice = createSlice({
     setQuerySectionSize(state, action: PayloadAction<IEditor>) {
       state.querySectionSize = action.payload.querySectionSize;
     },
+    setQueryIsOpen(state, action: PayloadAction<IEditor>) {
+      state.isQueryOpen = action.payload.isQueryOpen;
+    },
   },
 });
 
-export const { setDocIsOpen, setQuerySectionSize } = userSlice.actions;
+export const { setDocIsOpen, setQuerySectionSize, setQueryIsOpen } = userSlice.actions;
 
 export default userSlice.reducer;

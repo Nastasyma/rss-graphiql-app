@@ -5,15 +5,17 @@ import CodeMirror from '@uiw/react-codemirror';
 import { bbedit } from '@uiw/codemirror-theme-bbedit';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../../store/store';
-import { setQuerySectionSize } from '../../../store/reducers/editorSlice';
+import { setQueryIsOpen, setQuerySectionSize } from '../../../store/reducers/editorSlice';
 
 function Query() {
   const dispatch = useAppDispatch();
   const querySectionSize = useSelector(
     (state: RootState) => state.editor.querySectionSize
   );
+  const isOpen = useSelector((state: RootState) => state.editor.isQueryOpen);
 
   const handleArrowIconClick = () => {
+    dispatch(setQueryIsOpen({ isQueryOpen: !isOpen }));
     if (querySectionSize === 150) {
       dispatch(setQuerySectionSize({ querySectionSize: 50 }));
     } else {
@@ -33,7 +35,7 @@ function Query() {
           <button className={styles.queryButton}>Headers</button>
         </div>
         <button className={styles.arrowButton} onClick={handleArrowIconClick}>
-          <ArrowIcon className={styles.arrowIcon} />
+          <ArrowIcon className={`${styles.arrowIcon} ${isOpen ? styles.rotatedArrow : ''}`} />
         </button>
       </div>
       <div className={styles.queryEditor}>

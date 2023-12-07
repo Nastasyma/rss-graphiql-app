@@ -12,7 +12,7 @@
   *::-webkit-scrollbar-thumb {
     width: 4px;
     height: 4px;
-    background-color: #734da6;
+    background-color: var(--color-editor-buttons-hover);
   }
 
   button {
@@ -22,8 +22,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #a883f6;
-    border: 2px solid black;
+    background-color: var(--color-editor-buttons);
+    border: 2px solid var(--color-primary-text);
     cursor: pointer;
     transition: all 0.2s;
 
@@ -32,7 +32,7 @@
     }
 
     &:hover {
-      background-color: #734da6;
+      background-color: var(--color-editor-buttons-hover);
     }
   }
 }
