@@ -55,7 +55,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #9c27b0;
+    background-color: #7147cb;
     border: 2px solid black;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:hover {
+      background-color: #7d4fdf;
+    }
   }
 }

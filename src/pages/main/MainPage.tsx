@@ -44,23 +44,20 @@ function MainPage() {
                     <button>
                       <PrettifyIcon className={styles.icon} />
                     </button>
-                    <button></button>
                   </div>
                 </div>
               </div>
             </Allotment.Pane>
-            <Allotment.Pane>
+            <Allotment.Pane minSize={100}>
               <div>
+                Variables Headers
                 <CodeMirror />
               </div>
             </Allotment.Pane>
           </Allotment>
         </Allotment.Pane>
         <Allotment.Pane minSize={50}>
-          <div className={styles.responseContainer}>
-            Response
-            <CodeMirror />
-          </div>
+          <div className={styles.responseContainer}>Response</div>
         </Allotment.Pane>
       </Allotment>
     </div>
