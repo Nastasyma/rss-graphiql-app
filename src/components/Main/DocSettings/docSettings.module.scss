@@ -1,0 +1,16 @@
+.docContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px 0 0 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 100%;
+  padding: 10px;
+  color: black;
+
+  .docIcon {
+    width: 24px;
+    height: 30px;
+  }
+}

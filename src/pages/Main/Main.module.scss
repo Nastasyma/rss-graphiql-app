@@ -3,61 +3,17 @@
   width: 100%;
   padding: 10px;
 
-  .container {
-    background-color: rgba(255, 255, 255, 0.6);
-    height: 100%;
-    padding: 10px;
-    color: black;
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: transparent;
   }
 
-  .requestContainer {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 10px;
-
-    .request {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-
-      .requestEditor {
-        flex: 1;
-      }
-
-      .requestButtons {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        svg {
-          width: 30px;
-          height: 30px;
-        }
-      }
-    }
+  *::-webkit-scrollbar-thumb {
+    width: 4px;
+    height: 4px;
+    background-color: #734da6;
   }
-
-  .docContainer {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 10px 0 0 10px;
-
-    .docIcon {
-      width: 24px;
-      height: 30px;
-    }
-  }
-
-  .responseContainer {
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 0 10px 10px 0;
-  }
-
-
 
   button {
     width: 40px;
@@ -76,57 +32,7 @@
     }
 
     &:hover {
-      background-color: #7d4fdf;
+      background-color: #734da6;
     }
-  }
-
-  .queryContainer {
-    height: 300px;
-
-    .queryButtons {
-      display: flex;
-      justify-content: space-between;
-
-      .queryButtonsTitle {
-        display: flex;
-        gap: 10px;
-      }
-
-      .queryButton {
-        background-color: transparent;
-        width: 70px;
-        height: 40px;
-        border-radius: 5px;
-        padding: 0;
-        border: none;
-        color: gray;
-      }
-
-      .queryButtonActive {
-        font-weight: 700;
-        color: black;
-      }
-
-      .arrowButton {
-        width: 40px;
-        height: 40px;
-        border-radius: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: transparent;
-        padding: 0;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-    }
-
-    .arrowIcon {
-      width: 26px;
-      height: 26px;
-      filter: invert(50%);
-    }
-
   }
 }

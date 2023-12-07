@@ -1,0 +1,57 @@
+.queryContainer {
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 100%;
+  padding: 10px;
+  color: black;
+
+  .title {
+    font-weight: 700;
+  }
+
+  .queryButtons {
+    display: flex;
+    justify-content: space-between;
+
+    .queryButtonsTitle {
+      display: flex;
+      gap: 10px;
+    }
+
+    .queryButton {
+      background-color: transparent;
+      width: 70px;
+      height: 40px;
+      border-radius: 5px;
+      padding: 0;
+      border: none;
+      color: rgb(87, 87, 87);
+    }
+
+    .queryButtonActive {
+      font-weight: 700;
+      color: black;
+    }
+
+    .arrowButton {
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+  }
+
+  .arrowIcon {
+    width: 26px;
+    height: 26px;
+    filter: invert(50%);
+  }
+}
