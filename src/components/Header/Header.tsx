@@ -8,7 +8,7 @@ import s from './header.module.scss';
 import SwitchTheme from '../SwitchTheme/SwitchTheme';
 import SelectLang from '../SelectLang/SelectLang';
 import { useAuth } from '../../hooks/useAuth';
-import logo from '../../../public/logo.svg';
+import logo from '@/assets/logo.svg';
 
 export default function Header() {
 
