@@ -5,7 +5,11 @@ import CodeMirror from '@uiw/react-codemirror';
 import { bbedit } from '@uiw/codemirror-theme-bbedit';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../../store/store';
-import { setQueryIsOpen, setQuerySectionSize } from '../../../store/reducers/editorSlice';
+import {
+  setQueryIsOpen,
+  setQuerySectionSize,
+} from '../../../store/reducers/editorSlice';
+import { useState } from 'react';
 
 function Query() {
   const dispatch = useAppDispatch();
@@ -13,6 +17,15 @@ function Query() {
     (state: RootState) => state.editor.querySectionSize
   );
   const isOpen = useSelector((state: RootState) => state.editor.isQueryOpen);
+  const [isActive, setIsActive] = useState(0);
+
+  const handleVariablesClick = () => {
+    setIsActive(0);
+  };
+
+  const handleHeadersClick = () => {
+    setIsActive(1);
+  };
 
   const handleArrowIconClick = () => {
     dispatch(setQueryIsOpen({ isQueryOpen: !isOpen }));
@@ -28,14 +41,28 @@ function Query() {
       <div className={styles.queryButtons}>
         <div className={styles.queryButtonsTitle}>
           <button
-            className={`${styles.queryButton} ${styles.queryButtonActive}`}
+            className={`${styles.queryButton} ${
+              isActive === 0 ? styles.queryButtonActive : ''
+            }`}
+            onClick={handleVariablesClick}
           >
             Variables
           </button>
-          <button className={styles.queryButton}>Headers</button>
+          <button
+            className={`${styles.queryButton} ${
+              isActive === 1 ? styles.queryButtonActive : ''
+            }`}
+            onClick={handleHeadersClick}
+          >
+            Headers
+          </button>
         </div>
         <button className={styles.arrowButton} onClick={handleArrowIconClick}>
-          <ArrowIcon className={`${styles.arrowIcon} ${isOpen ? styles.rotatedArrow : ''}`} />
+          <ArrowIcon
+            className={`${styles.arrowIcon} ${
+              isOpen ? styles.rotatedArrow : ''
+            }`}
+          />
         </button>
       </div>
       <div className={styles.queryEditor}>
