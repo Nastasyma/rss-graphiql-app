@@ -39,10 +39,65 @@ export default function Welcome() {
           {isAuth ? AuthTrue : AuthFalse}
         </div>
       </div>
-      <div className={s.ourTeam}>
-        <h2 className={s.header}>Our team</h2>
-      <p>Hello</p>
-      <p>Hello</p><p>Hello</p>
+      <div className={s.team}>
+        <h2 className={s.teamHeader}>Our team</h2>
+        <div className={s.memberBlock}>
+          <div className={s.teamMember}>
+            <div className={s.teamImageBlock}>
+              <img
+                className={s.teamImage}
+                src="./Irina.JPG"
+                alt="Irina's photo"
+              />
+            </div>
+            <div className={s.teamContent}>
+              <h3>Irina</h3>
+              <p>
+                Her passion for aesthetics brings a touch of elegance to the
+                user experience, turning every interaction into a visual
+                journey.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={s.memberBlock}>
+          <div className={s.teamMember}>
+            <div className={s.teamImageBlock}>
+              <img
+                className={s.teamImage}
+                src="./Maria.png"
+                alt="Irina's photo"
+              />
+            </div>
+            <div className={s.teamContent}>
+              <h3>Maria</h3>
+              <p>
+                Her empathetic approach creates a safe environment for users and
+                every authentication will be a warm welcome, creating a sense of
+                belonging.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={s.memberBlock}>
+          <div className={s.teamMember}>
+            <div className={s.teamImageBlock}>
+              <img
+                className={s.teamImage}
+                src="./Anastasia.jpg"
+                alt="Irina's photo"
+              />
+            </div>
+            <div className={s.teamContent}>
+              <h3>Anastasia</h3>
+              <p>
+                Her insatiable curiosity allows her to travel across vast
+                landscapes. GraphQL, turning data queries into exciting
+                adventures.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
