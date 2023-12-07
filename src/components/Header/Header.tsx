@@ -11,7 +11,6 @@ import { useAuth } from '../../hooks/useAuth';
 import logo from '../../../public/logo.svg';
 
 export default function Header() {
-
   const { isAuth } = useAuth();
 
   const AuthFalse = (
@@ -40,4 +39,3 @@ export default function Header() {
     </header>
   );
 }
-

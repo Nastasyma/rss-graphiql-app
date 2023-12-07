@@ -1,0 +1,41 @@
+.welcomePage {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', 'Times New Roman', Times, serif;
+  .imageBlock {
+    width: 60vw;
+    height: 100%;
+    position: relative;
+    left: -27%;
+    .image {
+      overflow: hidden;
+      width: 100%;
+      animation: rotatePlanet 20s linear infinite; 
+    }
+  }
+  .welcomeBlock{
+    padding-bottom: 150px;
+    .h1 {
+        font-size: 4em;
+    }
+    .header {
+        margin-bottom: 20px;
+    }
+  }
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+@keyframes rotatePlanet {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

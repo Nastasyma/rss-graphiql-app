@@ -5,7 +5,38 @@
 // Если токен входа действителен и срок его действия не истек, кнопки «Войти» и «Зарегистрироваться» заменяются кнопкой «Главная страница» 10 баллов
 // По истечении срока действия токена - пользователь должен быть автоматически перенаправлен на «Страницу приветствия» 10 баллов
 // Нажатие кнопки «Войти/Зарегистрироваться» перенаправляет пользователя на маршрут с формой «Войти/Зарегистрироваться» 10 баллов
+import { Link } from 'react-router-dom';
+import s from './welcome.module.scss';
+import { useAuth } from '../../hooks/useAuth';
+
+const AuthFalse = (
+  <nav className={s.navigation}>
+    <Link className="link" to={'/login'}>
+      Sign In
+    </Link>
+    <Link className="link" to={'/register'}>
+      Sign Up
+    </Link>
+  </nav>
+);
+
+const AuthTrue = <button>Home</button>;
 
 export default function Welcome() {
-  return <div>Welcome</div>;
+  const { isAuth } = useAuth();
+  return (
+    <div className={s.welcomePage}>
+      <div className={s.imageBlock}>
+        <img className={s.image} src="./earth.png" alt="night" />
+      </div>
+      <div className={s.welcomeBlock}>
+        <h1 className={s.h1}>GRAPHIQL</h1>
+        <h2 className={s.header}>Application for your queries</h2>
+        <h3 className={s.header}>
+          To use the application, sign up or sign in to your account
+        </h3>
+        {isAuth ? AuthTrue : AuthFalse}
+      </div>
+    </div>
+  );
 }
