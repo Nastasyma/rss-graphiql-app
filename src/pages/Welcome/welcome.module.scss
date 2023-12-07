@@ -13,29 +13,42 @@
     .image {
       overflow: hidden;
       width: 100%;
-      animation: rotatePlanet 20s linear infinite; 
+      animation: rotatePlanet 20s linear infinite;
     }
   }
-  .welcomeBlock{
-    padding-bottom: 150px;
-    .h1 {
-        font-size: 4em;
-    }
+  .welcomeBlock {
+    padding-bottom: 100px;
+    .h1::before {
+        content: "GraphiQL";
+        font-size: 5em;
+        font-weight: 900;
+        position: absolute;
+        top: 25%;
+        color: rgb(208, 197, 212);
+        z-index: 2;
+        background-color: #2aa5a0;
+        background-image: linear-gradient(90deg, #e353c4, #2aa5a0);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        text-shadow: 3px -2px 5px rgba(255, 255, 255, 0.2352941176);
+        -webkit-text-stroke: 0.3px #ffffff;
+      }
     .header {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
     }
   }
 }
 
 .navigation {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 @keyframes rotatePlanet {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}

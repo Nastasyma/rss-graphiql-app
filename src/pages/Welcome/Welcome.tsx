@@ -30,7 +30,7 @@ export default function Welcome() {
         <img className={s.image} src="./earth.png" alt="night" />
       </div>
       <div className={s.welcomeBlock}>
-        <h1 className={s.h1}>GRAPHIQL</h1>
+        <span className={s.h1}></span>
         <h2 className={s.header}>Application for your queries</h2>
         <h3 className={s.header}>
           To use the application, sign up or sign in to your account
