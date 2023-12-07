@@ -15,7 +15,7 @@
 import styles from './main.module.scss';
 import { Allotment, AllotmentHandle } from 'allotment';
 import 'allotment/dist/style.css';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import DocSettings from '../../components/Main/DocSettings/DocSettings';
@@ -31,29 +31,54 @@ function MainPage() {
     (state: RootState) => state.editor.querySectionSize
   );
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className={styles.mainContainer}>
-      <Allotment defaultSizes={[1, 3, 4, 4]} minSize={50}>
-        <Allotment.Pane minSize={60} maxSize={60}>
-          <DocSettings />
-        </Allotment.Pane>
-        <Allotment.Pane visible={isDocsOpen}>
-          <Documentation />
-        </Allotment.Pane>
-        <Allotment.Pane minSize={300}>
-          <Allotment key={querySectionSize} vertical defaultSizes={[100, 1]} ref={ref}>
-            <Allotment.Pane minSize={50}>
-              <Request />
-            </Allotment.Pane>
-            <Allotment.Pane minSize={querySectionSize}>
-              <Query />
-            </Allotment.Pane>
-          </Allotment>
-        </Allotment.Pane>
-        <Allotment.Pane minSize={50}>
-          <Response />
-        </Allotment.Pane>
-      </Allotment>
+      <div className={styles.mainContent}>
+        <Allotment
+          defaultSizes={isMobile ? [1, 4, 6, 3] : [1, 3, 4, 4]}
+          minSize={50}
+          vertical={isMobile}
+        >
+          <Allotment.Pane minSize={60} maxSize={60}>
+            <DocSettings />
+          </Allotment.Pane>
+          <Allotment.Pane visible={isDocsOpen}>
+            <Documentation />
+          </Allotment.Pane>
+          <Allotment.Pane minSize={300}>
+            <Allotment
+              key={querySectionSize}
+              vertical
+              defaultSizes={[100, 1]}
+              ref={ref}
+            >
+              <Allotment.Pane minSize={50}>
+                <Request />
+              </Allotment.Pane>
+              <Allotment.Pane minSize={querySectionSize}>
+                <Query />
+              </Allotment.Pane>
+            </Allotment>
+          </Allotment.Pane>
+          <Allotment.Pane minSize={50}>
+            <Response />
+          </Allotment.Pane>
+        </Allotment>
+      </div>
     </div>
   );
 }
