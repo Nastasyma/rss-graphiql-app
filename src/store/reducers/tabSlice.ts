@@ -1,7 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface ITab {
-  content: string;
+  requestContent: string;
+  variablesContent: string;
+  headersContent: string;
 }
 
 interface ITabs {
@@ -9,17 +11,24 @@ interface ITabs {
   activeTab: number;
 }
 
-const initialState: ITabs = {
-  tabs: [{ content: '' }],
+interface EditorState {
+  variablesContent: string;
+  headersContent: string;
+}
+
+const initialState: ITabs & EditorState = {
+  tabs: [{ requestContent: '', variablesContent: '', headersContent: '' }],
   activeTab: 0,
+  variablesContent: '',
+  headersContent: '',
 };
 
 const tabsSlice = createSlice({
   name: 'tabs',
   initialState,
   reducers: {
-    addTab: (state, action: PayloadAction<string>) => {
-      state.tabs.push({ content: action.payload });
+    addTab: (state, action: PayloadAction<ITab>) => {
+      state.tabs.push(action.payload);
     },
     deleteTab: (state, action: PayloadAction<number>) => {
       state.tabs.splice(action.payload, 1);
@@ -31,12 +40,21 @@ const tabsSlice = createSlice({
       state.activeTab = action.payload;
     },
     updateTabContent: (state, action) => {
-      state.tabs[state.activeTab] = action.payload;
+      state.tabs[state.activeTab] = {
+        ...state.tabs[state.activeTab],
+        ...action.payload,
+      };
+    },
+    setVariablesContent: (state, action: PayloadAction<string>) => {
+      state.variablesContent = action.payload;
+    },
+    setHeadersContent: (state, action: PayloadAction<string>) => {
+      state.headersContent = action.payload;
     },
   },
 });
 
-export const { addTab, deleteTab, setActiveTab, updateTabContent } =
+export const { addTab, deleteTab, setActiveTab, updateTabContent, setVariablesContent, setHeadersContent } =
   tabsSlice.actions;
 
 export default tabsSlice.reducer;

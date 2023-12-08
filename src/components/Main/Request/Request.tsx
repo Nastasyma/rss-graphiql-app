@@ -15,11 +15,11 @@ function Request() {
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
 
   const handleNewTabContent = (content: string) => {
-    dispatch(updateTabContent({ index: activeTab, content }));
+    dispatch(updateTabContent({ index: activeTab, requestContent: content }));
   };
 
   useEffect(() => {
-    if (tabs.length === 1 && tabs[0].content === '') {
+    if (tabs.length === 1 && tabs[0].requestContent === '') {
       handleNewTabContent(requestTemplate);
     }
   }, [tabs, handleNewTabContent]);
@@ -31,7 +31,7 @@ function Request() {
         <div className={styles.requestEditor}>
           <CodeMirror
             editable={true}
-            value={tabs[activeTab]?.content}
+            value={tabs[activeTab]?.requestContent}
             theme={bbedit}
             onChange={handleNewTabContent}
           />

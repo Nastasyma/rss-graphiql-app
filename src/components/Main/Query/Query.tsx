@@ -8,14 +8,19 @@ import {
   setQueryIsOpen,
   setQuerySectionSize,
 } from '../../../store/reducers/editorSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { updateTabContent } from '../../../store/reducers/tabSlice';
+import { variablesTemplate } from './variablesTemplate';
+import { headersTemplate } from './headersTemplate';
 
 function Query() {
   const dispatch = useAppDispatch();
-  const querySectionSize = useAppSelector(
-    (state) => state.editor.querySectionSize
-  );
+  const tabs = useAppSelector((state) => state.tabs.tabs);
+  const activeTab = useAppSelector((state) => state.tabs.activeTab);
+  const querySectionSize = useAppSelector((state) => state.editor.querySectionSize);
   const isOpen = useAppSelector((state) => state.editor.isQueryOpen);
+  const variablesContent = tabs[activeTab]?.variablesContent;
+  const headersContent = tabs[activeTab]?.headersContent;
   const [isActive, setIsActive] = useState(0);
 
   const handleVariablesClick = () => {
@@ -34,6 +39,27 @@ function Query() {
       dispatch(setQuerySectionSize({ querySectionSize: 150 }));
     }
   };
+
+  const handleContentChange = (content: string) => {
+    const updatedTabs = [...tabs];
+    updatedTabs[activeTab] = {
+      ...updatedTabs[activeTab],
+      [isActive === 0 ? "variablesContent" : "headersContent"]: content,
+    };
+    dispatch(updateTabContent(updatedTabs[activeTab]));
+  };
+
+  useEffect(() => {
+    if (tabs.length === 1) {
+      const updatedTabs = [...tabs];
+      updatedTabs[activeTab] = {
+        ...updatedTabs[activeTab],
+        variablesContent: variablesTemplate,
+        headersContent: headersTemplate,
+      };
+      dispatch(updateTabContent(updatedTabs[activeTab]));
+    }
+  }, []);
 
   return (
     <div className={`${styles.queryContainer} ${styles.container}`}>
@@ -65,7 +91,23 @@ function Query() {
         </button>
       </div>
       <div className={styles.queryEditor}>
-        <CodeMirror theme={bbedit} width="100%" editable={true} value={`{}`} />
+        {isActive === 0 ? (
+          <CodeMirror
+            theme={bbedit}
+            width="100%"
+            editable={true}
+            value={variablesContent}
+            onChange={handleContentChange}
+          />
+        ) : (
+          <CodeMirror
+            theme={bbedit}
+            width="100%"
+            editable={true}
+            value={headersContent}
+            onChange={handleContentChange}
+          />
+        )}
       </div>
     </div>
   );
