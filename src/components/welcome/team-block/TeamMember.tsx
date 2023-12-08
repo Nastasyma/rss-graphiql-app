@@ -1,12 +1,8 @@
 import { useInView } from 'react-intersection-observer';
 import s from './team-member.module.scss';
+import { IWelcomeProps } from '../../../types/general';
 
-interface IMemberProps {
-  name: string;
-  description: string;
-}
-
-export default function TeamMember({ name, description }: IMemberProps) {
+export default function TeamMember({ name, description, key }: IWelcomeProps) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-100px 0px',
@@ -14,6 +10,7 @@ export default function TeamMember({ name, description }: IMemberProps) {
   return (
     <div
       ref={ref}
+      key={key}
       className={`${s.memberBlock} ${s.fadeIn} ${inView ? s.visible : ''}`}
     >
       <div className={s.teamMember}>

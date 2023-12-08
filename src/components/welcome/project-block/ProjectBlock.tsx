@@ -6,8 +6,8 @@ export default function ProjectBlock() {
     <div className={s.project}>
       <h2 className={s.header}>Our Project</h2>
       <div className={s.projectItems}>
-        {items.map((el) => {
-            return <ProjectItem name={el.name} description={el.description}/>
+        {items.map((el, i) => {
+            return <ProjectItem name={el.name} description={el.description} key={i}/>
         })}
       </div>
     </div>
@@ -16,7 +16,7 @@ export default function ProjectBlock() {
 
 const items = [
     {
-      name: 'Versatile GraphQL Support',
+      name: `Versatile GraphQL Support`,
       description:
         'Our app opens doors to a myriad of GraphQL endpoints, offering users the flexibility to connect and query diverse data sources effortlessly.',
     },
