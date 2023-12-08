@@ -18,27 +18,13 @@ function Tabs() {
 
   const handleAddTab = () => {
     dispatch(addTab(''));
+    const newIndex = tabs.length;
+    dispatch(setActiveTab(newIndex));
   };
 
   const handleDeleteTab = (index: number) => {
     dispatch(deleteTab(index));
   };
-
-  // const handleDeleteTab = (index: number) => {
-  //   if (tabCount === 1) return;
-
-  //   const newTabCount = tabCount - 1;
-  //   let newActiveTab = activeTab;
-
-  //   if (index === activeTab) {
-  //     newActiveTab = index > 0 ? index - 1 : index + 1;
-  //   } else if (index < activeTab) {
-  //     newActiveTab = activeTab - 1;
-  //   }
-
-  //   setTabCount(newTabCount);
-  //   setActiveTab(newActiveTab);
-  // };
 
   return (
     <div className={styles.container}>

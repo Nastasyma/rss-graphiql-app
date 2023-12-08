@@ -29,8 +29,8 @@ function Request() {
       <span className={styles.title}>Request</span>
       <div className={styles.request}>
         <div className={styles.requestEditor}>
-          {' '}
           <CodeMirror
+            editable={true}
             value={tabs[activeTab]?.content}
             theme={bbedit}
             onChange={handleNewTabContent}
