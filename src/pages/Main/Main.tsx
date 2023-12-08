@@ -24,6 +24,7 @@ import Request from '../../components/Main/Request/Request';
 import Query from '../../components/Main/Query/Query';
 import Response from '../../components/Main/Response/Response';
 import EditorHeader from '../../components/Main/EditorHeader/EditorHeader';
+import Tabs from '../../components/Main/Tabs/Tabs';
 
 function MainPage() {
   const ref = useRef<AllotmentHandle>(null!);
@@ -49,10 +50,8 @@ function MainPage() {
   return (
     <div className={styles.mainContainer}>
       <Allotment vertical>
-        <Allotment.Pane minSize={40} maxSize={40} preferredSize={'100%'}>
-          <div >
-            <button>New Tab</button>
-          </div>
+        <Allotment.Pane minSize={50} maxSize={50} preferredSize={'100%'}>
+          <Tabs />
         </Allotment.Pane>
         <Allotment.Pane minSize={50} maxSize={50} preferredSize={'100%'}>
           <EditorHeader />

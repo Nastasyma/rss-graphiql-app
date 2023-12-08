@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  gap: 6px;
+  padding: 5px 10px;
+  background-color: var(--bg-color-editor);
+  border-radius: 10px 10px 0 0;
+  height: 100%;
+
+  .button {
+    border-radius: 5px;
+    width: 80px;
+    height: 40px;
+  }
+
+  .active {
+    font-weight: 700;
+  }
+
+  .add {
+    width: 40px;
+    font-size: 32px;
+  }
+}
