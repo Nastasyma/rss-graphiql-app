@@ -3,12 +3,12 @@
   display: flex;
   justify-content: center;
   padding: 10px;
-  border-radius: 10px 0 0 10px;
+  border-radius: 0 0 0 10px;
   background-color: var(--bg-color-editor);
   padding: 10px;
 
   @media screen and (max-width: 768px) {
-    border-radius: 10px 10px 0 0;
+    border-radius: 0;
   }
 
   .docIcon {

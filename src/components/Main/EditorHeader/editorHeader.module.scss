@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  padding: 10px;
+  background-color: var(--bg-color-editor);
+  border-radius: 10px 10px 0 0;
+  height: 100%;
+
+  input {
+    width: 100%;
+    padding: 4px 10px;;
+    background-color: var(--bg-color-editor);
+    border-radius: 5px 0 0 5px;
+  }
+
+  button {
+    border-radius: 0 5px 5px 0;
+    width: 50px;
+    height: 100%;
+    border: 1px solid var(--color-separator-border);
+  }
+}
