@@ -1,11 +1,7 @@
 .mainContainer {
+  height: 81vh;
+  width: 100%;
   padding: 10px;
-
-  .mainContent {
-    height: 81vh;
-    width: 100%;
-    border-radius: 10px;
-  }
 
   *::-webkit-scrollbar {
     width: 4px;

@@ -23,6 +23,7 @@ import Documentation from '../../components/Main/Documentation/Documentation';
 import Request from '../../components/Main/Request/Request';
 import Query from '../../components/Main/Query/Query';
 import Response from '../../components/Main/Response/Response';
+import EditorHeader from '../../components/Main/EditorHeader/EditorHeader';
 
 function MainPage() {
   const ref = useRef<AllotmentHandle>(null!);
@@ -47,16 +48,24 @@ function MainPage() {
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.mainContent}>
+      <Allotment vertical>
+        <Allotment.Pane minSize={40} maxSize={40} preferredSize={'100%'}>
+          <div >
+            <button>New Tab</button>
+          </div>
+        </Allotment.Pane>
+        <Allotment.Pane minSize={50} maxSize={50} preferredSize={'100%'}>
+          <EditorHeader />
+        </Allotment.Pane>
         <Allotment
-          defaultSizes={isMobile ? [1, 4, 6, 3] : [1, 3, 4, 4]}
+          defaultSizes={isMobile ? [1, 1, 4, 6, 3] : [1, 1, 3, 4, 4]}
           minSize={50}
           vertical={isMobile}
         >
           <Allotment.Pane minSize={60} maxSize={60}>
             <DocSettings />
           </Allotment.Pane>
-          <Allotment.Pane visible={isDocsOpen}>
+          <Allotment.Pane visible={isDocsOpen} minSize={200}>
             <Documentation />
           </Allotment.Pane>
           <Allotment.Pane minSize={300}>
@@ -78,7 +87,7 @@ function MainPage() {
             <Response />
           </Allotment.Pane>
         </Allotment>
-      </div>
+      </Allotment>
     </div>
   );
 }
