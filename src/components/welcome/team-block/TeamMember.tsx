@@ -25,7 +25,7 @@ export default function TeamMember({ name, description }: IMemberProps) {
           />
         </div>
         <div className={s.teamContent}>
-          <h3>Irina</h3>
+          <h3>{name}</h3>
           <p>{description}</p>
         </div>
       </div>
