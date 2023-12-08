@@ -5,19 +5,35 @@ import { bbedit } from '@uiw/codemirror-theme-bbedit';
 import PlayIcon from '../../../assets/play.svg?react';
 import PrettifyIcon from '../../../assets/prettify.svg?react';
 import { requestTemplate } from './requestTemplate';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { updateTabContent } from '../../../store/reducers/tabSlice';
+import { useEffect } from 'react';
 
 function Request() {
+  const dispatch = useAppDispatch();
+  const tabs = useAppSelector((state) => state.tabs.tabs);
+  const activeTab = useAppSelector((state) => state.tabs.activeTab);
+
+  const handleNewTabContent = (content: string) => {
+    dispatch(updateTabContent({ index: activeTab, content }));
+  };
+
+  useEffect(() => {
+    if (tabs.length === 1 && tabs[0].content === '') {
+      handleNewTabContent(requestTemplate);
+    }
+  }, [tabs, handleNewTabContent]);
+
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
       <span className={styles.title}>Request</span>
       <div className={styles.request}>
         <div className={styles.requestEditor}>
+          {' '}
           <CodeMirror
+            value={tabs[activeTab]?.content}
             theme={bbedit}
-            width="100%"
-            height="100%"
-            editable={true}
-            value={requestTemplate}
+            onChange={handleNewTabContent}
           />
         </div>
         <div className={styles.requestButtons}>

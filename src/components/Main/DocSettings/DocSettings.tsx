@@ -1,12 +1,11 @@
 import styles from './DocSettings.module.scss';
 import DocIcon from '../../../assets/book.svg?react';
 import { setDocIsOpen } from '../../../store/reducers/editorSlice';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
 
 function DocSettings() {
   const dispatch = useAppDispatch();
-  const isOpen = useSelector((state: RootState) => state.editor.isDocOpen);
+  const isOpen = useAppSelector((state) => state.editor.isDocOpen);
   const handleDocIconClick = () => {
     dispatch(setDocIsOpen({ isDocOpen: !isOpen }));
   };

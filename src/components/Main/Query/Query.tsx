@@ -3,8 +3,7 @@ import ArrowIcon from '../../../assets/211687_down_arrow_icon.svg?react';
 import 'allotment/dist/style.css';
 import CodeMirror from '@uiw/react-codemirror';
 import { bbedit } from '@uiw/codemirror-theme-bbedit';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
 import {
   setQueryIsOpen,
   setQuerySectionSize,
@@ -13,10 +12,10 @@ import { useState } from 'react';
 
 function Query() {
   const dispatch = useAppDispatch();
-  const querySectionSize = useSelector(
-    (state: RootState) => state.editor.querySectionSize
+  const querySectionSize = useAppSelector(
+    (state) => state.editor.querySectionSize
   );
-  const isOpen = useSelector((state: RootState) => state.editor.isQueryOpen);
+  const isOpen = useAppSelector((state) => state.editor.isQueryOpen);
   const [isActive, setIsActive] = useState(0);
 
   const handleVariablesClick = () => {

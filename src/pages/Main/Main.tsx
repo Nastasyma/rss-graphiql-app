@@ -16,8 +16,6 @@ import styles from './main.module.scss';
 import { Allotment, AllotmentHandle } from 'allotment';
 import 'allotment/dist/style.css';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import DocSettings from '../../components/Main/DocSettings/DocSettings';
 import Documentation from '../../components/Main/Documentation/Documentation';
 import Request from '../../components/Main/Request/Request';
@@ -25,12 +23,13 @@ import Query from '../../components/Main/Query/Query';
 import Response from '../../components/Main/Response/Response';
 import EditorHeader from '../../components/Main/EditorHeader/EditorHeader';
 import Tabs from '../../components/Main/Tabs/Tabs';
+import { useAppSelector } from '../../store/store';
 
 function MainPage() {
   const ref = useRef<AllotmentHandle>(null!);
-  const isDocsOpen = useSelector((state: RootState) => state.editor.isDocOpen);
-  const querySectionSize = useSelector(
-    (state: RootState) => state.editor.querySectionSize
+  const isDocsOpen = useAppSelector((state) => state.editor.isDocOpen);
+  const querySectionSize = useAppSelector(
+    (state) => state.editor.querySectionSize
   );
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);

@@ -1,9 +1,10 @@
-export const requestTemplate = `
-An example GraphQL query might look like:
-
-  {
-    field(arg: "value") {
-      subField
+export const requestTemplate = `query AllPokemons($first: Int!) {
+  pokemons(first: $first) {
+    attacks {
+      fast {
+        damage
+      }
     }
   }
+}
 `
