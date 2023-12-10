@@ -10,13 +10,25 @@ export default function Footer() {
 
         <div className={s.contacts}>
           <img src={gitHubIco} alt="" height={30} />
-          <a href="https://github.com/IrinaPeshko" target="_blanc">
+          <a
+            href="https://github.com/IrinaPeshko"
+            target="_blanc"
+            className="simple_link"
+          >
             IrinaPeshko
           </a>
-          <a href="https://github.com/maria-kashpur" target="_blanc">
+          <a
+            href="https://github.com/maria-kashpur"
+            target="_blanc"
+            className="simple_link"
+          >
             maria-kashpur
           </a>
-          <a href="https://github.com/Nastasyma" target="_blanc">
+          <a
+            className="simple_link"
+            href="https://github.com/Nastasyma"
+            target="_blanc"
+          >
             Nastasyma
           </a>
         </div>
