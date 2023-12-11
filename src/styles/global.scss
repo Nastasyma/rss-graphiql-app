@@ -104,3 +104,11 @@ main {
     box-shadow: 0 0 10px #eee;
   }
 }
+
+.simple_link {
+  color: rgba(255, 255, 255, 0.565);
+
+  &:hover {
+    color: var(--color);
+  }
+}

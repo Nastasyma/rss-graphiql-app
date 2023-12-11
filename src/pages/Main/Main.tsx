@@ -13,6 +13,9 @@
 // Раздел ответов с редактором, доступным только для чтения, в качестве средства просмотра JSON 40 баллов
 
 import styles from './main.module.scss';
+import { Navigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../utils/firebase';
 import { Allotment, AllotmentHandle } from 'allotment';
 import 'allotment/dist/style.css';
 import { useEffect, useRef, useState } from 'react';
@@ -25,7 +28,8 @@ import EditorHeader from '../../components/Main/EditorHeader/EditorHeader';
 import Tabs from '../../components/Main/Tabs/Tabs';
 import { useAppSelector } from '../../store/store';
 
-function MainPage() {
+function Main() {
+  const [user] = useAuthState(auth);
   const ref = useRef<AllotmentHandle>(null!);
   const isDocsOpen = useAppSelector((state) => state.editor.isDocOpen);
   const querySectionSize = useAppSelector(
@@ -46,7 +50,7 @@ function MainPage() {
     };
   }, []);
 
-  return (
+  return !user ? <Navigate to="/welcome" replace /> : (
     <div className={styles.mainContainer}>
       <Allotment vertical>
         <Allotment.Pane minSize={50} maxSize={50} preferredSize={'100%'}>
@@ -90,4 +94,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default Main;
