@@ -13,6 +13,10 @@ export const routes = [
     errorElement: <NotFound />,
     children: [
       {
+        path: '/',
+        element: <Main />,
+      },
+      {
         path: 'welcome',
         element: <Welcome />,
       },
@@ -23,10 +27,6 @@ export const routes = [
       {
         path: 'login',
         element: <Login />,
-      },
-      {
-        path: 'main',
-        element: <Main />,
       },
     ],
   },
