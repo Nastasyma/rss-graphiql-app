@@ -1,7 +1,7 @@
 import s from './selectLang.module.scss';
 import arrow from '@/assets/211687_down_arrow_icon.svg';
 
-const langs = ['RU', 'EN'];
+// const langs = ['RU', 'EN'];
 
 export default function SelectLang() {
   return (

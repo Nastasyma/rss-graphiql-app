@@ -12,6 +12,11 @@
 // Раздел заголовка, который можно показать или скрыть, добавленные пользователем заголовки отправляются на сервер 20 баллов
 // Раздел ответов с редактором, доступным только для чтения, в качестве средства просмотра JSON 40 баллов
 
+import { Navigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../utils/firebase';
+
 export default function Main() {
-  return <div>Main</div>;
+  const [user] = useAuthState(auth);
+  return !user ? <Navigate to="/welcome" replace /> : <div>Main</div>;
 }
