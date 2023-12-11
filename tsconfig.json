@@ -23,7 +23,11 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom",
+      "vite-plugin-svgr/client"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
