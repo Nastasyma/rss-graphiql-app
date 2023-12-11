@@ -14,7 +14,7 @@ const [user] = useAuthState(auth);
           <img className={s.image} src="./welcomePage/earth.png" alt="night" />
         </div>
         <div className={s.welcomeContent}>
-          <span className={s.h1}></span>
+          <span className='logo_name' style={{fontSize: '5em'}}>GraphiQL</span>
           <h2 className={s.header}>Application for your queries</h2>
           <h3 className={s.header}>
             To use the application, sign up or sign in to your account
