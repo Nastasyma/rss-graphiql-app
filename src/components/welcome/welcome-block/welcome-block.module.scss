@@ -38,6 +38,13 @@
     .header {
       margin-bottom: 20px;
     }
+    .nav {
+      display: flex;
+      gap: 20px;
+      a {
+        width: 100px;
+      }
+    }
   }
 }
 

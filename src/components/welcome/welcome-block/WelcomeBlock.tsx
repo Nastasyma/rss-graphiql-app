@@ -19,7 +19,9 @@ const [user] = useAuthState(auth);
           <h3 className={s.header}>
             To use the application, sign up or sign in to your account
           </h3>
+          <div className={s.nav}>
           {user ? <AuthTrue /> : <AuthFalse />}
+          </div>
         </div>
       </div>
     )
