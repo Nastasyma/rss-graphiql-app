@@ -11,30 +11,12 @@ import logo from '@assets/logo.svg';
 import SignOut from '../SignOut/SignOut';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
+import AuthFalse from '../signButtons/AuthFalse';
+import AuthTrue from '../signButtons/AuthTrue';
 
 export default function Header() {
 
   const [user] = useAuthState(auth);
-
-  const AuthFalse = (
-    <>
-      <Link className="link" to={'/login'}>
-        Sign In
-      </Link>
-      <Link className="link" to={'/register'}>
-        Sign Up
-      </Link>
-    </>
-  );
-
-  const AuthTrue = (
-    <>
-      <Link className="link" to={'/'}>
-        Home
-      </Link>
-      <SignOut />
-    </>
-  );
 
   return (
     <header>
@@ -45,7 +27,7 @@ export default function Header() {
           </div>
         </Link>
         <nav className={s.navigation}>
-          {user ? AuthTrue : AuthFalse}
+          {user ? <><AuthTrue /><SignOut /></> : <AuthFalse />}
           <SwitchTheme />
           <SelectLang />
         </nav>

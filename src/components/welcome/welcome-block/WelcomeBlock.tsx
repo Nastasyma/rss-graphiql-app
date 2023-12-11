@@ -1,21 +1,13 @@
 import s from "./welcome-block.module.scss";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../../hooks/useAuth";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../utils/firebase';
+import AuthTrue from "@/components/signButtons/AuthTrue";
+import AuthFalse from "@/components/signButtons/AuthFalse";
 
 export default function WelcomeBlock() {
-    const AuthFalse = (
-        <nav className={s.navigation}>
-          <Link className="link" to={'/login'}>
-            Sign In
-          </Link>
-          <Link className="link" to={'/register'}>
-            Sign Up
-          </Link>
-        </nav>
-      );
-      
-      const AuthTrue = <button>Home</button>;
-    const { isAuth } = useAuth();
+const [user] = useAuthState(auth);
+
+
     return(
         <div className={s.welcomeBlock}>
         <div className={s.imageBlock}>
@@ -27,7 +19,7 @@ export default function WelcomeBlock() {
           <h3 className={s.header}>
             To use the application, sign up or sign in to your account
           </h3>
-          {isAuth ? AuthTrue : AuthFalse}
+          {user ? <AuthTrue /> : <AuthFalse />}
         </div>
       </div>
     )
