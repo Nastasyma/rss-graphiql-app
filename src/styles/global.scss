@@ -91,6 +91,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 120px;
+  cursor: pointer;
 
   &.active {
     box-shadow: 0 0 10px #eee;
@@ -110,4 +112,16 @@ main {
   &:hover {
     color: var(--color);
   }
+}
+
+.logo_name {
+  font-size: 20px;
+  color: rgb(208, 197, 212);
+  background-color: #2aa5a0;
+  background-image: linear-gradient(90deg, #e353c4, #2aa5a0);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  text-shadow: 3px -2px 5px #ffffff3c;
+  -webkit-text-stroke: 0.3px #ffffff;
 }

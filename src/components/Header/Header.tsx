@@ -11,23 +11,53 @@ import logo from '@assets/logo.svg';
 import SignOut from '../SignOut/SignOut';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
-import AuthFalse from '../signButtons/AuthFalse';
-import AuthTrue from '../signButtons/AuthTrue';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
-
   const [user] = useAuthState(auth);
+  const [fixHeader, setFixHeader] = useState(false);
+
+  useEffect(() => {
+    const scroll = () => {
+      const top = window.scrollY;
+      if (!fixHeader && !!top) setFixHeader(true);
+      if (fixHeader && !top) setFixHeader(false);
+    };
+    window.addEventListener('scroll', scroll);
+    return () => removeEventListener('scroll', scroll);
+  });
+
+  const AuthFalse = (
+    <>
+      <Link className="link" to={'/login'}>
+        Sign In
+      </Link>
+      <Link className={'link'} to={'/register'}>
+        Sign Up
+      </Link>
+    </>
+  );
+
+  const AuthTrue = (
+    <>
+      <Link className="link" to={'/'}>
+        Home
+      </Link>
+      <SignOut />
+    </>
+  );
 
   return (
-    <header>
-      <div className={`${s.header} conteiner`}>
-        <Link to='/welcome'>
+    <header className={`${fixHeader ? s.scroll : ''}`}>
+      <div className={`${s.header} conteiner ${fixHeader ? s.scroll : ''}`}>
+        <Link to="/welcome">
           <div className={s.logo}>
             <img src={logo} alt="logo" width={50} />
+            <span className='logo_name'>GraphiQL</span>
           </div>
         </Link>
         <nav className={s.navigation}>
-          {user ? <><AuthTrue /><SignOut /></> : <AuthFalse />}
+          {user ? AuthTrue : AuthFalse}
           <SwitchTheme />
           <SelectLang />
         </nav>
