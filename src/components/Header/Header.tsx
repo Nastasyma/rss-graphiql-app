@@ -14,11 +14,11 @@ import { auth } from '../../utils/firebase';
 import { useEffect, useState } from 'react';
 import AuthTrue from '../signButtons/AuthTrue';
 import AuthFalse from '../signButtons/AuthFalse';
-import Burger from '../Burger/Burger';
 
 export default function Header() {
   const [user] = useAuthState(auth);
   const [fixHeader, setFixHeader] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const scroll = () => {
@@ -50,7 +50,9 @@ export default function Header() {
           )}
           <SwitchTheme />
           <SelectLang />
-          <Burger/>
+          <div className={s.wrap} onClick={() => setOpen(!open)}>
+            <div className={`${s.burger} ${open ? `${s.active}` : ''}`}></div>
+          </div>
         </nav>
       </div>
     </header>
