@@ -38,9 +38,11 @@ export default function Header() {
   return (
     <header>
       <div className={`${s.header} conteiner`}>
-        <div className={s.logo}>
-          <img src={logo} alt="logo" width={50} />
-        </div>
+        <Link to='/welcome'>
+          <div className={s.logo}>
+            <img src={logo} alt="logo" width={50} />
+          </div>
+        </Link>
         <nav className={s.navigation}>
           {user ? AuthTrue : AuthFalse}
           <SwitchTheme />
