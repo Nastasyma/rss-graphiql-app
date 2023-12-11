@@ -13,6 +13,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
 
 export default function Header() {
+
   const [user] = useAuthState(auth);
 
   const AuthFalse = (
