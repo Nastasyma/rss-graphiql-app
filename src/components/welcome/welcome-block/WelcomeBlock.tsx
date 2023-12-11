@@ -19,7 +19,7 @@ export default function WelcomeBlock() {
     return(
         <div className={s.welcomeBlock}>
         <div className={s.imageBlock}>
-          <img className={s.image} src="./earth.png" alt="night" />
+          <img className={s.image} src="./welcomePage/earth.png" alt="night" />
         </div>
         <div className={s.welcomeContent}>
           <span className={s.h1}></span>

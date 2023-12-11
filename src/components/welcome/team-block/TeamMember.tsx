@@ -17,7 +17,7 @@ export default function TeamMember({ name, description, key }: IWelcomeProps) {
         <div className={s.teamImageBlock}>
           <img
             className={s.teamImage}
-            src={`./${name}.jpg`}
+            src={`./welcomePage/${name}.jpg`}
             alt={`${name}'s photo`}
           />
         </div>
