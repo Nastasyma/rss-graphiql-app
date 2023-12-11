@@ -7,7 +7,7 @@ export default function ProjectBlock() {
       <h2 className={s.header}>Our Project</h2>
       <div className={s.projectItems}>
         {items.map((el, i) => {
-            return <ProjectItem name={el.name} description={el.description} key={i}/>
+            return <ProjectItem name={el.name} description={el.description} uniqueKey={i} key={i}/>
         })}
       </div>
     </div>

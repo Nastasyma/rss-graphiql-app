@@ -6,7 +6,9 @@ export default function TeamBlock() {
     <div className={s.team}>
       <h2 className={s.teamHeader}>Development team</h2>
       {team.map((el, i) => {
-        return <TeamMember name={el.name} description={el.description} key={i}/>
+        return (
+          <TeamMember name={el.name} description={el.description} uniqueKey={i} key={i}/>
+        );
       })}
     </div>
   );
