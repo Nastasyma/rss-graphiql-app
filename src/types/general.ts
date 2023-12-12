@@ -4,17 +4,23 @@ export interface IWelcomeProps {
   uniqueKey: number;
 }
 
-export interface Field {
+export interface IFieldType {
+  kind: string;
+  ofType?: IFieldType;
   name: string;
-  type: {
-    kind: string;
-    ofType: {
-      name: string;
-    };
-    name: string;
-  };
 }
 
-export interface SchemaObject {
-  fields: Field[];
+export interface ISchemaType {
+  name: string;
+  fields: IField[];
+}
+
+export interface IField {
+  name: string;
+  type: IFieldType;
+}
+export interface ISchemaObject extends ISchemaType {
+  mutations?: ISchemaType;
+  subscriptions?: ISchemaType;
+  queries?: ISchemaType;
 }
