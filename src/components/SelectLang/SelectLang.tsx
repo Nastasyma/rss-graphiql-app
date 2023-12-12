@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LangItem from './langItem/LangItem';
 import s from './selectLang.module.scss';
 import arrow from '@/assets/211687_down_arrow_icon.svg';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 
 const langs = ['ru', 'en'];
 
@@ -11,18 +12,20 @@ export default function SelectLang() {
   function handleLangClick () {
     setIsLangOpen((prev)=>!prev)
   }
+  const dispatch = useAppDispatch()
+  const lang = useAppSelector((state) => state.project.lang)
 
   return (
     <div className={s.lang}>
       <div className={s.value} onClick={handleLangClick}>
-        <img src="./header/en.png" alt="english language" className={s.flag}/>
+        <img src={`./header/${lang}.png`} alt={`${lang} language`} className={s.flag}/>
         <span className={`${s.arrow}`}>
           <img src={arrow} width={10} alt="arrow" />
         </span>
       </div>
       {isLangOpen && <ul className={s.langList}>
           {langs.map((el, i)=> {
-            return <LangItem lang={el} uniqueKey={i} key={i}/>
+            return <LangItem lang={el} uniqueKey={i} setIsLangOpen={setIsLangOpen} key={i}/>
           })}
         </ul>}
     </div>
