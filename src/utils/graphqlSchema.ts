@@ -6,9 +6,7 @@ import { getIntrospectionQuery } from 'graphql';
 // const url = 'https://spacex-production.up.railway.app/';
 // const url = 'https://data-api.oxilor.com/graphql';
 
-export async function getSchemaTypes() {
-  const url = 'https://spacex-production.up.railway.app/';
-
+export async function getSchemaTypes(url: string) {
   const query = {
     query: getIntrospectionQuery(),
   };
