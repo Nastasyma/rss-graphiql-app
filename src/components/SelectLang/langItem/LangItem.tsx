@@ -5,12 +5,14 @@ import { setLang } from '@/store/reducers/projectSettingsSlice';
 interface IProps {
   lang: string;
   uniqueKey: number;
+  img:string;
   setIsLangOpen: (value: React.SetStateAction<boolean>) => void;
 }
 
 export default function LangItem({
   lang,
   uniqueKey,
+  img,
   setIsLangOpen,
 }:IProps) {
   const dispatch = useAppDispatch();
@@ -31,7 +33,7 @@ export default function LangItem({
     >
       <p className={s.langName}>{lang.toUpperCase()}</p>
       <img
-        src={`./header/${lang}.png`}
+        src={img}
         alt={`${lang} language`}
         className={s.langFlag}
       />
