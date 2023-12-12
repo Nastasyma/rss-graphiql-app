@@ -1,7 +1,10 @@
 :root {
   --max-content-width: 1280px;
   --max-content-padding: 0px 15px;
+}
 
+body[data-theme="dark"],
+body {
   --bg: linear-gradient(45deg, rgb(120, 67, 164), rgb(82, 147, 182));
   --color: rgb(255, 255, 255);
   --bg-color-header: white;
@@ -24,4 +27,29 @@
 
   --burger-color: rgb(255, 255, 255);
   --header-scroll: rgb(71, 65, 89);
+}
+
+body[data-theme="light"] {
+  --bg: linear-gradient(45deg, rgb(244, 244, 244), rgb(120, 174, 203));
+  --color: rgb(0, 0, 0);
+  --bg-color-header: rgb(255, 255, 255);
+  --bg-color-footer: white;
+  --bg-header: rgb(230, 220, 220);
+  --bg-footer: rgb(255, 255, 255);
+
+  --color-primary-text: #2a2a2a;
+  --color-secondary-text: rgb(87, 87, 87);
+  --bg-color-editor: rgba(255, 255, 255, 0.6);
+  --color-editor-buttons: #a086d9;
+  --color-editor-buttons-hover: #734da6;
+  --color-separator-border: rgba(128, 128, 128, 0.35);
+
+  --color-form: #00eeff;
+  --color-txt-form: rgb(255, 255, 255);
+  --bg-form: #0e0e0fa0;
+  --bg-input-focus: rgb(140, 161, 163);
+  --color-error: rgb(237, 127, 127);
+
+  --burger-color: rgb(255, 255, 255);
+  --header-scroll: rgb(161, 159, 167);
 }

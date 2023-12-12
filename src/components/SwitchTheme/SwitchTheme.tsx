@@ -8,9 +8,11 @@ export default function SwitchTheme() {
   const changeTheme = () => {
     if (!setTheme) return;
     if (theme === 'light') {
-      setTheme('dark');
+      setTheme(() => 'dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      setTheme('light');
+      setTheme(() => 'light');
+      localStorage.setItem('theme', 'light');
     }
   };
 
