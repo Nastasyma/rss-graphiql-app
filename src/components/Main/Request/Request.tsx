@@ -10,7 +10,6 @@ import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { useEffect } from 'react';
 
 function Request() {
-  
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
@@ -24,6 +23,31 @@ function Request() {
       handleNewTabContent(requestTemplate);
     }
   }, [tabs, handleNewTabContent]);
+
+  const prettifying = (request: string) => {
+    let space = 0;
+    let newSpace = 0;
+    
+    const requestArr = request
+      .split('\n')
+      .filter((el) => el)
+      .map((el) => {
+        space = newSpace;
+        el = el.trim();
+        
+          if(el.endsWith('{')){
+            newSpace+=2
+        return `${' '.repeat(space)}${el}`;
+          }
+          if (el.includes('}')){
+            newSpace-=2
+        return `${' '.repeat(newSpace)}${el}`;
+          }
+          return `${' '.repeat(space)}${el}`;
+      });
+      dispatch(updateTabContent({requestContent: requestArr.join('\n') }));
+    console.log(requestArr);
+  };
 
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
@@ -42,7 +66,10 @@ function Request() {
             <PlayIcon className={styles.icon} />
           </button>
           <button title="Prettify Query">
-            <PrettifyIcon className={styles.icon} />
+            <PrettifyIcon
+              className={styles.icon}
+              onClick={() => prettifying(tabs[0].requestContent)}
+            />
           </button>
         </div>
       </div>
