@@ -1,22 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LangItem from './langItem/LangItem';
 import s from './selectLang.module.scss';
 import arrow from '@/assets/211687_down_arrow_icon.svg';
-import { useAppDispatch, useAppSelector } from '@/store/store';
+import {useAppSelector} from '@/store/store';
 
 const langs = ['ru', 'en'];
 
 export default function SelectLang() {
   const [isLangOpen, setIsLangOpen] = useState(true);
+  const langRef = useRef<HTMLDivElement>(null)
 
-  function handleLangClick () {
+  const handleLangClick = () => {
     setIsLangOpen((prev)=>!prev)
   }
-  const dispatch = useAppDispatch()
-  const lang = useAppSelector((state) => state.project.lang)
+  const handleClickOutside = (event: MouseEvent) => {
+    if (langRef.current && event.target instanceof Node && !langRef.current.contains(event.target)) {
+      setIsLangOpen(false);
+    }
+  };
+  
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  })
+
+  const lang = useAppSelector((state) => state.project.lang);
+
 
   return (
-    <div className={s.lang}>
+    <div className={s.lang} ref={langRef}>
       <div className={s.value} onClick={handleLangClick}>
         <img src={`./header/${lang}.png`} alt={`${lang} language`} className={s.flag}/>
         <span className={`${s.arrow}`}>
