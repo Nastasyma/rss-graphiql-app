@@ -7,11 +7,7 @@ function Response() {
   return (
     <div className={`${styles.responseContainer} ${styles.container}`}>
       <span className={styles.title}>Response</span>
-      <CodeMirror
-        editable={false}
-        readOnly={true}
-        theme={bbedit}
-      />
+      <CodeMirror editable={false} readOnly={true} theme={bbedit} />
     </div>
   );
 }

@@ -2,7 +2,11 @@ import { useInView } from 'react-intersection-observer';
 import s from './team-member.module.scss';
 import { IWelcomeProps } from '../../../types/general';
 
-export default function TeamMember({ name, description, uniqueKey }: IWelcomeProps) {
+export default function TeamMember({
+  name,
+  description,
+  uniqueKey,
+}: IWelcomeProps) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-100px 0px',

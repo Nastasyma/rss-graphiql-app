@@ -16,8 +16,8 @@ export default function SignOut() {
   };
 
   return (
-    <div className="link" onClick={handleClick}>
+    <button className="link" onClick={handleClick}>
       Sing Out
-    </div>
+    </button>
   );
 }

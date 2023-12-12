@@ -3,7 +3,7 @@
 // Элемент управления, позволяющий пользователю переключать язык
 // Кнопка «Выход» — выход пользователя из системы.
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import s from './header.module.scss';
 import SwitchTheme from '../SwitchTheme/SwitchTheme';
 import SelectLang from '../SelectLang/SelectLang';
@@ -12,13 +12,34 @@ import SignOut from '../SignOut/SignOut';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
 import { useEffect, useState } from 'react';
-import AuthTrue from '../signButtons/AuthTrue';
-import AuthFalse from '../signButtons/AuthFalse';
+
+const nav = [
+  {
+    title: 'Welcome',
+    to: '/welcome',
+    auth: null,
+  },
+  {
+    title: 'Home',
+    to: '/',
+    auth: true,
+  },
+  {
+    title: 'Sign In',
+    to: '/login',
+    auth: false,
+  },
+  {
+    title: 'Sign Up',
+    to: '/register',
+    auth: false,
+  },
+];
 
 export default function Header() {
   const [user] = useAuthState(auth);
   const [fixHeader, setFixHeader] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
     const scroll = () => {
@@ -30,8 +51,29 @@ export default function Header() {
     return () => removeEventListener('scroll', scroll);
   });
 
+  useEffect(() => {
+    if (openMenu) {
+      document.body.classList.add('lock');
+    }
+    return () => {
+      document.body.classList.remove('lock');
+    };
+  }, [openMenu]);
+
+  const navLinks = (
+    user
+      ? nav.filter((el) => el.auth === true || el.auth === null)
+      : nav.filter((el) => el.auth === false || el.auth === null)
+  ).map((el, index) => (
+    <NavLink key={`nav${index}`} className={`link ${s.nav_btn}`} to={el.to}>
+      {el.title}
+    </NavLink>
+  ));
+
   return (
-    <header className={`${fixHeader ? s.scroll : ''}`}>
+    <header
+      className={`${fixHeader ? s.scroll : ''} ${openMenu ? s.open : ''}`}
+    >
       <div className={`${s.header} conteiner ${fixHeader ? s.scroll : ''}`}>
         <Link to="/welcome">
           <div className={s.logo}>
@@ -39,21 +81,34 @@ export default function Header() {
             <span className="logo_name">GraphiQL</span>
           </div>
         </Link>
-        <nav className={s.navigation}>
-          {user ? (
-            <>
-              <AuthTrue />
-              <SignOut />
-            </>
-          ) : (
-            <AuthFalse />
-          )}
-          <SwitchTheme />
-          <SelectLang />
-          <div className={s.wrap} onClick={() => setOpen(!open)}>
-            <div className={`${s.burger} ${open ? `${s.active}` : ''}`}></div>
+
+        <div className={s.menu}>
+          <nav
+            className={`${s.navigation} ${openMenu ? s.active : ''}`}
+            onClick={() => setOpenMenu(false)}
+          >
+            <div
+              className={`${s.nav_list} ${openMenu ? s.active : ''} ${
+                fixHeader ? s.scroll : ''
+              }`}
+            >
+              {navLinks}
+              {user ? <SignOut /> : ''}
+            </div>
+          </nav>
+          <div className={s.control}>
+            <SwitchTheme />
+            <SelectLang />
           </div>
-        </nav>
+          <div
+            className={s.burger}
+            onClick={() => setOpenMenu(() => !openMenu)}
+          >
+            <div
+              className={`${s.burger_logo} ${openMenu ? `${s.active}` : ''}`}
+            ></div>
+          </div>
+        </div>
       </div>
     </header>
   );

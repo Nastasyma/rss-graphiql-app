@@ -57,6 +57,11 @@ body {
   justify-content: center;
   position: relative;
   font-family: 'Roboto', 'Times New Roman', Times, serif;
+  box-sizing: border-box;
+}
+
+body.lock {
+  overflow: hidden;
 }
 
 #root {
@@ -66,6 +71,7 @@ body {
   position: relative;
   background: var(--bg);
   color: var(--color);
+  box-sizing: border-box;
 }
 
 main {
@@ -83,6 +89,8 @@ main {
 
 .link {
   background: linear-gradient(to right, #77a1d3 0%, #79cbca 51%, #77a1d3 100%);
+  font-weight: 800;
+  color: var(--color);
   padding: 13px 10px;
   text-align: center;
   text-transform: uppercase;
@@ -94,6 +102,7 @@ main {
   justify-content: center;
   min-width: 120px;
   cursor: pointer;
+  max-height: 54px;
 
   &.active {
     box-shadow: 0 0 10px #eee;
@@ -116,7 +125,6 @@ main {
 }
 
 .logo_name {
-  font-size: 20px;
   color: rgb(208, 197, 212);
   background-color: #2aa5a0;
   background-image: linear-gradient(90deg, #e353c4, #2aa5a0);
@@ -126,3 +134,4 @@ main {
   text-shadow: 3px -2px 5px #ffffff3c;
   -webkit-text-stroke: 0.3px #ffffff;
 }
+

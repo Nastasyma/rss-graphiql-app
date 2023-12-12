@@ -54,7 +54,13 @@ const tabsSlice = createSlice({
   },
 });
 
-export const { addTab, deleteTab, setActiveTab, updateTabContent, setVariablesContent, setHeadersContent } =
-  tabsSlice.actions;
+export const {
+  addTab,
+  deleteTab,
+  setActiveTab,
+  updateTabContent,
+  setVariablesContent,
+  setHeadersContent,
+} = tabsSlice.actions;
 
 export default tabsSlice.reducer;
