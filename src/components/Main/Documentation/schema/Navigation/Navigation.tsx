@@ -26,9 +26,7 @@ function Navigation({ fields, setData }: INavigationProps) {
             key={`${navItem}-${index}`}
             onClick={() => handleClick(navItem)}
             className={
-              nav.indexOf(navItem) === nav.length - 1
-                ? styles.active
-                : styles.inactive
+              index === nav.length - 1 ? styles.active : styles.inactive
             }
           >
             <span>{capitalizedNavItem}</span> {isLastItem ? '' : '→'}
