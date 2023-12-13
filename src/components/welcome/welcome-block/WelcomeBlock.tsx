@@ -13,9 +13,9 @@ export default function WelcomeBlock() {
         <img className={s.image} src="./welcomePage/earth.png" alt="night" />
       </div>
       <div className={s.welcomeContent}>
-        <span className="logo_name" style={{ fontSize: '5em' }}>
+        <h1 className={`logo_name ${s.title}`}>
           GraphiQL
-        </span>
+        </h1>
         <h2 className={s.header}>Application for your queries</h2>
         {user ? (
           <>

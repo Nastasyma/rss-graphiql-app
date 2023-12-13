@@ -110,7 +110,7 @@ export default function AuthForm({
               type={showPassword ? 'text' : 'password'}
               id="password"
               defaultValue=""
-              placeholder={langs.emailPlaceholder[lang]}
+              placeholder={langs.passwordPlaceholder[lang]}
               {...register('password')}
             />
             <div className={s.input_focus}></div>

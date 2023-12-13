@@ -6,6 +6,13 @@
   justify-content: center;
   font-family: 'Roboto', 'Times New Roman', Times, serif;
   height: 100vh;
+    .title {
+    font-weight: 500;
+    font-size: 5em;
+    @media (max-width: 500px) {
+      font-size: 4em;
+    }
+  }
   .imageBlock {
     width: 47vw;
     position: relative;
@@ -94,3 +101,4 @@
     }
   }
 }
+
