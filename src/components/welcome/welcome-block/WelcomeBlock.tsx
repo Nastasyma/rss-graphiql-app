@@ -17,11 +17,27 @@ export default function WelcomeBlock() {
           GraphiQL
         </span>
         <h2 className={s.header}>Application for your queries</h2>
-        <h3 className={s.header}>
-          To use the application, sign up or sign in to your account
-        </h3>
-        <div className={s.nav}>{user ? <AuthTrue /> : <AuthFalse />}</div>
+        {user ? (
+          <>
+            <h3 className={s.header}>
+              To use the application, go to HOME page
+            </h3>
+            <div className={s.nav}>
+              <AuthTrue />
+            </div>
+          </>
+        ) : (
+          <>
+            <h3 className={s.header}>
+              To use the application, sign up or sign in to your account
+            </h3>
+            <div className={s.nav}>
+              <AuthFalse />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
 }
+
