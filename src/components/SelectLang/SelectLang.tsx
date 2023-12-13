@@ -24,6 +24,7 @@ export default function SelectLang() {
         if (!setLang) return;
         setLang(() => el.lang);
         setIsLangOpen(false);
+        localStorage.setItem('lang', el.lang);
       }}
     >
       <p className={`${s.langName} ${lang === el.lang ? s.current : ''}`}>
