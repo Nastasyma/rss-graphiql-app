@@ -27,70 +27,36 @@ function Request() {
   const prettifying = (request: string) => {
     let space = 0;
     let newSpace = 0;
-
     const regex = /({|}|\{[^{}]*})/g;
-    let indentLevel = 0;
-  const indentSize = 2;
-    const requestArr = request
-      .split(regex)
-      .filter((el) => el)
-      .map((line) => {
-        const trimmedLine = line.trim();
-  
-        if (trimmedLine.endsWith('{')) {
-          // Увеличиваем отступ для следующей строки
-          let result = `${' '.repeat(indentLevel * indentSize)}${trimmedLine}\n`;
-          indentLevel++;
-          return result;
-        } else if (trimmedLine.startsWith('}')) {
-          // Уменьшаем отступ для текущей строки
-          indentLevel--;
-          return `${' '.repeat(indentLevel * indentSize)}${trimmedLine}\n`;
-        } else {
-          // Строки без изменения уровня отступа
-          return `${' '.repeat(indentLevel * indentSize)}${trimmedLine}\n`;
+    const requestArr = request.split(regex).filter((el) => el);
+    let newArr: string[] = [];
+    for (let i = 0; i < requestArr.length; i++) {
+      let elem = requestArr[i].trim();
+      if (requestArr[i + 1] === '{') {
+        elem = elem + ' {';
+        requestArr.splice(i + 1, 1);
+      }
+      if (elem) {
+        newArr.push(elem);
+      }
+    }
+    newArr = newArr.map(el =>{
+      space = newSpace;
+
+        if(el.endsWith('{')){
+          newSpace+=2
+      return `${' '.repeat(space)}${el}`;
         }
-      })
-      //   if (el.indexOf('{') !== el.lastIndexOf('{')) {
-      //     const elArr = el.split('{').filter((el => el)).map((el) => {
-      //       return `${el}{`;
-      //     })
-      //     return elArr
-      //   } else if(el.indexOf('}') !== el.lastIndexOf('}') ){
-      //     const elArr = el.split('}').map(el => {
-      //       const trimEl =el.trim();
-      //       console.log(trimEl);
-      //       if (!trimEl){
-      //         return '}'
-      //       } else {
-      //         return trimEl
-      //       }
-      //     })
-      //     console.log(elArr);
-      //     return elArr
-      //   } else {
-      //   return el
-      //   }
-      // })
-      // .flat(1)
-      // .map(el =>{
-      //   space = newSpace;
-      //   el = el.trim();
+        if (el.includes('}')){
+          newSpace-=2
+          newSpace = newSpace<0 ? 0: newSpace
+      return `${' '.repeat(newSpace)}${el}`;
+        }
+        return `${' '.repeat(space)}${el}`;
+    });
     
-      //     if(el.endsWith('{')){
-      //       newSpace+=2
-      //   return `${' '.repeat(space)}${el}`;
-      //     }
-      //     if (el.includes('}')){
-      //       newSpace-=2
-      //   return `${' '.repeat(newSpace)}${el}`;
-      //     }
-      //     return `${' '.repeat(space)}${el}`;
-      // });
-        dispatch(updateTabContent({requestContent: requestArr.join(' ') }));
-    console.log(requestArr);
+    dispatch(updateTabContent({ requestContent: newArr.join('\n') }));
   };
-  
 
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
