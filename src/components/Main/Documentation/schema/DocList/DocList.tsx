@@ -1,5 +1,7 @@
-import { IDataItem } from '@/types/general';
+import { IDataItem, IType } from '@/types/general';
 import styles from './DocList.module.scss';
+import { getFieldType } from '@/utils/getFieldType';
+import { getTypeName } from '@/utils/getTypeName';
 
 interface IDocListProps {
   data: IDataItem[];
@@ -9,9 +11,10 @@ interface IDocListProps {
 
 function DocList({ data, setData, title }: IDocListProps) {
   const handleItemClick = (item: IDataItem) => {
+    const typeName = getTypeName(item.type as IType);
     const newDataItem: IDataItem = {
       name: item.name,
-      type: item.type?.name || item.type?.ofType?.name,
+      type: typeName,
     } as IDataItem;
     setData((prevData: IDataItem[]) => [...prevData, newDataItem]);
   };
@@ -22,13 +25,12 @@ function DocList({ data, setData, title }: IDocListProps) {
       <ul>
         {data.map((dataItem) => {
           const { name } = dataItem;
-          const type =
-            dataItem.type?.name ||
-            (dataItem.type?.ofType?.name && `[${dataItem.type.ofType?.name}]`);
+          const type = getFieldType(dataItem.type as IType);
+
           if (name && type) {
             return (
               <li
-                key={name}
+                key={`${name}-${type}`}
                 onClick={() => handleItemClick(dataItem)}
                 className={styles.fieldBlock}
               >

@@ -3,7 +3,7 @@ export const prettifying = (request: string) => {
     let newSpace = 0;
     const regex = /({|}|\{[^{}]*})/g;
     const requestArr = request.split(regex).filter((el) => el);
-    let newArr: string[] = [];
+    const newArr: string[] = [];
     for (let i = 0; i < requestArr.length; i++) {
       let elem = requestArr[i].trim();
       if (requestArr[i + 1] === '{') {
@@ -29,7 +29,7 @@ export const prettifying = (request: string) => {
         return `${' '.repeat(space)}${el}`;
     })
     .join('\n')+'\n'
-    
+
     // console.log(newArr);
     // dispatch(updateTabContent({ requestContent: newArr.join('\n')+'\n' }));
   };
