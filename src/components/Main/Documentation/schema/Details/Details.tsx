@@ -17,9 +17,9 @@ function Details({ field, type, setData }: IDetailsProps) {
     if (description || kind) {
       return (
         <div>
-          <div className={styles.docText}>DESCRIPTION</div>
+          {description && <div className={styles.docText}>DESCRIPTION</div>}
           {description && <div className={styles.docText}>{description}</div>}
-          {kind && kind === "SCALAR" && (
+          {kind && kind === 'SCALAR' && (
             <div className={styles.fieldBlock}>
               <span className={styles.field}>{kind.toLocaleLowerCase()}</span>
               <span> </span>
@@ -36,7 +36,9 @@ function Details({ field, type, setData }: IDetailsProps) {
     <div>
       {renderDescription()}
       {types && <DocList data={types} setData={setData} title="TYPE DETAILS" />}
-      {args && args.length > 0 && <DocList data={args} setData={setData} title="ARGUMENTS" />}
+      {args && args.length > 0 && (
+        <DocList data={args} setData={setData} title="ARGUMENTS" />
+      )}
     </div>
   );
 }
