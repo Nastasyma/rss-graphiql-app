@@ -30,7 +30,6 @@ export default function SighUp() {
         setErrorAuthMessage(() => null);
         const user = userCredential.user;
         dispatch(setUser(user.email));
-        console.log(user);
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {

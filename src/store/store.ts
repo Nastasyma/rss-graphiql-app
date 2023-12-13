@@ -4,13 +4,15 @@ import editorReducer from './reducers/editorSlice';
 import tabsReducer from './reducers/tabSlice';
 import projectReducer from './reducers/projectSettingsSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import responseReducer from './reducers/responseSlice'
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     editor: editorReducer,
     tabs: tabsReducer,
-    project: projectReducer
+    project: projectReducer,
+    response: responseReducer
   },
 });
 

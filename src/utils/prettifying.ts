@@ -29,7 +29,4 @@ export const prettifying = (request: string) => {
         return `${' '.repeat(space)}${el}`;
     })
     .join('\n')+'\n'
-    
-    // console.log(newArr);
-    // dispatch(updateTabContent({ requestContent: newArr.join('\n')+'\n' }));
   };

@@ -40,12 +40,10 @@ function Documentation() {
         mutations: mutationType,
         subscriptions: subscriptionType,
       }));
-      console.log('types.current', types.current);
       setIsLoading(false);
     }
     getAllTypes();
   }, [tabs, activeTab]);
-  console.log('schemaObject', schemaObject);
 
   return (
     <div className={`${styles.docDescription} ${styles.container}`}>

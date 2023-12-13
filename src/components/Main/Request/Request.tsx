@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { useEffect } from 'react';
 import { prettifying } from '@/utils/prettifying';
+import { setResponse } from '@/store/reducers/responseSlice';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -30,6 +31,27 @@ function Request() {
     dispatch(updateTabContent({ index: activeTab, requestContent: response }));
   }
 
+  const makeRequest = (url:string, query:string, variables?:string, headers?:string) => {
+    console.log(url);
+    console.log(query);
+    const requestBody = {
+      query,
+      variables: { first: 1 },
+    };
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    }).then((res)=>res.json()).catch((err) => console.error(err))
+  }
+  
+  const onPlayClick = async (url:string, query:string) => {
+    const res = await makeRequest(url, query)
+    dispatch(setResponse(JSON.stringify(res, null, 2)))
+  };
+
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
       <span className={styles.title}>Request</span>
@@ -44,7 +66,7 @@ function Request() {
         </div>
         <div className={styles.requestButtons}>
           <button title="Execute Query">
-            <PlayIcon className={styles.icon} />
+            <PlayIcon className={styles.icon} onClick={()=>{onPlayClick(tabs[activeTab].url, tabs[activeTab].requestContent)}}/>
           </button>
           <button title="Prettify Query">
             <PrettifyIcon
