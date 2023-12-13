@@ -17,9 +17,7 @@ function Tabs() {
   };
 
   const handleAddTab = () => {
-    dispatch(
-      addTab({ requestContent: '', variablesContent: '', headersContent: '' })
-    );
+    dispatch(addTab({ requestContent: '', variablesContent: '', headersContent: '', url: '' }));
     const newIndex = tabs.length;
     dispatch(setActiveTab(newIndex));
   };

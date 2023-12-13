@@ -1,23 +1,77 @@
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import styles from './EditorHeader.module.scss';
+import { updateTabContent } from '@/store/reducers/tabSlice';
+import { useEffect, useState } from 'react';
+import CopyIcon from '@/assets/copy_icon_128895.svg?react';
+import { apiExamples } from '@/utils/apiExamples';
 
 function EditorHeader() {
-  const [inputValue, setInputValue] = useState(
-    'https://graphql-pokemon2.vercel.app'
-  );
+  const dispatch = useAppDispatch();
+  const tabs = useAppSelector((state) => state.tabs.tabs);
+  const activeTab = useAppSelector((state) => state.tabs.activeTab);
+  const [showApiList, setShowApiList] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    const newURL = event.target.value;
+    dispatch(
+      updateTabContent({
+        url: newURL,
+      })
+    );
   };
 
+  const handleQuestionButtonClick = () => {
+    setShowApiList(!showApiList);
+  };
+
+  useEffect(() => {
+    if (tabs.length === 1 && tabs[0].url === '') {
+      dispatch(
+        updateTabContent({
+          url: apiExamples[0].url,
+        })
+      );
+    }
+  }, [tabs, dispatch]);
+
+  function copyText(text: string) {
+    navigator.clipboard.writeText(text);
+    setShowApiList(false);
+  }
+
   return (
-    <form
-      className={styles.container}
-      onSubmit={(event) => event.preventDefault()}
-    >
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button type="submit">OK</button>
-    </form>
+    <div className={styles.container}>
+      <button
+        className={styles.questionButton}
+        onClick={handleQuestionButtonClick}
+      >
+        ?
+      </button>
+      <input
+        type="text"
+        value={tabs[activeTab]?.url}
+        onChange={handleInputChange}
+      />
+      {showApiList && (
+        <div className={styles.apiList}>
+          <ul>
+            <li>API examples:</li>
+            {apiExamples.map((api, index) => (
+              <li key={index}>
+                <span>{api.url}</span>
+                <button
+                  className={styles.copyButton}
+                  onClick={() => copyText(api.url)}
+                >
+                  <CopyIcon />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
+
 export default EditorHeader;

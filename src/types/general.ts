@@ -3,3 +3,24 @@ export interface IWelcomeProps {
   description: string;
   uniqueKey: number;
 }
+
+export interface IFieldType {
+  kind: string;
+  ofType?: IFieldType;
+  name: string;
+}
+
+export interface ISchemaType {
+  name: string;
+  fields: IField[];
+}
+
+export interface IField {
+  name: string;
+  type: IFieldType;
+}
+export interface ISchemaObject extends ISchemaType {
+  mutations?: ISchemaType;
+  subscriptions?: ISchemaType;
+  queries?: ISchemaType;
+}

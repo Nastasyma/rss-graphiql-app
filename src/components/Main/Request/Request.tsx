@@ -8,9 +8,9 @@ import { requestTemplate } from './requestTemplate';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { useEffect } from 'react';
+import { prettifying } from '@/utils/prettifying';
 
 function Request() {
-  
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
@@ -24,6 +24,11 @@ function Request() {
       handleNewTabContent(requestTemplate);
     }
   }, [tabs, handleNewTabContent]);
+
+  const onPrettifyClick = (request:string) => {
+    const response = prettifying(request)
+    dispatch(updateTabContent({ index: activeTab, requestContent: response }));
+  }
 
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
@@ -42,7 +47,10 @@ function Request() {
             <PlayIcon className={styles.icon} />
           </button>
           <button title="Prettify Query">
-            <PrettifyIcon className={styles.icon} />
+            <PrettifyIcon
+              className={styles.icon}
+              onClick={() => onPrettifyClick(tabs[activeTab]?.requestContent)}
+            />
           </button>
         </div>
       </div>
