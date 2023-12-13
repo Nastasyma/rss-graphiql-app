@@ -26,9 +26,10 @@ function Request() {
   }, [tabs, handleNewTabContent]);
 
   const onPrettifyClick = (request:string) => {
-    const responce = prettifying(request)
-    dispatch(updateTabContent({ requestContent: responce }));
+    const response = prettifying(request)
+    dispatch(updateTabContent({ index: activeTab, requestContent: response }));
   }
+
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
       <span className={styles.title}>Request</span>
@@ -48,7 +49,7 @@ function Request() {
           <button title="Prettify Query">
             <PrettifyIcon
               className={styles.icon}
-              onClick={() => onPrettifyClick(tabs[0].requestContent)}
+              onClick={() => onPrettifyClick(tabs[activeTab]?.requestContent)}
             />
           </button>
         </div>
