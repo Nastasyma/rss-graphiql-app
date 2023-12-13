@@ -13,9 +13,7 @@ export default function WelcomeBlock() {
         <img className={s.image} src="./welcomePage/earth.png" alt="night" />
       </div>
       <div className={s.welcomeContent}>
-        <h1 className={`logo_name ${s.title}`}>
-          GraphiQL
-        </h1>
+        <h1 className={`logo_name ${s.title}`}>GraphiQL</h1>
         <h2 className={s.header}>Application for your queries</h2>
         {user ? (
           <>
@@ -40,4 +38,3 @@ export default function WelcomeBlock() {
     </div>
   );
 }
-

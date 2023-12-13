@@ -25,10 +25,10 @@ function Request() {
     }
   }, [tabs, handleNewTabContent]);
 
-  const onPrettifyClick = (request:string) => {
-    const response = prettifying(request)
+  const onPrettifyClick = (request: string) => {
+    const response = prettifying(request);
     dispatch(updateTabContent({ index: activeTab, requestContent: response }));
-  }
+  };
 
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>

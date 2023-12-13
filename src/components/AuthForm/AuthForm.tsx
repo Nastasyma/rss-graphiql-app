@@ -50,7 +50,7 @@ export default function AuthForm({
   otherFormLink,
   authFunk,
   errorAuthMessage,
-  lang
+  lang,
 }: IProps) {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -60,7 +60,7 @@ export default function AuthForm({
     formState: { errors, isDirty, isValid },
   } = useForm<IForm>({
     mode: 'onChange',
-    resolver: yupResolver<IForm>(schema),
+    resolver: yupResolver<IForm>(schema(lang)),
   });
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function AuthForm({
 
         <div className={s.item}>
           <label htmlFor="email" className={s.item__name}>
-           {langs.email[lang]}
+            {langs.email[lang]}
           </label>
           <div className={s.item__value}>
             <input

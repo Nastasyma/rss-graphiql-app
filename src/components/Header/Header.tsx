@@ -18,20 +18,20 @@ const nav = [
   {
     title: {
       en: 'Welcome',
-      ru: 'Приветствие'
+      ru: 'Приветствие',
     },
     to: '/welcome',
     auth: null,
   },
   {
-    title: {en: 'Home', ru: 'Главная'},
+    title: { en: 'Home', ru: 'Главная' },
     to: '/',
     auth: true,
   },
   {
     title: {
       en: 'Sign In',
-      ru: 'Вход'
+      ru: 'Вход',
     },
     to: '/login',
     auth: false,
@@ -39,7 +39,7 @@ const nav = [
   {
     title: {
       en: 'Sign Up',
-      ru: 'Регистрация'
+      ru: 'Регистрация',
     },
     to: '/register',
     auth: false,
@@ -50,7 +50,7 @@ export default function Header() {
   const [user] = useAuthState(auth);
   const [fixHeader, setFixHeader] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const {lang} = useContext(LangContext)
+  const { lang } = useContext(LangContext);
 
   useEffect(() => {
     const scroll = () => {
@@ -104,7 +104,11 @@ export default function Header() {
               }`}
             >
               {navLinks}
-              {user ? <SignOut title={lang === 'ru' ? "Выход" : 'Sign out'}/> : ''}
+              {user ? (
+                <SignOut title={lang === 'ru' ? 'Выход' : 'Sign out'} />
+              ) : (
+                ''
+              )}
             </div>
           </nav>
           <div className={s.control}>

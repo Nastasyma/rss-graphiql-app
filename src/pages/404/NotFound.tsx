@@ -1,6 +1,6 @@
 import s from './not-found.module.scss';
 import { Link } from 'react-router-dom';
-import notFoundImg from '@assets/not-found.png'
+import notFoundImg from '@assets/not-found.png';
 
 export default function NotFound() {
   return (

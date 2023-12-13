@@ -5,14 +5,14 @@ import ru from '/header/ru.png';
 import en from '/header/en.png';
 import { LangContext, LangContextType } from '@/providers/LangProvider';
 
-const langs: {lang: LangContextType, img: string }[] = [
+const langs: { lang: LangContextType; img: string }[] = [
   { lang: 'ru', img: ru },
   { lang: 'en', img: en },
 ];
 
 export default function SelectLang() {
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const {lang, setLang} = useContext(LangContext);
+  const { lang, setLang } = useContext(LangContext);
   const langRef = useRef<HTMLDivElement>(null);
 
   const LangList = langs.map((el) => (
@@ -21,13 +21,14 @@ export default function SelectLang() {
       key={el.lang}
       id={el.lang}
       onClick={() => {
-          if (!setLang) return;
-          setLang(() => el.lang)
-          setIsLangOpen(false);
-        }
-      }
+        if (!setLang) return;
+        setLang(() => el.lang);
+        setIsLangOpen(false);
+      }}
     >
-      <p className={`${s.langName} ${lang === el.lang ? s.current : ''}`}>{el.lang.toUpperCase()}</p>
+      <p className={`${s.langName} ${lang === el.lang ? s.current : ''}`}>
+        {el.lang.toUpperCase()}
+      </p>
       <img src={el.img} alt={`${el.lang} language`} className={s.langFlag} />
     </li>
   ));
@@ -49,7 +50,6 @@ export default function SelectLang() {
     };
   });
 
-
   return (
     <div className={s.lang} ref={langRef}>
       <div className={s.value} onClick={() => setIsLangOpen(!isLangOpen)}>
@@ -64,12 +64,7 @@ export default function SelectLang() {
         </span>
       </div>
 
-      
-      {isLangOpen && (
-        <ul className={s.langList}>
-          {LangList}
-        </ul>
-      )}
+      {isLangOpen && <ul className={s.langList}>{LangList}</ul>}
     </div>
   );
 }

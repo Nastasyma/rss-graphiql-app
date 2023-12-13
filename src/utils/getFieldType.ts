@@ -1,4 +1,4 @@
-import { IFieldType } from "@/types/general";
+import { IFieldType } from '@/types/general';
 
 export function getFieldType(type: IFieldType): string {
   if (type.kind === 'LIST') {

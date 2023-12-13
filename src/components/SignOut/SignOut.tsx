@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 import { removeUser } from '@/store/reducers/userSlice';
 
 interface IProps {
-  title: string
+  title: string;
 }
 
-export default function SignOut({title}: IProps) {
+export default function SignOut({ title }: IProps) {
   const dispatch = useDispatch();
   const handleClick = () => {
     signOut(auth)

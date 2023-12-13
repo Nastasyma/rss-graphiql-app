@@ -18,7 +18,9 @@ interface EditorState {
 }
 
 const initialState: ITabs & EditorState = {
-  tabs: [{ requestContent: '', variablesContent: '', headersContent: '', url: '' }],
+  tabs: [
+    { requestContent: '', variablesContent: '', headersContent: '', url: '' },
+  ],
   activeTab: 0,
   variablesContent: '',
   headersContent: '',

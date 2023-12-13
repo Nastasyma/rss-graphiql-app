@@ -25,7 +25,7 @@ export default function SighUp() {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
 
-  const {lang} = useContext(LangContext)
+  const { lang } = useContext(LangContext);
 
   const sighUp = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
