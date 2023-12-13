@@ -8,6 +8,7 @@ import { requestTemplate } from './requestTemplate';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { useEffect } from 'react';
+import { prettifying } from '@/utils/prettifying';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -24,40 +25,10 @@ function Request() {
     }
   }, [tabs, handleNewTabContent]);
 
-  const prettifying = (request: string) => {
-    let space = 0;
-    let newSpace = 0;
-    const regex = /({|}|\{[^{}]*})/g;
-    const requestArr = request.split(regex).filter((el) => el);
-    let newArr: string[] = [];
-    for (let i = 0; i < requestArr.length; i++) {
-      let elem = requestArr[i].trim();
-      if (requestArr[i + 1] === '{') {
-        elem = elem + ' {';
-        requestArr.splice(i + 1, 1);
-      }
-      if (elem) {
-        newArr.push(elem);
-      }
-    }
-    newArr = newArr.map(el =>{
-      space = newSpace;
-
-        if(el.endsWith('{')){
-          newSpace+=2
-      return `${' '.repeat(space)}${el}`;
-        }
-        if (el.includes('}')){
-          newSpace-=2
-          newSpace = newSpace<0 ? 0: newSpace
-      return `${' '.repeat(newSpace)}${el}`;
-        }
-        return `${' '.repeat(space)}${el}`;
-    });
-    
-    dispatch(updateTabContent({ requestContent: newArr.join('\n') }));
-  };
-
+  const onPrettifyClick = (request:string) => {
+    const responce = prettifying(request)
+    dispatch(updateTabContent({ requestContent: responce }));
+  }
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
       <span className={styles.title}>Request</span>
@@ -77,7 +48,7 @@ function Request() {
           <button title="Prettify Query">
             <PrettifyIcon
               className={styles.icon}
-              onClick={() => prettifying(tabs[0].requestContent)}
+              onClick={() => onPrettifyClick(tabs[0].requestContent)}
             />
           </button>
         </div>
