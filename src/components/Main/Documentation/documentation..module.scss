@@ -7,29 +7,4 @@
   padding: 10px;
   color: var(--color-primary-text);
   overflow: auto;
-
-  .docText {
-    color: var(--color-secondary-text);
-  }
-
-  .title {
-    font-weight: 700;
-  }
-
-  .field {
-    color: rgb(72, 72, 201);
-  }
-
-  .type {
-    color: rgb(185, 117, 7);
-  }
-
-  .fieldBlock {
-    padding: 4px;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
-  }
 }
