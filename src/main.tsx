@@ -7,7 +7,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './router/router.tsx';
 import './utils/firebase.ts';
 import { store } from './store/store.ts';
-import ThemeProvider from './prividers/ThemeProvider.tsx';
+import ThemeProvider from './providers/ThemeProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -20,14 +20,14 @@ interface ThemeContext {
 }
 
 function getTheme() {
-  const ls = localStorage.getItem('theme')
+  const ls = localStorage.getItem('theme');
   if (ls === 'dark' || ls === 'light') {
-    return ls
-  } 
-  return 'dark'
+    return ls;
+  }
+  return 'dark';
 }
 
-export const ThemeContext = createContext<ThemeContext>({ theme: getTheme()});
+export const ThemeContext = createContext<ThemeContext>({ theme: getTheme() });
 
 export default function ThemeProvider({ children }: IProps) {
   const [theme, setTheme] = useState<ThemeContextType>(getTheme());
