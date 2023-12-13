@@ -1,0 +1,21 @@
+.docText {
+  color: var(--color-secondary-text);
+  padding: 10px 0;
+}
+
+.fieldBlock {
+  padding: 4px 0;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+}
+
+.field {
+  color: rgb(72, 72, 201);
+}
+
+.type {
+  color: rgb(185, 117, 7);
+}
