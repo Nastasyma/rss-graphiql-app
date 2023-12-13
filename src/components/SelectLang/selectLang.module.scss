@@ -2,6 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  &:hover .value .arrow{
+    opacity: 1;
+  }
 }
 
 .value {
@@ -15,6 +20,7 @@
 .flag {
   width: 35px;
   position: relative;
+  transition: all 0.5s;
 }
 
 .arrow {
@@ -23,13 +29,46 @@
   justify-content: center;
   transition: all 0.5s;
   &.active {
-    transform: rotate(180deg);
+   transform: rotate3d(1, 0, 0, 180deg);;
   } 
+  opacity: 0;
 }
 
 .langList {
   position: absolute;
-  top: 75px;
-  
+  border: 1px solid transparent;
+  overflow: hidden;
+  border-radius: 10px;
+  top: 40px;
+  right: 0px;
+  width: 100px;
 }
+
+.langItem{ 
+    display: flex;
+    text-align: center;
+    justify-content:space-between;
+    background-color: rgba(0, 0, 0, 0.693);
+    padding: 15px;
+    gap: 10px;
+    @keyframes open {
+      0% {opacity: 0};
+      100% {opacity: 1}
+    }
+    animation: open 0.4s ease;
+
+    &:hover {
+      background-color: rgb(0, 0, 0, 0.9);
+      cursor: pointer;
+    }
+    .langName{
+      width: 30px;
+      &.current {
+        font-weight: 800;
+      }
+    }
+    .langFlag {
+      width: 20px;
+    }
+  }
 

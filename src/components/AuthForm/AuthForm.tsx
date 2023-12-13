@@ -11,6 +11,25 @@ interface IForm {
   password: string;
 }
 
+const langs = {
+  email: {
+    en: 'Email',
+    ru: 'Электронная почта',
+  },
+  emailPlaceholder: {
+    en: 'Type your email',
+    ru: 'Введите электронную почту',
+  },
+  password: {
+    en: 'Password',
+    ru: 'Пароль',
+  },
+  passwordPlaceholder: {
+    en: 'Type your password',
+    ru: 'Введите пароль',
+  },
+};
+
 interface IProps {
   title: string;
   otherFormTitle: string;
@@ -22,6 +41,7 @@ interface IProps {
         error: ErrorOption,
       ]
     | null;
+  lang: 'ru' | 'en';
 }
 
 export default function AuthForm({
@@ -30,6 +50,7 @@ export default function AuthForm({
   otherFormLink,
   authFunk,
   errorAuthMessage,
+  lang
 }: IProps) {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -60,7 +81,7 @@ export default function AuthForm({
 
         <div className={s.item}>
           <label htmlFor="email" className={s.item__name}>
-            Email:
+           {langs.email[lang]}
           </label>
           <div className={s.item__value}>
             <input
@@ -68,7 +89,7 @@ export default function AuthForm({
               type="email"
               id="email"
               defaultValue=""
-              placeholder="Type your email"
+              placeholder={langs.emailPlaceholder[lang]}
               {...register('email')}
             />
             <div className={s.input_focus}></div>
@@ -81,7 +102,7 @@ export default function AuthForm({
 
         <div className={s.item}>
           <label htmlFor="password" className={s.item__name}>
-            Password:
+            {langs.password[lang]}
           </label>
           <div className={s.item__value}>
             <input
@@ -89,7 +110,7 @@ export default function AuthForm({
               type={showPassword ? 'text' : 'password'}
               id="password"
               defaultValue=""
-              placeholder="Type your password"
+              placeholder={langs.emailPlaceholder[lang]}
               {...register('password')}
             />
             <div className={s.input_focus}></div>

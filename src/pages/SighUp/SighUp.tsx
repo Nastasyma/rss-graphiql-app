@@ -3,7 +3,7 @@
 // При успешном входе пользователь перенаправляется на Главную страницу 10 баллов
 // Если пользователь уже авторизовался и пытается добраться до этих маршрутов, он должен быть перенаправлен на Главную страницу 10 пунктов
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/reducers/userSlice';
 import { ErrorOption } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { LangContext } from '@/providers/LangProvider';
 
 export default function SighUp() {
   const [errorAuthMessage, setErrorAuthMessage] = useState<
@@ -23,6 +24,8 @@ export default function SighUp() {
   >(null);
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
+
+  const {lang} = useContext(LangContext)
 
   const sighUp = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
@@ -51,11 +54,12 @@ export default function SighUp() {
     <Navigate to="/" replace />
   ) : (
     <AuthForm
-      title="Sigh Up"
-      otherFormTitle="Or Sing In Using"
+      title={lang === 'ru' ? 'Регистрация' : 'Sigh up'}
+      otherFormTitle={lang === 'ru' ? 'или войти' : 'or sing in using'}
       otherFormLink="/login"
       authFunk={sighUp}
       errorAuthMessage={errorAuthMessage}
+      lang={lang}
     />
   );
 }

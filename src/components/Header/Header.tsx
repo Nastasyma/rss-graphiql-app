@@ -11,26 +11,36 @@ import logo from '@assets/logo.svg';
 import SignOut from '../SignOut/SignOut';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { LangContext } from '@/providers/LangProvider';
 
 const nav = [
   {
-    title: 'Welcome',
+    title: {
+      en: 'Welcome',
+      ru: 'Приветствие'
+    },
     to: '/welcome',
     auth: null,
   },
   {
-    title: 'Home',
+    title: {en: 'Home', ru: 'Главная'},
     to: '/',
     auth: true,
   },
   {
-    title: 'Sign In',
+    title: {
+      en: 'Sign In',
+      ru: 'Вход'
+    },
     to: '/login',
     auth: false,
   },
   {
-    title: 'Sign Up',
+    title: {
+      en: 'Sign Up',
+      ru: 'Регистрация'
+    },
     to: '/register',
     auth: false,
   },
@@ -40,6 +50,7 @@ export default function Header() {
   const [user] = useAuthState(auth);
   const [fixHeader, setFixHeader] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const {lang} = useContext(LangContext)
 
   useEffect(() => {
     const scroll = () => {
@@ -66,7 +77,7 @@ export default function Header() {
       : nav.filter((el) => el.auth === false || el.auth === null)
   ).map((el, index) => (
     <NavLink key={`nav${index}`} className={`link ${s.nav_btn}`} to={el.to}>
-      {el.title}
+      {el.title[lang]}
     </NavLink>
   ));
 
@@ -93,7 +104,7 @@ export default function Header() {
               }`}
             >
               {navLinks}
-              {user ? <SignOut /> : ''}
+              {user ? <SignOut title={lang === 'ru' ? "Выход" : 'Sign out'}/> : ''}
             </div>
           </nav>
           <div className={s.control}>

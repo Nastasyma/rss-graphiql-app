@@ -7,7 +7,7 @@
 // При успешном входе пользователь перенаправляется на Главную страницу 10 баллов
 // Если пользователь уже авторизовался и пытается добраться до этих маршрутов, он должен быть перенаправлен на Главную страницу 10 пунктов
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ErrorOption } from 'react-hook-form';
@@ -16,6 +16,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/reducers/userSlice';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { LangContext } from '@/providers/LangProvider';
 
 export default function Login() {
   const [errorAuthMessage, setErrorAuthMessage] = useState<
@@ -29,6 +30,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
+  const {lang} = useContext(LangContext)
 
   const login = async (email: string, password: string) => {
     setErrorAuthMessage(() => null);
@@ -66,11 +68,12 @@ export default function Login() {
     <Navigate to="/" replace />
   ) : (
     <AuthForm
-      title="Login"
-      otherFormTitle="Or Sign Up Using"
+      title={lang === 'ru' ? 'Вход' : 'Sign in'}
+      otherFormTitle={lang === 'ru' ? 'или зарегистрироваться' : 'or sign up using'}
       otherFormLink="/register"
       authFunk={login}
       errorAuthMessage={errorAuthMessage}
+      lang={lang}
     />
   );
 }

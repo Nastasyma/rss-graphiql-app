@@ -11,7 +11,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-type LangContextType = 'ru' | 'en';
+export type LangContextType = 'ru' | 'en';
 
 interface LangContext {
   lang: LangContextType;

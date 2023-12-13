@@ -12,7 +12,7 @@ const gitHubData = [
     link: 'https://github.com/Nastasyma',
   },
   {
-    name: 'Mariya Pizh',
+    name: 'Mariya Pyzh',
     link: 'https://github.com/maria-kashpur',
   },
 ];
