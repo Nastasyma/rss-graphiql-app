@@ -23,7 +23,7 @@ function Navigation({ fields, setData }: INavigationProps) {
 
         return (
           <div
-            key={navItem}
+            key={`${navItem}-${index}`}
             onClick={() => handleClick(navItem)}
             className={
               nav.indexOf(navItem) === nav.length - 1
