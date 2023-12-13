@@ -11,8 +11,8 @@ interface ISchemaProps {
 
 function Schema({ types }: ISchemaProps) {
   const [fields, setFields] = useState<IDataItem[]>([]);
-  console.log(fields);
   const field = fields[fields.length - 1];
+  // console.log('fields', fields);
 
   const filteredTypes = types
     .filter(
@@ -29,10 +29,10 @@ function Schema({ types }: ISchemaProps) {
       if (b.name === 'Mutation') return 1;
       return 0;
     });
+  // console.log('filteredTypes', filteredTypes);
 
   const selectedField = filteredTypes
-    .map((item) => item.fields)
-    .flat()
+    .flatMap((item) => item.fields)
     .find((item) => item.name === field?.name);
 
   const selectedType = types.find((item) => item.name === String(field?.type));
@@ -54,11 +54,11 @@ function Schema({ types }: ISchemaProps) {
           <p className={styles.docText}>
             A GraphQL schema provides a root type for each kind of operation.
           </p>
-          {filteredTypes.map((item) => (
+          {filteredTypes.map((item, index) => (
             <DocList
-              key={item.name}
+              key={`${item.name}-${index}`}
               title={item.name.toLocaleUpperCase()}
-              data={item.fields || []}
+              data={item.fields}
               setData={setFields}
             />
           ))}
