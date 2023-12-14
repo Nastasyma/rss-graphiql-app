@@ -17,7 +17,9 @@ function Query() {
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
-  const querySectionSize = useAppSelector((state) => state.editor.querySectionSize);
+  const querySectionSize = useAppSelector(
+    (state) => state.editor.querySectionSize
+  );
   const isOpen = useAppSelector((state) => state.editor.isQueryOpen);
   const variablesContent = tabs[activeTab]?.variablesContent;
   const headersContent = tabs[activeTab]?.headersContent;
@@ -41,10 +43,14 @@ function Query() {
   };
 
   const handleContentChange = (content: string) => {
+    
+    if (isActive !== 0) {
+      content = JSON.parse(content);
+    }
     const updatedTabs = [...tabs];
     updatedTabs[activeTab] = {
       ...updatedTabs[activeTab],
-      [isActive === 0 ? "variablesContent" : "headersContent"]: content,
+      [isActive === 0 ? 'variablesContent' : 'headersContent']: content,
     };
     dispatch(updateTabContent(updatedTabs[activeTab]));
   };
@@ -104,7 +110,7 @@ function Query() {
             theme={bbedit}
             width="100%"
             editable={true}
-            value={headersContent}
+            value={JSON.stringify(headersContent, null, 2)}
             onChange={handleContentChange}
           />
         )}
