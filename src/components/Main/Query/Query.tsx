@@ -42,10 +42,15 @@ function Query() {
     }
   };
 
-  const handleContentChange = (content: string) => {
+  const handleContentChange = (content?: string) => {
     
     if (isActive !== 0) {
+      if (!content){
+        content = undefined;
+      } else {
       content = JSON.parse(content);
+
+      }
     }
     const updatedTabs = [...tabs];
     updatedTabs[activeTab] = {

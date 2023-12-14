@@ -28,16 +28,21 @@ function Request() {
     }
   }, [tabs, handleNewTabContent]);
 
-  const onPrettifyClick = (request:string) => {
-    const response = prettifying(request)
+  const onPrettifyClick = (request: string) => {
+    const response = prettifying(request);
     dispatch(updateTabContent({ index: activeTab, requestContent: response }));
-  }
+  };
 
-const onPlayClick: (request:IRequest) => Promise<void> = async (request) => {
-  const {query, url, variables, headers} = request
-  const res = await makeRequest({url, query, variables, headers});
-  dispatch(setResponse(JSON.stringify(res, null, 2)));
-};
+  const onPlayClick: (request: IRequest) => Promise<void> = async (request) => {
+    const { query, url, variables, headers } = request;
+    const res = await makeRequest({ url, query, variables, headers });
+    if (typeof res !== 'string') {
+      const resStr = JSON.stringify(res, null, 2);
+      dispatch(setResponse(resStr));
+    } else {
+      dispatch(setResponse(res));
+    }
+  };
 
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
@@ -53,7 +58,17 @@ const onPlayClick: (request:IRequest) => Promise<void> = async (request) => {
         </div>
         <div className={styles.requestButtons}>
           <button title="Execute Query">
-            <PlayIcon className={styles.icon} onClick={()=>{onPlayClick({url:tabs[activeTab].url, query:tabs[activeTab].requestContent, variables:tabs[activeTab].variablesContent, headers:tabs[activeTab].headersContent})}}/>
+            <PlayIcon
+              className={styles.icon}
+              onClick={() => {
+                onPlayClick({
+                  url: tabs[activeTab].url,
+                  query: tabs[activeTab].requestContent,
+                  variables: tabs[activeTab].variablesContent,
+                  headers: tabs[activeTab].headersContent,
+                });
+              }}
+            />
           </button>
           <button title="Prettify Query">
             <PrettifyIcon
