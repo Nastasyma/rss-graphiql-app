@@ -43,15 +43,6 @@ function Query() {
   };
 
   const handleContentChange = (content?: string) => {
-    
-    if (isActive !== 0) {
-      if (!content){
-        content = undefined;
-      } else {
-      content = JSON.parse(content);
-
-      }
-    }
     const updatedTabs = [...tabs];
     updatedTabs[activeTab] = {
       ...updatedTabs[activeTab],
@@ -115,7 +106,7 @@ function Query() {
             theme={bbedit}
             width="100%"
             editable={true}
-            value={JSON.stringify(headersContent, null, 2)}
+            value={headersContent}
             onChange={handleContentChange}
           />
         )}

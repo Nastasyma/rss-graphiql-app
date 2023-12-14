@@ -1,3 +1,3 @@
-export const headersTemplate = {
-  "content-type": "application/json",
-}
+export const headersTemplate = `{
+  "Accept": "application/json"
+}`

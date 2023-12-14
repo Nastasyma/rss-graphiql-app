@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { prettifying } from '@/utils/prettifying';
 import { setResponse } from '@/store/reducers/responseSlice';
 import { IRequest } from '@/types/general';
-import { makeRequest } from '@/utils/getRequest';
+import { makeRequest } from '@/utils/makeRequest';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -35,7 +35,8 @@ function Request() {
 
   const onPlayClick: (request: IRequest) => Promise<void> = async (request) => {
     const { query, url, variables, headers } = request;
-    const res = await makeRequest({ url, query, variables, headers });
+     const headersObj:HeadersInit = headers?JSON.parse(headers):undefined
+    const res = await makeRequest({ url, query, variables, headers:headersObj });
     if (typeof res !== 'string') {
       const resStr = JSON.stringify(res, null, 2);
       dispatch(setResponse(resStr));

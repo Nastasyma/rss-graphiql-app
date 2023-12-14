@@ -29,5 +29,5 @@ export interface IRequest {
   url: string;
   query: string;
   variables?: string;
-  headers?: HeadersInit | undefined;
+  headers?: string;
 }
