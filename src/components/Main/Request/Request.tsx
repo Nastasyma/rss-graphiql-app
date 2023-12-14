@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { useEffect } from 'react';
 import { prettifying } from '@/utils/prettifying';
-import { setResponse } from '@/store/reducers/responseSlice';
 import { IRequest } from '@/types/general';
 import { makeRequest } from '@/utils/makeRequest';
 
@@ -39,9 +38,9 @@ function Request() {
     const res = await makeRequest({ url, query, variables, headers:headersObj });
     if (typeof res !== 'string') {
       const resStr = JSON.stringify(res, null, 2);
-      dispatch(setResponse(resStr));
+      dispatch(updateTabContent({responseContent:resStr}));
     } else {
-      dispatch(setResponse(res));
+      dispatch(updateTabContent({responseContent:res}));
     }
   };
 

@@ -7,7 +7,8 @@ interface IProps  {
 export const makeRequest: (request:IProps) => Promise<unknown | string> = (request) => {
   
     const {query, url, variables, headers} = request;
-    const parsedVariables = variables ? JSON.parse(variables) : undefined;
+    const trimmedVar = variables?.trim();
+    const parsedVariables = trimmedVar? JSON.parse(trimmedVar) : undefined;
     const requestBody = {
       query,
       variables: parsedVariables,

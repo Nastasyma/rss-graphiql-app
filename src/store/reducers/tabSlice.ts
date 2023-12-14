@@ -4,6 +4,7 @@ interface ITab {
   requestContent: string;
   variablesContent: string;
   headersContent: string;
+  responseContent: string;
   url: string;
 }
 
@@ -18,7 +19,15 @@ interface EditorState {
 }
 
 const initialState: ITabs & EditorState = {
-  tabs: [{ requestContent: '', variablesContent: '', headersContent: '', url: '' }],
+  tabs: [
+    {
+      requestContent: '',
+      variablesContent: '',
+      headersContent: '',
+      responseContent: '',
+      url: '',
+    },
+  ],
   activeTab: 0,
   variablesContent: '',
   headersContent: '',
@@ -45,7 +54,7 @@ const tabsSlice = createSlice({
         ...state.tabs[state.activeTab],
         ...action.payload,
       };
-    },
+    }
   },
 });
 
