@@ -10,6 +10,8 @@ import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { useEffect } from 'react';
 import { prettifying } from '@/utils/prettifying';
 import { setResponse } from '@/store/reducers/responseSlice';
+import { IRequest } from '@/types/general';
+import { makeRequest } from '@/utils/getRequest';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -30,28 +32,6 @@ function Request() {
     const response = prettifying(request)
     dispatch(updateTabContent({ index: activeTab, requestContent: response }));
   }
-
-  interface IRequest {
-    url: string;
-    query: string;
-    variables?: string;
-    headers?: HeadersInit | undefined;
-  }
-
-  const makeRequest: (request: IRequest) => Promise<unknown> = (request) => {
-    const {query, url, variables, headers} = request;
-    const requestBody = {
-      query,
-      variables: variables,
-    };
-    return fetch(url, {
-      method: 'POST',
-      headers: headers || undefined,
-      body: JSON.stringify(requestBody),
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(`You have problem with your fetch request:\n${err}`));
-  };
 
 const onPlayClick: (request:IRequest) => Promise<void> = async (request) => {
   const {query, url, variables, headers} = request

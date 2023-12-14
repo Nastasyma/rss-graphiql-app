@@ -24,3 +24,10 @@ export interface ISchemaObject extends ISchemaType {
   subscriptions?: ISchemaType;
   queries?: ISchemaType;
 }
+
+export interface IRequest {
+  url: string;
+  query: string;
+  variables?: string;
+  headers?: HeadersInit | undefined;
+}
