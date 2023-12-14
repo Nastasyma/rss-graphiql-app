@@ -13,9 +13,9 @@
 }
 
 .field {
-  color: rgb(72, 72, 201);
+  color: var(--color-editor-field);
 }
 
 .type {
-  color: rgb(185, 117, 7);
+  color: var(--color-editor-type);
 }

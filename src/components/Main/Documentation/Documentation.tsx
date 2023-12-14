@@ -8,6 +8,7 @@ import Schema from './schema/Schema/Schema';
 function Documentation() {
   const [isLoading, setIsLoading] = useState(true);
   const types = useRef<ISchemaType[]>([]);
+  const prevUrl = useRef<string>('');
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
 
@@ -18,12 +19,16 @@ function Documentation() {
         return;
       }
 
-      types.current = await getSchemaTypes(tabs[activeTab].url);
-      // console.log('types.current', types.current);
+      if (tabs[activeTab].url !== prevUrl.current) {
+        types.current = await getSchemaTypes(tabs[activeTab].url);
+        prevUrl.current = tabs[activeTab].url;
+      }
+
       setIsLoading(false);
     }
+
     getAllTypes();
-  }, [tabs, activeTab]);
+  }, [tabs[activeTab].url]);
 
   return (
     <div className={`${styles.docDescription} ${styles.container}`}>
