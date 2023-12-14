@@ -35,7 +35,9 @@ function Details({ field, type, setData }: IDetailsProps) {
   return (
     <div>
       {renderDescription()}
-      {types && <DocList data={types} setData={setData} title="TYPE DETAILS" />}
+      {types && types.length > 0 && (
+        <DocList data={types} setData={setData} title="TYPE DETAILS" />
+      )}
       {args && args.length > 0 && (
         <DocList data={args} setData={setData} title="ARGUMENTS" />
       )}
