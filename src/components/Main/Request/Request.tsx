@@ -35,7 +35,7 @@ function Request() {
 
   const onPlayClick: (request: IRequest) => Promise<void> = async (request) => {
     const { query, url, variables, headers } = request;
-     const headersObj:HeadersInit = headers?JSON.parse(headers):undefined
+     const headersObj:HeadersInit = headers?JSON.parse(headers):undefined;
     const res = await makeRequest({ url, query, variables, headers:headersObj });
     if (typeof res !== 'string') {
       const resStr = JSON.stringify(res, null, 2);
