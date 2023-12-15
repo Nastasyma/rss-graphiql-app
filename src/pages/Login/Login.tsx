@@ -6,8 +6,8 @@ import { auth } from '../../utils/firebase';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/reducers/userSlice';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { LangContext } from '@/providers/LangProvider';
+import { AuthContext } from '@/providers/AuthProvider';
 
 export default function Login() {
   const [errorAuthMessage, setErrorAuthMessage] = useState<
@@ -20,7 +20,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth);
+  const {isAuth} = useContext(AuthContext);
   const { lang } = useContext(LangContext);
 
   const login = async (email: string, password: string) => {
@@ -71,7 +71,7 @@ export default function Login() {
       });
   };
 
-  return user ? (
+  return isAuth ? (
     <Navigate to="/" replace />
   ) : (
     <AuthForm

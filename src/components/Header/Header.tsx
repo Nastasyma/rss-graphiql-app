@@ -4,10 +4,9 @@ import SwitchTheme from '../SwitchTheme/SwitchTheme';
 import SelectLang from '../SelectLang/SelectLang';
 import LogoIcon from '@assets/logo.svg?react';
 import SignOut from '../SignOut/SignOut';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../utils/firebase';
 import { useContext, useEffect, useState } from 'react';
 import { LangContext } from '@/providers/LangProvider';
+import { AuthContext } from '@/providers/AuthProvider';
 
 export const authBtn = [
   {
@@ -46,10 +45,10 @@ const nav = [
 ];
 
 export default function Header() {
-  const [user] = useAuthState(auth);
   const [fixHeader, setFixHeader] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const { lang } = useContext(LangContext);
+  const { isAuth } = useContext(AuthContext);
 
   useEffect(() => {
     const scroll = () => {
@@ -71,7 +70,7 @@ export default function Header() {
   }, [openMenu]);
 
   const navLinks = (
-    user
+    isAuth
       ? nav.filter((el) => el.auth === true || el.auth === null)
       : nav.filter((el) => el.auth === false || el.auth === null)
   ).map((el, index) => (
@@ -103,7 +102,7 @@ export default function Header() {
               }`}
             >
               {navLinks}
-              {user ? (
+              {isAuth ? (
                 <SignOut title={lang === 'ru' ? 'Выход' : 'Sign out'} />
               ) : (
                 ''

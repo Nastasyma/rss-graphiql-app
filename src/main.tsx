@@ -9,16 +9,19 @@ import './utils/firebase.ts';
 import { store } from './store/store.ts';
 import ThemeProvider from './providers/ThemeProvider.tsx';
 import LangProvider from './providers/LangProvider.tsx';
+import AuthProvider from './providers/AuthProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
       <Provider store={store}>
-        <ThemeProvider>
-          <LangProvider>
-            <RouterProvider router={router} />
-          </LangProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <LangProvider>
+              <RouterProvider router={router} />
+            </LangProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>

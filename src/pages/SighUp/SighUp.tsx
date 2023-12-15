@@ -6,8 +6,8 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/reducers/userSlice';
 import { ErrorOption } from 'react-hook-form';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { LangContext } from '@/providers/LangProvider';
+import { AuthContext } from '@/providers/AuthProvider';
 
 export default function SighUp() {
   const [errorAuthMessage, setErrorAuthMessage] = useState<
@@ -18,7 +18,7 @@ export default function SighUp() {
     | null
   >(null);
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth);
+  const {isAuth} = useContext(AuthContext)
 
   const { lang } = useContext(LangContext);
 
@@ -28,7 +28,6 @@ export default function SighUp() {
         setErrorAuthMessage(() => null);
         const user = userCredential.user;
         dispatch(setUser(user.email));
-        console.log(user);
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
@@ -57,7 +56,7 @@ export default function SighUp() {
       });
   };
 
-  return user ? (
+  return isAuth ? (
     <Navigate to="/" replace />
   ) : (
     <AuthForm
