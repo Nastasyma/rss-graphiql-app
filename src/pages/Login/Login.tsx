@@ -20,7 +20,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {isAuth} = useContext(AuthContext);
+  const { isAuth } = useContext(AuthContext);
   const { lang } = useContext(LangContext);
 
   const login = async (email: string, password: string) => {

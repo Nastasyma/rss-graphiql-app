@@ -4,7 +4,7 @@ import s from './team-block.module.scss';
 import { LangContext } from '@/providers/LangProvider';
 
 export default function TeamBlock() {
-  const {lang} = useContext(LangContext)
+  const { lang } = useContext(LangContext);
 
   return (
     <div className={s.team}>
@@ -28,31 +28,31 @@ const team = [
   {
     name: {
       en: 'Irina',
-      ru: 'Ирина'
+      ru: 'Ирина',
     },
-    description:{
+    description: {
       en: 'Her passion for aesthetics brings a touch of elegance to the user experience, turning every interaction into a visual journey.',
-      ru: 'Её страсть к эстетике придает штрих элегантности пользовательскому опыту, превращая каждое взаимодействие в визуальное путешествие.'
-    }
+      ru: 'Её страсть к эстетике придает штрих элегантности пользовательскому опыту, превращая каждое взаимодействие в визуальное путешествие.',
+    },
   },
   {
     name: {
       en: 'Mariya',
-      ru: 'Мария'
+      ru: 'Мария',
     },
     description: {
       en: 'Her empathetic approach creates a safe environment for users and every authentication will be a warm welcome, creating a sense of belonging.',
-      ru: 'Её чуткость идет в ногу с созданием безопасного пространства для пользователей, а каждое подтверждение личности превращается в теплую встречу.'
+      ru: 'Её чуткость идет в ногу с созданием безопасного пространства для пользователей, а каждое подтверждение личности превращается в теплую встречу.',
     },
   },
   {
     name: {
       en: 'Anastasia',
-      ru: 'Анастасия'
+      ru: 'Анастасия',
     },
     description: {
       en: 'Her insatiable curiosity allows her to travel across vast landscapes GraphQL, turning data queries into exciting adventures.',
-      ru: 'Её неутолимое любопытство позволяет ей путешествовать по просторам разнообразных ландшафтов GraphQL, превращает запросы данных в захватывающие приключения.'
+      ru: 'Её неутолимое любопытство позволяет ей путешествовать по просторам разнообразных ландшафтов GraphQL, превращает запросы данных в захватывающие приключения.',
     },
   },
 ];

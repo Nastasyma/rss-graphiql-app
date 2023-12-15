@@ -18,7 +18,7 @@ export default function SighUp() {
     | null
   >(null);
   const dispatch = useDispatch();
-  const {isAuth} = useContext(AuthContext)
+  const { isAuth } = useContext(AuthContext);
 
   const { lang } = useContext(LangContext);
 

@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useAuthState, useIdToken } from 'react-firebase-hooks/auth';
+import { useIdToken } from 'react-firebase-hooks/auth';
 
 type TypeSetState<T> = Dispatch<SetStateAction<T>>;
 
@@ -32,7 +32,7 @@ export default function AuthProvider({ children }: IProps) {
     } else if (!user && !loading) {
       setisAuth(false);
     }
-  })
+  });
 
   return (
     <AuthContext.Provider value={{ isAuth }}>
