@@ -2,6 +2,7 @@ export interface IWelcomeProps {
   name: string;
   description: string;
   uniqueKey: number;
+  img?: string
 }
 
 export interface IFieldType {

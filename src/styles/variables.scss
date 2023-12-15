@@ -3,14 +3,18 @@
   --max-content-padding: 0px 15px;
 }
 
-body[data-theme="dark"],
+body[data-theme="light"],
 body {
   --bg: linear-gradient(45deg, rgb(120, 67, 164), rgb(82, 147, 182));
   --color: rgb(255, 255, 255);
-  --bg-color-header: white;
-  --bg-color-footer: white;
-  --bg-header: rgb(58, 55, 69);
-  --bg-footer: rgb(58, 55, 69);
+  --color-icons: rgb(255, 255, 255);
+
+  --bg-header: transparent;
+  --bg-footer: rgb(79 89 130);
+  --header-scroll:  rgb(79 89 130);
+  
+  --bg-project: rgba(22, 11, 63, 0.3);
+  --bg-space: transparent;
 
   --color-primary-text: #2a2a2a;
   --color-secondary-text: rgb(87, 87, 87);
@@ -26,16 +30,24 @@ body {
   --color-error: rgb(237, 127, 127);
 
   --burger-color: rgb(255, 255, 255);
-  --header-scroll: rgb(71, 65, 89);
+  
+
+  --link-gradient: linear-gradient(to right, #77a1d3 0%, #79cbca 51%, #77a1d3 100%);
+  --link-shadow-color:  #eee;
+  --link-color: rgb(255, 255, 255);
 }
 
-body[data-theme="light"] {
-  --bg: linear-gradient(45deg, rgb(244, 244, 244), rgb(120, 174, 203));
-  --color: rgb(0, 0, 0);
-  --bg-color-header: rgb(255, 255, 255);
-  --bg-color-footer: white;
-  --bg-header: rgb(230, 220, 220);
-  --bg-footer: rgb(255, 255, 255);
+body[data-theme="dark"] {
+  --bg: linear-gradient(0deg, rgb(197, 174, 230) 0%, rgb(189, 226, 234) 40%, rgb(41 39 86) 100%);
+  --color: rgb(255, 255, 255);
+  --color-icons: rgb(255, 255, 255);
+
+  --bg-header: transparent;
+  --bg-footer: rgb(35 34 70);
+  --header-scroll: rgb(35 34 70);
+
+  --bg-project: rgba(13, 6, 53, 0.558);
+  --bg-space: rgb(34, 33, 69);
 
   --color-primary-text: #2a2a2a;
   --color-secondary-text: rgb(87, 87, 87);
@@ -46,10 +58,14 @@ body[data-theme="light"] {
 
   --color-form: #00eeff;
   --color-txt-form: rgb(255, 255, 255);
-  --bg-form: #0e0e0fa0;
+  --bg-form: #222245a0;
   --bg-input-focus: rgb(140, 161, 163);
   --color-error: rgb(237, 127, 127);
 
   --burger-color: rgb(255, 255, 255);
-  --header-scroll: rgb(161, 159, 167);
+
+
+  --link-gradient: linear-gradient(to right, #ffffff 0%, #b0b0b0 51%, #ffffff 100%);
+  --link-shadow-color:  #ffffff;
+  --link-color: black;
 }

@@ -10,15 +10,15 @@ header {
   position: sticky;
   z-index: $z-index-header;
   top: 0;
-  background-color:var(--bg-header);
+  background:var(--bg-header);
   color: var(--color);
   font-size: 18px;
-  transition: all ease 0.6s;
+  transition: all ease 0.3s;
 
   &.scroll {
     height: 75px;
-    background-color: var(--header-scroll);
-    transition: all ease 0.6s;
+    background: var(--header-scroll);
+    transition: all ease 0.3s;
   }
 }
 
@@ -31,7 +31,6 @@ header {
   height: 100%;
   padding: 0px 20px;
   width: 100%;
-  background-color: inherit;
 }
 
 .logo {

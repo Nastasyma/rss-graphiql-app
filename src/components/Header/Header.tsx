@@ -1,33 +1,15 @@
-//  должен быть sticky. Момент, когда он становится sticky (если на странице есть прокрутка), следует анимировать: можно изменить цвет или уменьшить его высоту. Анимированный липкий заголовок
-// Ссылка на страницу приветствия
-// Элемент управления, позволяющий пользователю переключать язык
-// Кнопка «Выход» — выход пользователя из системы.
-
 import { Link, NavLink } from 'react-router-dom';
 import s from './header.module.scss';
 import SwitchTheme from '../SwitchTheme/SwitchTheme';
 import SelectLang from '../SelectLang/SelectLang';
-import logo from '@assets/logo.svg';
+import LogoIcon from '@assets/logo.svg?react';
 import SignOut from '../SignOut/SignOut';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../utils/firebase';
 import { useContext, useEffect, useState } from 'react';
 import { LangContext } from '@/providers/LangProvider';
 
-const nav = [
-  {
-    title: {
-      en: 'Welcome',
-      ru: 'Приветствие',
-    },
-    to: '/welcome',
-    auth: null,
-  },
-  {
-    title: { en: 'Home', ru: 'Главная' },
-    to: '/',
-    auth: true,
-  },
+export const authBtn = [
   {
     title: {
       en: 'Sign In',
@@ -44,6 +26,23 @@ const nav = [
     to: '/register',
     auth: false,
   },
+];
+
+const nav = [
+  {
+    title: {
+      en: 'Welcome',
+      ru: 'Приветствие',
+    },
+    to: '/welcome',
+    auth: null,
+  },
+  {
+    title: { en: 'Main', ru: 'Главная' },
+    to: '/',
+    auth: true,
+  },
+  ...authBtn,
 ];
 
 export default function Header() {
@@ -88,7 +87,7 @@ export default function Header() {
       <div className={`${s.header} conteiner ${fixHeader ? s.scroll : ''}`}>
         <Link to="/welcome">
           <div className={s.logo}>
-            <img src={logo} alt="logo" width={50} />
+            <LogoIcon width={50} />
             <span className="logo_name">GraphiQL</span>
           </div>
         </Link>

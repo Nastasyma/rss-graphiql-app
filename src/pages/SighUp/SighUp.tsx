@@ -1,8 +1,3 @@
-// ? должны поддерживаться пароли Unicode
-// Если пользователь уже вошел в систему и пытается добраться до этих маршрутов, он должен быть перенаправлен на главную страницу.
-// При успешном входе пользователь перенаправляется на Главную страницу 10 баллов
-// Если пользователь уже авторизовался и пытается добраться до этих маршрутов, он должен быть перенаправлен на Главную страницу 10 пунктов
-
 import { useContext, useState } from 'react';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -40,12 +35,24 @@ export default function SighUp() {
           setErrorAuthMessage(() => [
             'email',
             {
-              message: `${email}  is already in use by an existing user.`,
+              message:
+                lang === 'ru'
+                  ? `${email} уже используется существующим пользователем.`
+                  : `${email} is already in use by an existing user.`,
               type: 'custom',
             },
           ]);
         } else {
-          throw Error(error);
+          setErrorAuthMessage(() => [
+            'email',
+            {
+              message:
+                lang === 'ru'
+                  ? `Что-то пошло не так. Проверьте все ли вы делаете правильно или обратитесь к разработчикам.`
+                  : `Something was wrong. Check if you are doing everything correctly or contact the developers.`,
+              type: 'custom',
+            },
+          ]);
         }
       });
   };

@@ -3,6 +3,8 @@
 @import './fonts.scss';
 @import '@/styles/codemirror.scss';
 
+$font-family-main: 'Roboto', 'Times New Roman', Times, serif;
+
 *,
 *::before,
 *::after {
@@ -56,7 +58,7 @@ body {
   flex-direction: column;
   justify-content: center;
   position: relative;
-  font-family: 'Roboto', 'Times New Roman', Times, serif;
+  font-family: $font-family-main;
   box-sizing: border-box;
 }
 
@@ -88,13 +90,13 @@ main {
 }
 
 .link {
-  background: linear-gradient(to right, #77a1d3 0%, #79cbca 51%, #77a1d3 100%);
+  background: var(--link-gradient);
   font-weight: 800;
-  color: var(--color);
+  color: var(--link-color) !important;
   padding: 13px 10px;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.5s;
+  transition: all 0.5s;
   background-size: 200% auto;
   border-radius: 10px;
   display: flex;
@@ -105,14 +107,19 @@ main {
   max-height: 54px;
 
   &.active {
-    box-shadow: 0 0 10px #eee;
+    box-shadow: 0 0 10px var(--link-shadow-color);
   }
 
   &:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
+    background-position: right center;
     text-decoration: none;
-    box-shadow: 0 0 10px #eee;
+    box-shadow: 0 0 10px var(--link-shadow-color);
+  }
+
+  &:disabled {
+    background: rgba(174, 174, 174, 0.696);
+    color: #6c6c6c !important;
+    pointer-events: none;
   }
 }
 
@@ -132,6 +139,5 @@ main {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   text-shadow: 3px -2px 5px #ffffff3c;
-  -webkit-text-stroke: 0.3px #ffffff;
+  -webkit-text-stroke: 0.5px #ffffff;
 }
-

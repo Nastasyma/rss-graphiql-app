@@ -1,6 +1,6 @@
 import s from './footer.module.scss';
-import rsLogo from '@/assets/rs_school.svg';
-import gitHubIco from '@/assets/2993771_github_social media_icon.svg';
+import RsLogo from '@/assets/rs_school.svg?react';
+import GitHubLogo from '@assets/2993771_github_social media_icon.svg?react';
 
 const gitHubData = [
   {
@@ -24,7 +24,7 @@ export default function Footer() {
         <div>2023</div>
 
         <div className={s.contacts}>
-          <img src={gitHubIco} alt="github" height={30} />
+          <GitHubLogo height={40} />
           <div className={s.github_links}>
             {gitHubData.map((el) => (
               <a
@@ -41,7 +41,7 @@ export default function Footer() {
 
         <div>
           <a href="https://rs.school/" target="_blanc">
-            <img src={rsLogo} alt="" height={30} />
+            <RsLogo height={40} />
           </a>
         </div>
       </div>
