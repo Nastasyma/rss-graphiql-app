@@ -50,7 +50,9 @@ function Main() {
     };
   }, []);
 
-  return !user ? <Navigate to="/welcome" replace /> : (
+  return !user ? (
+    <Navigate to="/welcome" replace />
+  ) : (
     <div className={styles.mainContainer}>
       <Allotment vertical>
         <Allotment.Pane minSize={50} maxSize={50} preferredSize={'100%'}>

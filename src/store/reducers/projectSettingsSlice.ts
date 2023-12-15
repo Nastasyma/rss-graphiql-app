@@ -7,7 +7,7 @@ interface IProjectSettings {
 
 const initialState = {
   lang: 'en',
-  theme: 'dark'
+  theme: 'dark',
 };
 
 const projectSettingsSlice = createSlice({

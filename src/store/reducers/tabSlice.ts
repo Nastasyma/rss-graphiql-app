@@ -54,7 +54,7 @@ const tabsSlice = createSlice({
         ...state.tabs[state.activeTab],
         ...action.payload,
       };
-    }
+    },
   },
 });
 

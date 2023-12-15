@@ -5,7 +5,7 @@ import { setLang } from '@/store/reducers/projectSettingsSlice';
 interface IProps {
   lang: string;
   uniqueKey: number;
-  img:string;
+  img: string;
   setIsLangOpen: (value: React.SetStateAction<boolean>) => void;
 }
 
@@ -14,7 +14,7 @@ export default function LangItem({
   uniqueKey,
   img,
   setIsLangOpen,
-}:IProps) {
+}: IProps) {
   const dispatch = useAppDispatch();
   const handleLangItemClick = (
     event: React.MouseEvent<HTMLLIElement, MouseEvent>
@@ -32,11 +32,7 @@ export default function LangItem({
       }}
     >
       <p className={s.langName}>{lang.toUpperCase()}</p>
-      <img
-        src={img}
-        alt={`${lang} language`}
-        className={s.langFlag}
-      />
+      <img src={img} alt={`${lang} language`} className={s.langFlag} />
     </li>
   );
 }

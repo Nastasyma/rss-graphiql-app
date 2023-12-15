@@ -34,13 +34,21 @@ function Request() {
 
   const onPlayClick: (request: IRequest) => Promise<void> = async (request) => {
     const { query, url, variables, headers } = request;
-     const headersObj:HeadersInit = headers?JSON.parse(headers):undefined;
-    const res = await makeRequest({ url, query, variables, headers:headersObj });
+    const trimHeaders = headers?.trim();
+    const headersObj: HeadersInit = trimHeaders
+      ? JSON.parse(trimHeaders)
+      : undefined;
+    const res = await makeRequest({
+      url,
+      query,
+      variables,
+      headers: headersObj,
+    });
     if (typeof res !== 'string') {
       const resStr = JSON.stringify(res, null, 2);
-      dispatch(updateTabContent({responseContent:resStr}));
+      dispatch(updateTabContent({ responseContent: resStr }));
     } else {
-      dispatch(updateTabContent({responseContent:res}));
+      dispatch(updateTabContent({ responseContent: res }));
     }
   };
 

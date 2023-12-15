@@ -7,7 +7,12 @@ export default function TeamBlock() {
       <h2 className={s.teamHeader}>Development team</h2>
       {team.map((el, i) => {
         return (
-          <TeamMember name={el.name} description={el.description} uniqueKey={i} key={i}/>
+          <TeamMember
+            name={el.name}
+            description={el.description}
+            uniqueKey={i}
+            key={i}
+          />
         );
       })}
     </div>
