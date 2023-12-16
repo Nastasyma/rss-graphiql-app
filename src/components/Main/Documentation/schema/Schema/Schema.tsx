@@ -12,7 +12,6 @@ interface ISchemaProps {
 function Schema({ types }: ISchemaProps) {
   const [data, setData] = useState<IDataItem[]>([]);
   const field = data[data.length - 1];
-  // console.log('fields', fields);
 
   const filteredTypes = types
     .filter(
@@ -29,7 +28,6 @@ function Schema({ types }: ISchemaProps) {
       if (b.name === 'Mutation') return 1;
       return 0;
     });
-  // console.log('filteredTypes', filteredTypes);
 
   const selectedField = filteredTypes
     .flatMap((item) => item.fields)

@@ -33,7 +33,6 @@ function Documentation() {
   }, [isDocOpen, tabs[activeTab].url]);
 
   const deferredTypes = useDeferredValue(types.current);
-  console.log('deferredTypes', deferredTypes);
 
   return (
     <div className={`${styles.docDescription} ${styles.container}`}>
