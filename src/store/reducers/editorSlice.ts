@@ -28,6 +28,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setDocIsOpen, setQuerySectionSize, setQueryIsOpen } = userSlice.actions;
+export const { setDocIsOpen, setQuerySectionSize, setQueryIsOpen } =
+  userSlice.actions;
 
 export default userSlice.reducer;

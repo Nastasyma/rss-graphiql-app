@@ -14,4 +14,7 @@ export const apiExamples = [
   {
     url: 'https://data-api.oxilor.com/graphql',
   },
+  {
+    url: 'https://api.react-finland.fi/graphql',
+  },
 ];

@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/userSlice';
 import editorReducer from './reducers/editorSlice';
 import tabsReducer from './reducers/tabSlice';
-import projectReducer from './reducers/projectSettingsSlice'
+import projectReducer from './reducers/projectSettingsSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
@@ -10,7 +10,7 @@ export const store = configureStore({
     user: userReducer,
     editor: editorReducer,
     tabs: tabsReducer,
-    project: projectReducer
+    project: projectReducer,
   },
 });
 
