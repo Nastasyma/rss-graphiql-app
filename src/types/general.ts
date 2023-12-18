@@ -27,6 +27,7 @@ export interface ISchemaType {
   kind: string;
   fields: IDataItem[];
   inputFields: IDataItem[];
+  enumValues: IDataItem[];
   description: string | null;
 }
 
