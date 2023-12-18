@@ -4,6 +4,7 @@ interface ITab {
   requestContent: string;
   variablesContent: string;
   headersContent: string;
+  responseContent: string;
   url: string;
 }
 
@@ -19,7 +20,13 @@ interface EditorState {
 
 const initialState: ITabs & EditorState = {
   tabs: [
-    { requestContent: '', variablesContent: '', headersContent: '', url: '' },
+    {
+      requestContent: '',
+      variablesContent: '',
+      headersContent: '',
+      responseContent: '',
+      url: '',
+    },
   ],
   activeTab: 0,
   variablesContent: '',

@@ -32,7 +32,4 @@ export const prettifying = (request: string) => {
       })
       .join('\n') + '\n'
   );
-
-  // console.log(newArr);
-  // dispatch(updateTabContent({ requestContent: newArr.join('\n')+'\n' }));
 };

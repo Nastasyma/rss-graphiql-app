@@ -30,7 +30,6 @@ export default function Login() {
         const user = userCredential.user;
         dispatch(setUser(user.email));
         navigate('/');
-        console.log(user);
       })
       .catch((error) => {
         if (error.code === 'auth/too-many-requests') {

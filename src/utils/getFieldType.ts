@@ -1,6 +1,6 @@
-import { IFieldType } from '@/types/general';
+import { IType } from '@/types/general';
 
-export function getFieldType(type: IFieldType): string {
+export function getFieldType(type: IType): string | undefined {
   if (type.kind === 'LIST') {
     if (type.ofType) {
       return `[${getFieldType(type.ofType)}]`;

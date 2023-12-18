@@ -42,7 +42,7 @@ function Query() {
     }
   };
 
-  const handleContentChange = (content: string) => {
+  const handleContentChange = (content?: string) => {
     const updatedTabs = [...tabs];
     updatedTabs[activeTab] = {
       ...updatedTabs[activeTab],

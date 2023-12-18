@@ -5,23 +5,34 @@ export interface IWelcomeProps {
   img?: string;
 }
 
-export interface IFieldType {
-  kind: string;
-  ofType?: IFieldType;
+export interface IField {
   name: string;
+  type: string;
+}
+export interface IType {
+  name?: string;
+  ofType?: IType;
+  kind: string;
+}
+export interface IDataItem {
+  name: string;
+  type: IType | undefined;
+  args?: IDataItem[];
+  fields?: IDataItem[];
 }
 
 export interface ISchemaType {
+  args: IDataItem[];
   name: string;
-  fields: IField[];
+  kind: string;
+  fields: IDataItem[];
+  inputFields: IDataItem[];
+  description: string | null;
 }
 
-export interface IField {
-  name: string;
-  type: IFieldType;
-}
-export interface ISchemaObject extends ISchemaType {
-  mutations?: ISchemaType;
-  subscriptions?: ISchemaType;
-  queries?: ISchemaType;
+export interface IRequest {
+  url: string;
+  query: string;
+  variables?: string;
+  headers?: string;
 }

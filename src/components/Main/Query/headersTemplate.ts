@@ -1,4 +1,3 @@
 export const headersTemplate = `{
-  example
-}
-`;
+  "Accept": "application/json"
+}`;
