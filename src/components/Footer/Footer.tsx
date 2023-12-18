@@ -1,6 +1,21 @@
 import s from './footer.module.scss';
-import rsLogo from '@/assets/rs_school.svg';
-import gitHubIco from '@/assets/2993771_github_social media_icon.svg';
+import RsLogo from '@/assets/rs_school.svg?react';
+import GitHubLogo from '@assets/2993771_github_social media_icon.svg?react';
+
+const gitHubData = [
+  {
+    name: 'Irina Peshko',
+    link: 'https://github.com/IrinaPeshko',
+  },
+  {
+    name: 'Anastasia Shishmareva',
+    link: 'https://github.com/Nastasyma',
+  },
+  {
+    name: 'Mariya Pyzh',
+    link: 'https://github.com/maria-kashpur',
+  },
+];
 
 export default function Footer() {
   return (
@@ -9,33 +24,24 @@ export default function Footer() {
         <div>2023</div>
 
         <div className={s.contacts}>
-          <img src={gitHubIco} alt="" height={30} />
-          <a
-            href="https://github.com/IrinaPeshko"
-            target="_blanc"
-            className="simple_link"
-          >
-            IrinaPeshko
-          </a>
-          <a
-            href="https://github.com/maria-kashpur"
-            target="_blanc"
-            className="simple_link"
-          >
-            maria-kashpur
-          </a>
-          <a
-            className="simple_link"
-            href="https://github.com/Nastasyma"
-            target="_blanc"
-          >
-            Nastasyma
-          </a>
+          <GitHubLogo height={40} />
+          <div className={s.github_links}>
+            {gitHubData.map((el) => (
+              <a
+                key={el.name}
+                href={el.link}
+                target="_blanc"
+                className="simple_link"
+              >
+                {el.name}
+              </a>
+            ))}
+          </div>
         </div>
 
         <div>
           <a href="https://rs.school/" target="_blanc">
-            <img src={rsLogo} alt="" height={30} />
+            <RsLogo height={40} />
           </a>
         </div>
       </div>

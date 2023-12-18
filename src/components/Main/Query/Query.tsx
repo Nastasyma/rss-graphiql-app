@@ -17,7 +17,9 @@ function Query() {
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
-  const querySectionSize = useAppSelector((state) => state.editor.querySectionSize);
+  const querySectionSize = useAppSelector(
+    (state) => state.editor.querySectionSize
+  );
   const isOpen = useAppSelector((state) => state.editor.isQueryOpen);
   const variablesContent = tabs[activeTab]?.variablesContent;
   const headersContent = tabs[activeTab]?.headersContent;
@@ -40,11 +42,11 @@ function Query() {
     }
   };
 
-  const handleContentChange = (content: string) => {
+  const handleContentChange = (content?: string) => {
     const updatedTabs = [...tabs];
     updatedTabs[activeTab] = {
       ...updatedTabs[activeTab],
-      [isActive === 0 ? "variablesContent" : "headersContent"]: content,
+      [isActive === 0 ? 'variablesContent' : 'headersContent']: content,
     };
     dispatch(updateTabContent(updatedTabs[activeTab]));
   };

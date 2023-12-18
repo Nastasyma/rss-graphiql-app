@@ -2,16 +2,19 @@
   min-width: 150px;
   max-width: 200px;
   .itemHeader {
+    font-size: 1.1em;
+    padding: 5px;
     display: flex;
-    width: 150px;
+    width: 170px;
     text-align: center;
-    height: 150px;
+    height: 170px;
     align-items: center;
     margin: auto;
     overflow: hidden;
   }
   .itemHeaderVisible {
     position: relative;
+    font-weight: 700;
     &::before {
       content: '';
       position: absolute;
@@ -28,7 +31,9 @@
   .itemContent {
     padding: 20px 10px;
     text-align: center;
-    height: 110px;
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 400;
   }
 }
 

@@ -1,4 +1,4 @@
-import { IType } from "@/types/general";
+import { IType } from '@/types/general';
 
 export const getTypeName = (type: IType): string | undefined => {
   if (type?.name) {

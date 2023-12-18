@@ -2,6 +2,7 @@ export interface IWelcomeProps {
   name: string;
   description: string;
   uniqueKey: number;
+  img?: string;
 }
 
 export interface IField {
@@ -28,4 +29,11 @@ export interface ISchemaType {
   inputFields: IDataItem[];
   enumValues: IDataItem[];
   description: string | null;
+}
+
+export interface IRequest {
+  url: string;
+  query: string;
+  variables?: string;
+  headers?: string;
 }

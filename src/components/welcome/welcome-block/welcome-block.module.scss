@@ -6,17 +6,45 @@
   justify-content: center;
   font-family: 'Roboto', 'Times New Roman', Times, serif;
   height: 100vh;
+  min-height: 672px;
+    .title {
+    font-weight: 500;
+    font-size: 5em;
+    @media (max-width: 500px) {
+      font-size: 4em;
+    }
+  }
   .imageBlock {
     width: 47vw;
     position: relative;
     left: -27%;
     filter: drop-shadow(20px 15px 10px rgb(0, 0, 0, 0.5));
     .image {
-      overflow: hidden;
+      // overflow: hidden;
       width: 100%;
       animation: rotatePlanet 70s linear infinite;
     }
   }
+
+  .image_earth {
+    position: relative;
+    transform: scaleZ(-1);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .image_moon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    transform: scale(0.6);
+  }
+
   .welcomeContent {
     padding: 20px;
     .h1::before {
@@ -94,3 +122,4 @@
     }
   }
 }
+

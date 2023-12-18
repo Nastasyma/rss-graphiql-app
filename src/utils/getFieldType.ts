@@ -1,4 +1,4 @@
-import { IType } from "@/types/general";
+import { IType } from '@/types/general';
 
 export function getFieldType(type: IType): string | undefined {
   if (type.kind === 'LIST') {
@@ -17,4 +17,3 @@ export function getFieldType(type: IType): string | undefined {
     return type.name;
   }
 }
-
