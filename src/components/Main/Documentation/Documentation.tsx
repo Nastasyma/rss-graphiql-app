@@ -4,6 +4,7 @@ import { getSchemaTypes } from '@/utils/graphqlSchema';
 import { ISchemaType } from '@/types/general';
 import { useAppSelector } from '@/store/store';
 import { useDeferredValue } from 'react';
+import Preloader from '@/components/Preloader/Preloader';
 
 function Documentation() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,8 +37,8 @@ function Documentation() {
 
   return (
     <div className={`${styles.docDescription} ${styles.container}`}>
-      <Suspense fallback={<div>Loading...</div>}>
-        {isLoading ? <div>Loading...</div> : <Schema types={deferredTypes} />}
+      <Suspense fallback={<Preloader view="mini" />}>
+        {isLoading ? <Preloader view="mini" /> : <Schema types={deferredTypes} />}
       </Suspense>
     </div>
   );
