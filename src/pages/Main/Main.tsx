@@ -36,19 +36,20 @@ function Main() {
     (state) => state.editor.querySectionSize
   );
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleResize() {
+    setWidth(window.innerWidth);
+  }
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const isMobile = width <= 768;
 
   return !user && !loading ? (
     <Navigate to="/welcome" replace />
