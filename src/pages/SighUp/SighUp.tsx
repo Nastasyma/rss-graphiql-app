@@ -1,9 +1,4 @@
-// ? должны поддерживаться пароли Unicode
-// Если пользователь уже вошел в систему и пытается добраться до этих маршрутов, он должен быть перенаправлен на главную страницу.
-// При успешном входе пользователь перенаправляется на Главную страницу 10 баллов
-// Если пользователь уже авторизовался и пытается добраться до этих маршрутов, он должен быть перенаправлен на Главную страницу 10 пунктов
-
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
@@ -11,7 +6,8 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/reducers/userSlice';
 import { ErrorOption } from 'react-hook-form';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { LangContext } from '@/providers/LangProvider';
+import { AuthContext } from '@/providers/AuthProvider';
 
 export default function SighUp() {
   const [errorAuthMessage, setErrorAuthMessage] = useState<
@@ -22,7 +18,9 @@ export default function SighUp() {
     | null
   >(null);
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth);
+  const { isAuth } = useContext(AuthContext);
+
+  const { lang } = useContext(LangContext);
 
   const sighUp = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
@@ -36,25 +34,38 @@ export default function SighUp() {
           setErrorAuthMessage(() => [
             'email',
             {
-              message: `${email}  is already in use by an existing user.`,
+              message:
+                lang === 'ru'
+                  ? `${email} уже используется существующим пользователем.`
+                  : `${email} is already in use by an existing user.`,
               type: 'custom',
             },
           ]);
         } else {
-          throw Error(error);
+          setErrorAuthMessage(() => [
+            'email',
+            {
+              message:
+                lang === 'ru'
+                  ? `Что-то пошло не так. Проверьте все ли вы делаете правильно или обратитесь к разработчикам.`
+                  : `Something was wrong. Check if you are doing everything correctly or contact the developers.`,
+              type: 'custom',
+            },
+          ]);
         }
       });
   };
 
-  return user ? (
+  return isAuth ? (
     <Navigate to="/" replace />
   ) : (
     <AuthForm
-      title="Sigh Up"
-      otherFormTitle="Or Sing In Using"
+      title={lang === 'ru' ? 'Регистрация' : 'Sigh up'}
+      otherFormTitle={lang === 'ru' ? 'или войти' : 'or sing in using'}
       otherFormLink="/login"
       authFunk={sighUp}
       errorAuthMessage={errorAuthMessage}
+      lang={lang}
     />
   );
 }

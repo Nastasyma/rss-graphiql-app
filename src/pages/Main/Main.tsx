@@ -29,7 +29,7 @@ import Tabs from '../../components/Main/Tabs/Tabs';
 import { useAppSelector } from '../../store/store';
 
 function Main() {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const ref = useRef<AllotmentHandle>(null!);
   const isDocsOpen = useAppSelector((state) => state.editor.isDocOpen);
   const querySectionSize = useAppSelector(
@@ -50,7 +50,7 @@ function Main() {
     };
   }, []);
 
-  return !user ? (
+  return !user && !loading ? (
     <Navigate to="/welcome" replace />
   ) : (
     <div className={styles.mainContainer}>

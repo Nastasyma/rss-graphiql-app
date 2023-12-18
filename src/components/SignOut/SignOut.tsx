@@ -3,7 +3,11 @@ import { auth } from './../../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '@/store/reducers/userSlice';
 
-export default function SignOut() {
+interface IProps {
+  title: string;
+}
+
+export default function SignOut({ title }: IProps) {
   const dispatch = useDispatch();
   const handleClick = () => {
     signOut(auth)
@@ -16,8 +20,8 @@ export default function SignOut() {
   };
 
   return (
-    <div className="link" onClick={handleClick}>
-      Sing Out
-    </div>
+    <button className="link" onClick={handleClick}>
+      {title}
+    </button>
   );
 }

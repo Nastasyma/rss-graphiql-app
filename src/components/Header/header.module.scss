@@ -1,68 +1,163 @@
+$burger-visible: 720px;
+$z-index-header: 25;
+$x-index-nav: 20;
+
 header {
   height: 100px;
-  position: sticky;
-  top: 0;
   width: 100%;
-  z-index: 25;
-  background-color: rgb(58 55 69);
-  color: rgb(255, 255, 255);
-  font-size: 18px;
-  transition: all ease 0.6s;
-}
-
-header.scroll {
-  height: 75px;
+  max-width: 100%;
+  box-sizing: border-box;
   position: sticky;
-  background-color: rgb(71, 65, 89);
-  transition: all ease 0.6s;
+  z-index: $z-index-header;
+  top: 0;
+  background:var(--bg-header);
+  color: var(--color);
+  font-size: 18px;
+  transition: all ease 0.3s;
+
+  &.scroll {
+    height: 75px;
+    background: var(--header-scroll);
+    transition: all ease 0.3s;
+  }
 }
 
 .header {
-  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  box-sizing: border-box;
   height: 100%;
   padding: 0px 20px;
+  width: 100%;
 }
 
-.navigation {
-  display: flex;
-  gap: 30px;
-}
 .logo {
-  position: relative;
-  padding: 20px;
-  margin: 10px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: all ease 0.3s;
-  img {
-    position: relative;
-    z-index: 1;
-  }
 }
 
-.wrap {
+.menu {
   display: flex;
   align-items: center;
   justify-content: center;
-  display: none;
-  @media (max-width: 700px) {
-    display: flex;
+  gap: 15px;
+}
+
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: $burger-visible) {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    overflow: auto;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: $x-index-nav;
+    background-color: rgba(35, 33, 33, 0.693);
+    filter: blur(3);
+    transform: translateY(-150%);
+    &.active {
+      transform: translateY(0%);
+    }
+  }
+}
+.nav_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  @media (max-width: $burger-visible) {
+    flex-direction: column;
+    position: absolute;
+    z-index: 30;
+    top: 0px;
+    right: 0px;
+    justify-content: start;
+    background-color: rgb(58, 55, 69);
+    padding: 100px 0px 30px 10px;
+    width: 400px;
+    max-width: 100%;
+    border-radius: 0px 0px 10px 10px;
+    height: 400px;
+    overflow: auto;
+    gap: 20px;
+    transform: translateY(-100%);
+    transition: transform 0.6s ease;
+
+    &.scroll{
+      background-color: var(--header-scroll);
+    }
+    & * {
+      width: 250px;
+      max-width: 100%;
+    }
+    &.active {
+     transform: translateY(0%);
+     transition: transform 0.6s ease;
+    }
+  }
+  @media (max-width: 540px) {
+    width: 100%;
+  }
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background-color: inherit;
+}
+
+.nav_btn {
+  &:active {
+    box-shadow: 0 0 10px #eee;
   }
 }
 
 .burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  @media (max-width: $burger-visible) {
+    display: flex;
+  }
+}
+
+.burger_logo {
   cursor: pointer;
   display: block;
   position: relative;
+  z-index: $z-index-header;
   border: none;
   background: transparent;
   width: 40px;
   height: 26px;
+  &.active {
+    &::before {
+    top: 11px;
+    transform: rotate(45deg);
+    box-shadow: 0 11px 0 transparent;
+    transition: box-shadow .15s, top .3s, transform .3s .15s;
+    }
+    &::after {
+      bottom: 11px;
+      transform: rotate(-45deg);
+      transition: bottom .3s, transform .3s .15s;
+    }
+  }
 
   span,
   &::after, 
@@ -94,19 +189,5 @@ header.scroll {
     top: 0;
     box-shadow: 0 11px 0 var(--burger-color);
     transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
-  }
-}
-
-.burger.active {
-  &::before {
-  top: 11px;
-  transform: rotate(45deg);
-  box-shadow: 0 11px 0 transparent;
-  transition: box-shadow .15s, top .3s, transform .3s .15s;
-  }
-  &::after {
-    bottom: 11px;
-    transform: rotate(-45deg);
-    transition: bottom .3s, transform .3s .15s;
   }
 }
