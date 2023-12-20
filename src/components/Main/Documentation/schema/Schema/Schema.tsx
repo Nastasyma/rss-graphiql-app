@@ -4,12 +4,13 @@ import Navigation from '../Navigation/Navigation';
 import { IDataItem, ISchemaType } from '@/types/general';
 import DocList from '../DocList/DocList';
 import styles from './schema.module.scss';
+import React from 'react';
 
 interface ISchemaProps {
   types: ISchemaType[];
 }
 
-function Schema({ types }: ISchemaProps) {
+const Schema = React.memo(({ types }: ISchemaProps) => {
   const [data, setData] = useState<IDataItem[]>([]);
   const field = data[data.length - 1];
 
@@ -64,6 +65,7 @@ function Schema({ types }: ISchemaProps) {
       )}
     </div>
   );
-}
+});
+
 
 export default Schema;
