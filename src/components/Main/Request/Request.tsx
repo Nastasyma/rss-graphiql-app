@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { prettifying } from '@/utils/prettifying';
 import { IRequest } from '@/types/general';
 import { makeRequest } from '@/utils/makeRequest';
+import React from 'react';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -52,6 +53,11 @@ function Request() {
     }
   };
 
+  const requestContent = React.useMemo(
+    () => tabs[activeTab]?.requestContent,
+    [tabs, activeTab]
+  );
+
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
       <span className={styles.title}>Request</span>
@@ -59,7 +65,7 @@ function Request() {
         <div className={styles.requestEditor}>
           <CodeMirror
             editable={true}
-            value={tabs[activeTab]?.requestContent}
+            value={requestContent}
             theme={bbedit}
             onChange={handleNewTabContent}
           />

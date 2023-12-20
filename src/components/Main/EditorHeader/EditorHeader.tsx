@@ -51,6 +51,7 @@ function EditorHeader() {
         type="text"
         value={tabs[activeTab]?.url}
         onChange={handleInputChange}
+        placeholder="Enter CORS-enabled API URL"
       />
       {showApiList && (
         <div className={styles.apiList}>

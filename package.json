@@ -15,10 +15,12 @@
     "format:fix": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\""
   },
   "dependencies": {
+    "@codemirror/lang-json": "^6.0.1",
     "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^2.0.1",
     "@types/react-redux": "^7.1.30",
     "@uiw/codemirror-theme-bbedit": "^4.21.21",
+    "@uiw/codemirror-theme-tokyo-night-day": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",
     "allotment": "^1.19.3",
     "codemirror": "^6.0.1",

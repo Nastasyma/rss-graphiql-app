@@ -63,6 +63,7 @@ function Main() {
           <EditorHeader />
         </Allotment.Pane>
         <Allotment
+          key={String(isMobile)}
           defaultSizes={isMobile ? [1, 4, 6, 3] : [1, 3, 4, 4]}
           minSize={50}
           vertical={isMobile}

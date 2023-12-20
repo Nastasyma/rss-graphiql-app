@@ -6,6 +6,8 @@ import { useAppSelector } from '@/store/store';
 import { useDeferredValue } from 'react';
 import Preloader from '@/components/Preloader/Preloader';
 
+const Schema = lazy(() => import('./schema/Schema/Schema'));
+
 function Documentation() {
   const [isLoading, setIsLoading] = useState(true);
   const types = useRef<ISchemaType[]>([]);
@@ -13,7 +15,6 @@ function Documentation() {
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
   const isDocOpen = useAppSelector((state) => state.editor.isDocOpen);
-  const Schema = lazy(() => import('./schema/Schema/Schema'));
 
   useEffect(() => {
     async function getAllTypes() {
@@ -30,7 +31,9 @@ function Documentation() {
       setIsLoading(false);
     }
 
-    getAllTypes();
+    if (prevUrl.current !== tabs[activeTab].url) {
+      getAllTypes();
+    }
   }, [isDocOpen, tabs[activeTab].url]);
 
   const deferredTypes = useDeferredValue(types.current);
@@ -38,7 +41,11 @@ function Documentation() {
   return (
     <div className={`${styles.docDescription} ${styles.container}`}>
       <Suspense fallback={<Preloader view="mini" />}>
-        {isLoading ? <Preloader view="mini" /> : <Schema types={deferredTypes} />}
+        {isLoading ? (
+          <Preloader view="mini" />
+        ) : (
+          <Schema types={deferredTypes} />
+        )}
       </Suspense>
     </div>
   );
