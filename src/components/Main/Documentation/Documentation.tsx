@@ -15,23 +15,25 @@ function Documentation() {
   const isDocOpen = useAppSelector((state) => state.editor.isDocOpen);
   const Schema = lazy(() => import('./schema/Schema/Schema'));
 
-  useEffect(() => {
-    async function getAllTypes() {
-      setIsLoading(true);
-      if (!isDocOpen || tabs[activeTab].url === '') {
-        return;
-      }
-
-      if (tabs[activeTab].url !== prevUrl.current) {
-        types.current = await getSchemaTypes(tabs[activeTab].url);
-        prevUrl.current = tabs[activeTab].url;
-      }
-
-      setIsLoading(false);
+useEffect(() => {
+  async function getAllTypes() {
+    setIsLoading(true);
+    if (!isDocOpen || tabs[activeTab].url === '') {
+      return;
     }
 
+    if (tabs[activeTab].url !== prevUrl.current) {
+      types.current = await getSchemaTypes(tabs[activeTab].url);
+      prevUrl.current = tabs[activeTab].url;
+    }
+
+    setIsLoading(false);
+  }
+
+  if (prevUrl.current !== tabs[activeTab].url) {
     getAllTypes();
-  }, [isDocOpen, tabs[activeTab].url]);
+  }
+}, [isDocOpen, tabs[activeTab].url]);
 
   const deferredTypes = useDeferredValue(types.current);
 
