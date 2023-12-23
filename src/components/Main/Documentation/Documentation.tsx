@@ -1,12 +1,11 @@
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './documentation..module.scss';
 import { getSchemaTypes } from '@/utils/graphqlSchema';
 import { ISchemaType } from '@/types/general';
 import { useAppSelector } from '@/store/store';
 import { useDeferredValue } from 'react';
 import Preloader from '@/components/Preloader/Preloader';
-
-const Schema = lazy(() => import('./schema/Schema/Schema'));
+import LazySchema from './schema/Schema/LazySchema';
 
 function Documentation() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,13 +39,11 @@ function Documentation() {
 
   return (
     <div className={`${styles.docDescription} ${styles.container}`}>
-      <Suspense fallback={<Preloader view="mini" />}>
-        {isLoading ? (
-          <Preloader view="mini" />
-        ) : (
-          <Schema types={deferredTypes} />
-        )}
-      </Suspense>
+      {isLoading ? (
+        <Preloader view="mini" />
+      ) : (
+        <LazySchema types={deferredTypes} />
+      )}
     </div>
   );
 }
