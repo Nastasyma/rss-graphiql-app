@@ -11,5 +11,5 @@ export const requestTemplate = `query AllPokemons($first: Int!) {
       }
     }
   }
-}git 
+}
 `;

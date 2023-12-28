@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import styles from './documentation..module.scss';
+import styles from './documentation.module.scss';
 import { getSchemaTypes } from '@/utils/graphqlSchema';
 import { ISchemaType } from '@/types/general';
 import { useAppSelector } from '@/store/store';
