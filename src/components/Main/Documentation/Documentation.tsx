@@ -38,7 +38,7 @@ function Documentation() {
   const deferredTypes = useDeferredValue(types.current);
 
   return (
-    <div className={`${styles.docDescription} ${styles.container}`}>
+    <div className={`${styles.docDescription} ${styles.container}`} data-testId="documentation">
       {isLoading ? (
         <Preloader view="mini" />
       ) : (

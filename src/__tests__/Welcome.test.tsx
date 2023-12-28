@@ -11,7 +11,7 @@ describe('Welcome component', () => {
         <Welcome />
       </Router>
     );
-  })
+  });
 
   it('renders Welcome component with all blocks', () => {
     expect(screen.getByTestId('welcome-block')).toBeInTheDocument();

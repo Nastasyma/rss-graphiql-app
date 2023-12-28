@@ -3,7 +3,7 @@ import 'allotment/dist/style.css';
 import CodeMirror from '@uiw/react-codemirror';
 import { useAppSelector } from '@/store/store';
 import { tokyoNightDay } from '@uiw/codemirror-theme-tokyo-night-day';
-import { json } from '@codemirror/lang-json';
+import { langs } from '@uiw/codemirror-extensions-langs';
 
 function Response() {
   const activeTab = useAppSelector((store) => store.tabs.activeTab);
@@ -25,7 +25,7 @@ function Response() {
         readOnly={true}
         theme={tokyoNightDay}
         value={response}
-        extensions={[json()]}
+        extensions={[langs.json()]}
         basicSetup={basicSetup}
       />
     </div>
