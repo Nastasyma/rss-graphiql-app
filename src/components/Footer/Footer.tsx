@@ -41,7 +41,7 @@ export default function Footer() {
 
         <div>
           <a href="https://rs.school/" target="_blanc">
-            <RsLogo height={40} />
+            <RsLogo height={40} data-testid="rs-logo" />
           </a>
         </div>
       </div>
