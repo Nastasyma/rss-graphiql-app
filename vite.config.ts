@@ -26,7 +26,7 @@ export default defineConfig({
       reportsDirectory: './src/__tests__/coverage',
       all: true,
       include: ['**/*.tsx'],
-      exclude: ['src/main.tsx', 'src/router/router.tsx'],
+      exclude: ['src/main.tsx', 'src/router/router.tsx', 'src/components/AuthForm/data/icons.tsx'],
     },
   },
 });

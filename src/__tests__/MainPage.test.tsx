@@ -10,9 +10,9 @@ import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Schema from '@/components/Main/Documentation/schema/Schema/Schema';
-import mockTypes from './fake-data/mockTypes';
 import Navigation from '@/components/Main/Documentation/schema/Navigation/Navigation';
-import mockData from './fake-data/mockData';
+import { mockData, mockTypes } from './fake-data/mockData';
+import Details from '@/components/Main/Documentation/schema/Details/Details';
 
 describe('Main component', () => {
   beforeEach(() => {
@@ -89,6 +89,32 @@ describe('Main component', () => {
     fireEvent.click(screen.getByText('Field1'));
 
     expect(mockSetData).toHaveBeenCalledTimes(1);
-    expect(screen.getAllByRole('navigation-item')).toHaveLength(mockData.length + 1);
+    expect(screen.getAllByRole('navigation-item')).toHaveLength(
+      mockData.length + 1
+    );
+  });
+
+  it('renders description in Details component when provided', () => {
+    const mockSetData = vi.fn();
+
+    render(
+      <Router>
+        <Details type={mockTypes[1]} data={mockData[1]} setData={mockSetData} />
+      </Router>
+    );
+
+    const descriptionElement = screen.queryByText('This is a description');
+    expect(descriptionElement).toBeInTheDocument();
+  })
+
+  it('does not render description in Details component when not provided', () => {
+    const mockSetData = vi.fn();
+
+    render(
+      <Details type={mockTypes[0]} data={mockData[0]} setData={mockSetData} />
+    );
+
+    const descriptionElement = screen.queryByText('This is a description');
+    expect(descriptionElement).not.toBeInTheDocument();
   });
 });
