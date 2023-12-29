@@ -1,15 +1,17 @@
 import Welcome from '@/pages/Welcome/Welcome';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { mockAllIsIntersecting } from 'react-intersection-observer/test-utils';
 
 describe('Welcome component', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     mockAllIsIntersecting(true);
-    render(
-      <Router>
-        <Welcome />
-      </Router>
+    await act(async () =>
+      render(
+        <Router>
+          <Welcome />
+        </Router>
+      )
     );
   });
 
