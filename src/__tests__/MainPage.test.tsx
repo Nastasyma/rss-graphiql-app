@@ -103,8 +103,7 @@ describe('Main component', () => {
       </Router>
     );
 
-    const descriptionElement = screen.queryByText('This is a description');
-    expect(descriptionElement).toBeInTheDocument();
+    expect(screen.queryByText('This is a description')).toBeInTheDocument();
   })
 
   it('does not render description in Details component when not provided', () => {
@@ -114,7 +113,6 @@ describe('Main component', () => {
       <Details type={mockTypes[0]} data={mockData[0]} setData={mockSetData} />
     );
 
-    const descriptionElement = screen.queryByText('This is a description');
-    expect(descriptionElement).not.toBeInTheDocument();
+    expect(screen.queryByText('This is a description')).not.toBeInTheDocument();
   });
 });
