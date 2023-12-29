@@ -1,6 +1,5 @@
 import styles from './request.module.scss';
 import 'allotment/dist/style.css';
-import CodeMirror from '@uiw/react-codemirror';
 import { bbedit } from '@uiw/codemirror-theme-bbedit';
 import PlayIcon from '../../../assets/play.svg?react';
 import PrettifyIcon from '../../../assets/prettify.svg?react';
@@ -12,6 +11,7 @@ import { prettifying } from '@/utils/prettifying';
 import { IRequest } from '@/types/general';
 import { makeRequest } from '@/utils/makeRequest';
 import React from 'react';
+import Editor from '../Editor/Editor';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -63,8 +63,9 @@ function Request() {
       <span className={styles.title}>Request</span>
       <div className={styles.request}>
         <div className={styles.requestEditor}>
-          <CodeMirror
+          <Editor
             editable={true}
+            readOnly={false}
             value={requestContent}
             theme={bbedit}
             onChange={handleNewTabContent}
