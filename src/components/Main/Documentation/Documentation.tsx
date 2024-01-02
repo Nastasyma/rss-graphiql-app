@@ -6,44 +6,52 @@ import { useAppSelector } from '@/store/store';
 import { useDeferredValue } from 'react';
 import Preloader from '@/components/Preloader/Preloader';
 import LazySchema from './schema/Schema/LazySchema';
+import Modal from '@/components/Modal/Modal';
 
 function Documentation() {
   const [isLoading, setIsLoading] = useState(true);
   const types = useRef<ISchemaType[]>([]);
-  const prevUrl = useRef<string>('');
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
   const isDocOpen = useAppSelector((state) => state.editor.isDocOpen);
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     async function getAllTypes() {
       setIsLoading(true);
+      setErrorMessage('');
+
       if (!isDocOpen || tabs[activeTab].url === '') {
         return;
       }
 
-      if (tabs[activeTab].url !== prevUrl.current) {
+      try {
         types.current = await getSchemaTypes(tabs[activeTab].url);
-        prevUrl.current = tabs[activeTab].url;
+        setIsLoading(false);
+      } catch (error: unknown) {
+        setIsLoading(true);
+        types.current = [];
+        setErrorMessage(error instanceof Error ? error.message : 'Error');
       }
-
-      setIsLoading(false);
     }
 
-    if (prevUrl.current !== tabs[activeTab].url) {
-      getAllTypes();
-    }
+    getAllTypes();
   }, [isDocOpen, tabs[activeTab].url]);
 
   const deferredTypes = useDeferredValue(types.current);
 
   return (
-    <div className={`${styles.docDescription} ${styles.container}`} data-testid="documentation">
+    <div
+      className={`${styles.docDescription} ${styles.container}`}
+      data-testid="documentation"
+    >
       {isLoading ? (
         <Preloader view="mini" />
       ) : (
         <LazySchema types={deferredTypes} />
       )}
+      {errorMessage ? <Modal errorMessage={errorMessage} /> : null}
     </div>
   );
 }
