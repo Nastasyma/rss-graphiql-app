@@ -25,7 +25,6 @@ export const makeRequest: (request: IProps) => Promise<unknown | string> = (
       }
     })
     .catch((err) => {
-      console.error(`You have problem with your fetch request:\n${err}`);
       return `You have problem with your fetch request:\n${err}`;
     });
 };
