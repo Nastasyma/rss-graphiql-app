@@ -4,6 +4,8 @@ import { AuthContext } from '@/providers/AuthProvider';
 import { LangContext } from '@/providers/LangProvider';
 import SighUp from '@/pages/SighUp/SighUp';
 import Login from '@/pages/Login/Login';
+import SignOut from '@/components/SignOut/SignOut';
+import { Auth } from 'firebase/auth';
 
 const useDispatchMock = vi.fn();
 const mockDispatch = vi.fn();
@@ -13,6 +15,18 @@ vi.mock('react-redux', () => ({
 }));
 
 vi.mock('react-redux');
+
+vi.mock('./../store/reducers/userSlice', () => ({
+  removeUser: vi.fn(),
+}));
+
+vi.mock('firebase/auth', async () => {
+  const actual: Auth = await vi.importActual('firebase/auth');
+  return {
+    ...actual,
+    signOut: vi.fn(),
+  };
+});
 
 describe('SighUp component', () => {
   beforeEach(() => {
@@ -100,4 +114,15 @@ describe('SighUp component', () => {
       ).toBeInTheDocument();
     });
   });
+});
+
+it('renders the button in SighUp component with the provided title', () => {
+  const title = 'Sign Out';
+  render(
+    <Router>
+      <SignOut title={title} />
+    </Router>
+  );
+
+  expect(screen.getByRole('button')).toHaveTextContent(title);
 });
