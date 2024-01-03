@@ -10,7 +10,7 @@ function DocSettings() {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.editor.isDocOpen);
   const handleDocIconClick = () => {
-    dispatch(setDocIsOpen(isOpen));
+    dispatch(setDocIsOpen(!isOpen));
   };
 
   return (
