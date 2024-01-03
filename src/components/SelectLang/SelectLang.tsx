@@ -20,6 +20,7 @@ export default function SelectLang() {
       className={s.langItem}
       key={el.lang}
       id={el.lang}
+      data-testid={`selectLang-${el.lang}`}
       onClick={() => {
         if (!setLang) return;
         setLang(() => el.lang);
@@ -53,7 +54,11 @@ export default function SelectLang() {
 
   return (
     <div className={s.lang} ref={langRef}>
-      <div className={s.value} onClick={() => setIsLangOpen(!isLangOpen)}>
+      <div
+        className={s.value}
+        onClick={() => setIsLangOpen(!isLangOpen)}
+        data-testid="select-lang"
+      >
         {lang === 'ru' ? (
           <img src={ru} alt={`russian language`} className={s.flag} />
         ) : (

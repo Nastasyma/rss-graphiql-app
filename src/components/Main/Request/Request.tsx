@@ -13,12 +13,17 @@ import { makeRequest } from '@/utils/makeRequest';
 import React from 'react';
 import Editor from '../Editor/Editor';
 import { LangContext } from '@/providers/LangProvider';
+import Preloader from '@/components/Preloader/Preloader';
+import { setIsMakingRequest } from '@/store/reducers/editorSlice';
 
 function Request() {
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
   const { lang } = useContext(LangContext);
+  const isMakingRequest = useAppSelector(
+    (state) => state.editor.isMakingRequest
+  );
 
   const handleNewTabContent = (content: string) => {
     dispatch(updateTabContent({ index: activeTab, requestContent: content }));
@@ -36,6 +41,7 @@ function Request() {
   };
 
   const onPlayClick: (request: IRequest) => Promise<void> = async (request) => {
+    dispatch(setIsMakingRequest(true));
     const { query, url, variables, headers } = request;
     const trimHeaders = headers?.trim();
     const headersObj: HeadersInit = trimHeaders
@@ -53,6 +59,7 @@ function Request() {
     } else {
       dispatch(updateTabContent({ responseContent: res }));
     }
+    dispatch(setIsMakingRequest(false));
   };
 
   const requestContent = React.useMemo(
@@ -76,18 +83,22 @@ function Request() {
           />
         </div>
         <div className={styles.requestButtons}>
-          <button title={lang === 'ru' ? 'Выполнить запрос' : 'Execute Query'}>
-            <PlayIcon
-              className={styles.icon}
-              onClick={() => {
-                onPlayClick({
-                  url: tabs[activeTab].url,
-                  query: tabs[activeTab].requestContent,
-                  variables: tabs[activeTab].variablesContent,
-                  headers: tabs[activeTab].headersContent,
-                });
-              }}
-            />
+          <button
+            title={lang === 'ru' ? 'Выполнить запрос' : 'Execute Query'}
+            onClick={() => {
+              onPlayClick({
+                url: tabs[activeTab].url,
+                query: tabs[activeTab].requestContent,
+                variables: tabs[activeTab].variablesContent,
+                headers: tabs[activeTab].headersContent,
+              });
+            }}
+          >
+            {isMakingRequest ? (
+              <Preloader view={'mini'} />
+            ) : (
+              <PlayIcon className={styles.icon} />
+            )}
           </button>
           <button
             title={lang === 'ru' ? 'Форматировать запрос' : 'Prettify Query'}
