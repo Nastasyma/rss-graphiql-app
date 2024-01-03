@@ -6,17 +6,19 @@ import PrettifyIcon from '../../../assets/prettify.svg?react';
 import { requestTemplate } from './requestTemplate';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { updateTabContent } from '../../../store/reducers/tabSlice';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { prettifying } from '@/utils/prettifying';
 import { IRequest } from '@/types/general';
 import { makeRequest } from '@/utils/makeRequest';
 import React from 'react';
 import Editor from '../Editor/Editor';
+import { LangContext } from '@/providers/LangProvider';
 
 function Request() {
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
+  const { lang } = useContext(LangContext);
 
   const handleNewTabContent = (content: string) => {
     dispatch(updateTabContent({ index: activeTab, requestContent: content }));
@@ -60,7 +62,9 @@ function Request() {
 
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
-      <span className={styles.title}>Request</span>
+      <span className={styles.title}>
+        {lang === 'ru' ? 'Запрос' : 'Request'}
+      </span>
       <div className={styles.request}>
         <div className={styles.requestEditor}>
           <Editor
@@ -72,7 +76,7 @@ function Request() {
           />
         </div>
         <div className={styles.requestButtons}>
-          <button title="Execute Query">
+          <button title={lang === 'ru' ? 'Выполнить запрос' : 'Execute Query'}>
             <PlayIcon
               className={styles.icon}
               onClick={() => {
@@ -85,7 +89,9 @@ function Request() {
               }}
             />
           </button>
-          <button title="Prettify Query">
+          <button
+            title={lang === 'ru' ? 'Форматировать запрос' : 'Prettify Query'}
+          >
             <PrettifyIcon
               className={styles.icon}
               onClick={() => onPrettifyClick(tabs[activeTab]?.requestContent)}
