@@ -6,11 +6,14 @@ import {
   deleteTab,
   setActiveTab,
 } from '../../../store/reducers/tabSlice';
+import { useContext } from 'react';
+import { LangContext } from '@/providers/LangProvider';
 
 function Tabs() {
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
+  const { lang } = useContext(LangContext);
 
   const handleTabClick = (index: number) => {
     dispatch(setActiveTab(index));
@@ -44,13 +47,13 @@ function Tabs() {
             }`}
             onClick={() => handleTabClick(index)}
           >
-            New Tab
+            {lang === 'ru' ? 'Новая вкладка' : 'New Tab'}
           </button>
           {index > 0 && (
             <button
               className={styles.closeButton}
               onClick={() => handleDeleteTab(index)}
-              title="Close tab"
+              title={lang === 'ru' ? 'Закрыть вкладку' : 'Close tab'}
             >
               <CloseIcon />
             </button>
@@ -60,7 +63,7 @@ function Tabs() {
       <button
         className={`${styles.button} ${styles.add}`}
         onClick={handleAddTab}
-        title="Add tab"
+        title={lang === 'ru' ? 'Добавить вкладку' : 'Add tab'}
       >
         +
       </button>
