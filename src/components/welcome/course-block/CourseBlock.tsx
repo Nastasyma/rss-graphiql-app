@@ -41,7 +41,7 @@ export default function CourseBlock() {
   const { lang } = useContext(LangContext);
 
   return (
-    <div className={s.courseBlock}>
+    <div className={s.courseBlock} data-testid="course-block">
       <div className="conteiner">
         <h2 className={s.header}>{courseData.header[lang]}</h2>
         <h3 className={s.about}>{courseData.about[lang]}</h3>

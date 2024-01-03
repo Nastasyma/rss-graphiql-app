@@ -132,6 +132,7 @@ export default function AuthForm({
           type="submit"
           className={`link ${s.submit}`}
           disabled={!isDirty || !isValid}
+          data-testid="submit-button"
         >
           {title}
         </button>

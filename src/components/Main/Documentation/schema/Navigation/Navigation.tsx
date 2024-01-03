@@ -16,7 +16,7 @@ function Navigation({ data, setData }: INavigationProps) {
   };
 
   return (
-    <div className={styles.fieldBlock}>
+    <div className={styles.fieldBlock} data-testid="navigation">
       {nav.map((navItem, index) => {
         const isLastItem = index === nav.length - 1;
         const capitalizedNavItem =
@@ -31,6 +31,7 @@ function Navigation({ data, setData }: INavigationProps) {
             key={`${navItem}-${index}`}
             onClick={() => handleClick(navItem)}
             className={className}
+            role="navigation-item"
           >
             <span>{capitalizedNavItem}</span> {isLastItem ? '' : '→'}
           </div>

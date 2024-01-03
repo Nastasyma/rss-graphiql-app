@@ -37,7 +37,7 @@ export default function WelcomeBlock() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={s.welcomeBlock}>
+    <div className={s.welcomeBlock} data-testid="welcome-block">
       <div className={s.imageBlock}>
         <img
           className={`${s.image} ${s.image_earth} ${
