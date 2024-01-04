@@ -8,25 +8,20 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 
-describe('testing app', () => {
-  const useDispatchMock = vi.fn();
-  const mockDispatch = vi.fn();
-  beforeEach(() => {
-    useDispatchMock.mockReturnValue(mockDispatch);
-  });
+const useDispatchMock = vi.fn();
+const mockDispatch = vi.fn();
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
+const useIdToken = vi.fn();
 
+describe('testing context', () => {
   beforeEach(async () => {
+    useDispatchMock.mockReturnValue(mockDispatch);
+    useIdToken.mockReturnValue([true, false]);
+
     const memoryRouter = createMemoryRouter(routes, {
       initialEntries: ['/graphiql-app/register'],
       basename: '/graphiql-app',
     });
-
-    const useIdToken = vi.fn();
-    useIdToken.mockReturnValue([true, false]);
 
     await waitFor(() =>
       render(
@@ -45,6 +40,11 @@ describe('testing app', () => {
     );
   });
 
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.resetAllMocks();
+  });
+
   it('switch theme', async () => {
     expect(document.body.getAttribute('data-theme')).toBe('dark');
     waitFor(() => {
@@ -54,7 +54,6 @@ describe('testing app', () => {
   });
 
   it('switch lang', () => {
-    screen.debug();
     expect(screen.getByTestId('auth-title').textContent).toBe('Sigh up');
 
     waitFor(() => {
@@ -65,5 +64,82 @@ describe('testing app', () => {
     });
 
     expect(screen.getByTestId('auth-title').textContent).toBe('Регистрация');
+
+    waitFor(() => {
+      fireEvent.click(screen.getByTestId('select-lang'));
+    });
+    waitFor(async () => {
+      fireEvent.click(screen.getByTestId('selectLang-en'));
+    });
+
+    expect(screen.getByTestId('auth-title').textContent).toBe('Sigh up');
+  });
+});
+
+describe('testing preloader', () => {
+  beforeEach(() => {
+    useDispatchMock.mockReturnValue(mockDispatch);
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.resetAllMocks();
+  });
+
+  it('if authorization is loading, the preloader should be shown', async () => {
+    const memoryRouter = createMemoryRouter(routes, {
+      initialEntries: ['/graphiql-app/login'],
+      basename: '/graphiql-app',
+    });
+
+    useIdToken.mockReturnValue([false, false]);
+
+    render(
+      <ErrorBoundary>
+        <Provider store={store}>
+          <AuthProvider>
+            <ThemeProvider>
+              <LangProvider>
+                <RouterProvider router={memoryRouter} />
+              </LangProvider>
+            </ThemeProvider>
+          </AuthProvider>
+        </Provider>
+      </ErrorBoundary>
+    );
+    expect(screen.getByTestId('preloader-full')).toBeInTheDocument();
+  });
+
+  it('if authorization is not loading, the preloader should not be shown', async () => {
+    const memoryRouter = createMemoryRouter(routes, {
+      initialEntries: ['/graphiql-app/login'],
+      basename: '/graphiql-app',
+    });
+    useIdToken.mockReturnValueOnce([false, false]);
+
+    await waitFor(async () => {
+      render(
+        <ErrorBoundary>
+          <Provider store={store}>
+            <AuthProvider>
+              <ThemeProvider>
+                <LangProvider>
+                  <RouterProvider router={memoryRouter} />
+                </LangProvider>
+              </ThemeProvider>
+            </AuthProvider>
+          </Provider>
+        </ErrorBoundary>
+      );
+    });
+
+    let isPreloader = true;
+    try {
+      screen.getByTestId('preloader-full');
+      isPreloader = true;
+    } catch {
+      isPreloader = false;
+    }
+    expect(isPreloader).toBeFalsy();
   });
 });
