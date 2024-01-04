@@ -11,14 +11,21 @@ export const prettifying = (request: string) => {
       requestArr.splice(i + 1, 1);
     }
     if (elem) {
-      newArr.push(elem);
+      if (i !== 0 && !elem.includes('{') && (elem.split(' ').length > 1 || elem.split('\n').length > 1)) {
+        const words = elem.split(/[ \n]+/).filter((el) => el);
+        for (const word of words) {
+          newArr.push(word.trim());
+        }
+      } else {
+        newArr.push(elem);
+      }
     }
   }
   return (
     newArr
+      .filter((el) => el)
       .map((el) => {
         space = newSpace;
-
         if (el.endsWith('{')) {
           newSpace += 2;
           return `${' '.repeat(space)}${el}`;
