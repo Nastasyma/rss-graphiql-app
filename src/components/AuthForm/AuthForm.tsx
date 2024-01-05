@@ -57,6 +57,7 @@ export default function AuthForm({
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isDirty, isValid },
   } = useForm<IForm>({
     mode: 'onChange',
@@ -68,6 +69,8 @@ export default function AuthForm({
       setError(...errorAuthMessage);
     }
   }, [errorAuthMessage]);
+
+  useEffect(() => {reset()}, [lang])
 
   const submit: SubmitHandler<IForm> = async (data) => {
     const { email, password } = data;
