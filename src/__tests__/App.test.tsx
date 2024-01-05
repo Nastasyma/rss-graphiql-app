@@ -19,7 +19,7 @@ describe('testing context', () => {
     useIdToken.mockReturnValue([true, false]);
 
     const memoryRouter = createMemoryRouter(routes, {
-      initialEntries: ['/register']
+      initialEntries: ['/register'],
     });
 
     await waitFor(() =>

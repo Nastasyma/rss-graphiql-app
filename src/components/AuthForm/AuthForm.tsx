@@ -70,7 +70,9 @@ export default function AuthForm({
     }
   }, [errorAuthMessage]);
 
-  useEffect(() => {reset()}, [lang])
+  useEffect(() => {
+    reset();
+  }, [lang]);
 
   const submit: SubmitHandler<IForm> = async (data) => {
     const { email, password } = data;
