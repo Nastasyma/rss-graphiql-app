@@ -19,8 +19,7 @@ describe('testing context', () => {
     useIdToken.mockReturnValue([true, false]);
 
     const memoryRouter = createMemoryRouter(routes, {
-      initialEntries: ['/graphiql-app/register'],
-      basename: '/graphiql-app',
+      initialEntries: ['/register'],
     });
 
     await waitFor(() =>
@@ -88,8 +87,7 @@ describe('testing preloader', () => {
 
   it('if authorization is loading, the preloader should be shown', async () => {
     const memoryRouter = createMemoryRouter(routes, {
-      initialEntries: ['/graphiql-app/login'],
-      basename: '/graphiql-app',
+      initialEntries: ['/login'],
     });
 
     useIdToken.mockReturnValue([false, false]);
@@ -112,8 +110,7 @@ describe('testing preloader', () => {
 
   it('if authorization is not loading, the preloader should not be shown', async () => {
     const memoryRouter = createMemoryRouter(routes, {
-      initialEntries: ['/graphiql-app/login'],
-      basename: '/graphiql-app',
+      initialEntries: ['/login'],
     });
     useIdToken.mockReturnValueOnce([false, false]);
 

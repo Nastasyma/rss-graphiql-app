@@ -35,9 +35,13 @@ function Request() {
     }
   }, [tabs, handleNewTabContent]);
 
-  const onPrettifyClick = (request: string) => {
-    const response = prettifying(request);
-    dispatch(updateTabContent({ index: activeTab, requestContent: response }));
+  const prettifyAndDispatch = (
+    content: string,
+    key: string,
+    shouldSeparateWords: boolean
+  ) => {
+    const response = prettifying(content, shouldSeparateWords);
+    dispatch(updateTabContent({ index: activeTab, [key]: response }));
   };
 
   const onPlayClick: (request: IRequest) => Promise<void> = async (request) => {
@@ -105,7 +109,23 @@ function Request() {
           >
             <PrettifyIcon
               className={styles.icon}
-              onClick={() => onPrettifyClick(tabs[activeTab]?.requestContent)}
+              onClick={() => {
+                prettifyAndDispatch(
+                  tabs[activeTab]?.requestContent,
+                  'requestContent',
+                  true
+                );
+                prettifyAndDispatch(
+                  tabs[activeTab]?.variablesContent,
+                  'variablesContent',
+                  false
+                );
+                prettifyAndDispatch(
+                  tabs[activeTab]?.headersContent,
+                  'headersContent',
+                  false
+                );
+              }}
             />
           </button>
         </div>
