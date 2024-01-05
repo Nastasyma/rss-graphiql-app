@@ -32,6 +32,6 @@ export const routes = [
   },
 ];
 
-const router = createBrowserRouter(routes, { basename: '/graphiql-app' });
+const router = createBrowserRouter(routes);
 
 export default router;
