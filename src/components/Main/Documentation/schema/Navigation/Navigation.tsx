@@ -1,6 +1,8 @@
 import { IDataItem } from '@/types/general';
 import styles from './navigation.module.scss';
 import cn from 'classnames';
+import { useContext } from 'react';
+import { LangContext } from '@/providers/LangProvider';
 
 interface INavigationProps {
   data: IDataItem[];
@@ -8,7 +10,10 @@ interface INavigationProps {
 }
 
 function Navigation({ data, setData }: INavigationProps) {
-  const nav = ['Documentation'].concat(data.map((dataItem) => dataItem.name));
+  const { lang } = useContext(LangContext);
+  const nav = [lang === 'ru' ? 'Документация' : 'Documentation'].concat(
+    data.map((dataItem) => dataItem.name)
+  );
 
   const handleClick = (name: string) => {
     const index = nav.indexOf(name) - 1;

@@ -8,7 +8,7 @@ interface IProps {
 export default function Preloader({ view }: IProps) {
   if (view === 'full') {
     return (
-      <div className={`${s.preloader_full}`}>
+      <div className={`${s.preloader_full}`} data-testid="preloader-full">
         <span className={s.preloader__ico}></span>
       </div>
     );

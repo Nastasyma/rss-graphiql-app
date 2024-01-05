@@ -1,5 +1,5 @@
-import { IDataItem } from "@/types/general";
-import { ISchemaType, IType } from "@/types/general";
+import { IDataItem } from '@/types/general';
+import { ISchemaType, IType } from '@/types/general';
 
 export const mockTypes: ISchemaType[] = [
   {
