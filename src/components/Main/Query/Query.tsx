@@ -7,13 +7,15 @@ import {
   setQueryIsOpen,
   setQuerySectionSize,
 } from '../../../store/reducers/editorSlice';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { updateTabContent } from '../../../store/reducers/tabSlice';
 import { variablesTemplate } from './variablesTemplate';
 import { headersTemplate } from './headersTemplate';
 import Editor from '../Editor/Editor';
+import { LangContext } from '@/providers/LangProvider';
 
 function Query() {
+  const { lang } = useContext(LangContext);
   const dispatch = useAppDispatch();
   const tabs = useAppSelector((state) => state.tabs.tabs);
   const activeTab = useAppSelector((state) => state.tabs.activeTab);
@@ -34,12 +36,8 @@ function Query() {
   };
 
   const handleArrowIconClick = () => {
-    dispatch(setQueryIsOpen({ isQueryOpen: !isOpen }));
-    if (querySectionSize === 150) {
-      dispatch(setQuerySectionSize({ querySectionSize: 50 }));
-    } else {
-      dispatch(setQuerySectionSize({ querySectionSize: 150 }));
-    }
+    dispatch(setQueryIsOpen(!isOpen));
+    dispatch(setQuerySectionSize(querySectionSize === 150 ? 50 : 150));
   };
 
   const handleContentChange = (content?: string) => {
@@ -73,7 +71,7 @@ function Query() {
             }`}
             onClick={handleVariablesClick}
           >
-            Variables
+            {lang === 'ru' ? 'Переменные' : 'Variables'}
           </button>
           <button
             className={`${styles.queryButton} ${
@@ -81,7 +79,7 @@ function Query() {
             }`}
             onClick={handleHeadersClick}
           >
-            Headers
+            {lang === 'ru' ? 'Заголовки' : 'Headers'}
           </button>
         </div>
         <button className={styles.arrowButton} onClick={handleArrowIconClick}>

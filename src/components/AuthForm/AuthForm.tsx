@@ -57,6 +57,7 @@ export default function AuthForm({
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isDirty, isValid },
   } = useForm<IForm>({
     mode: 'onChange',
@@ -69,6 +70,8 @@ export default function AuthForm({
     }
   }, [errorAuthMessage]);
 
+  useEffect(() => {reset()}, [lang])
+
   const submit: SubmitHandler<IForm> = async (data) => {
     const { email, password } = data;
     await authFunk(email, password);
@@ -77,7 +80,9 @@ export default function AuthForm({
   return (
     <div className="conteiner">
       <form className={s.form} onSubmit={handleSubmit(submit)}>
-        <h1 className={s.title}>{title}</h1>
+        <h1 className={s.title} data-testid="auth-title">
+          {title}
+        </h1>
 
         <div className={s.item}>
           <label htmlFor="email" className={s.item__name}>

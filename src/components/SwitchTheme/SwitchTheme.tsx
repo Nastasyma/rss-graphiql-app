@@ -19,6 +19,7 @@ export default function SwitchTheme() {
   return (
     <label id="switch" className={s.switch}>
       <input
+        data-testid="switchTheme-button"
         type="checkbox"
         id="slider"
         defaultChecked={theme === 'light' ? true : false}

@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Details from '../Details/Details';
 import Navigation from '../Navigation/Navigation';
 import { IDataItem, ISchemaType } from '@/types/general';
 import DocList from '../DocList/DocList';
 import styles from './schema.module.scss';
 import React from 'react';
+import { LangContext } from '@/providers/LangProvider';
 
 interface ISchemaProps {
   types: ISchemaType[];
 }
 
 const Schema = React.memo(({ types }: ISchemaProps) => {
+  const { lang } = useContext(LangContext);
   const [data, setData] = useState<IDataItem[]>([]);
   const field = data[data.length - 1];
 
@@ -45,9 +47,13 @@ const Schema = React.memo(({ types }: ISchemaProps) => {
         </>
       ) : (
         <>
-          <span className={styles.title}>Documentation</span>
+          <span className={styles.title}>
+            {lang === 'ru' ? 'Документация' : 'Documentation'}
+          </span>
           <p className={styles.docText}>
-            A GraphQL schema provides a root type for each kind of operation.
+            {lang === 'ru'
+              ? 'Схема GraphQL предоставляет корневой тип для каждого типа операций.'
+              : 'A GraphQL schema provides a root type for each kind of operation.'}
           </p>
           {filteredTypes.map((item, index) => (
             <DocList

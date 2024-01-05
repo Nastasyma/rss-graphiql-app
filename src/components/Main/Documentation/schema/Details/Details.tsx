@@ -1,6 +1,8 @@
 import { IDataItem, ISchemaType } from '@/types/general';
 import DocList from '../DocList/DocList';
 import styles from './details.module.scss';
+import { useContext } from 'react';
+import { LangContext } from '@/providers/LangProvider';
 
 interface IDetailsProps {
   data: IDataItem | undefined;
@@ -12,12 +14,17 @@ function Details({ data, type, setData }: IDetailsProps) {
   const { description, kind } = type;
   const types = type.fields || type.inputFields;
   const args = data && data.args;
+  const { lang } = useContext(LangContext);
 
   const renderDescription = () => {
     if (description || kind) {
       return (
         <div>
-          {description && <div className={styles.docText}>DESCRIPTION</div>}
+          {description && (
+            <div className={styles.docText}>
+              {lang === 'ru' ? 'ОПИСАНИЕ' : 'DESCRIPTION'}
+            </div>
+          )}
           {description && <div className={styles.docText}>{description}</div>}
           {kind && kind === 'SCALAR' && (
             <div className={styles.fieldBlock}>
