@@ -41,11 +41,7 @@ const Schema = React.memo(({ types }: ISchemaProps) => {
       {selectedType ? (
         <>
           <Navigation data={data} setData={setData} />
-          <Details
-            data={selectedField}
-            type={selectedType}
-            setData={setData}
-          />
+          <Details data={selectedField} type={selectedType} setData={setData} />
         </>
       ) : (
         <>
@@ -66,6 +62,5 @@ const Schema = React.memo(({ types }: ISchemaProps) => {
     </div>
   );
 });
-
 
 export default Schema;

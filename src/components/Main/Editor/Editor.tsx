@@ -1,4 +1,7 @@
-import CodeMirror, { BasicSetupOptions, Extension } from '@uiw/react-codemirror';
+import CodeMirror, {
+  BasicSetupOptions,
+  Extension,
+} from '@uiw/react-codemirror';
 
 type EditorProps = {
   editable: boolean;

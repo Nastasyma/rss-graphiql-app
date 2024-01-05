@@ -104,7 +104,7 @@ describe('Main component', () => {
     );
 
     expect(screen.queryByText('This is a description')).toBeInTheDocument();
-  })
+  });
 
   it('does not render description in Details component when not provided', () => {
     const mockSetData = vi.fn();
