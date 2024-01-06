@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer>
       <div className={`${s.footer} conteiner`}>
-        <div>2023</div>
+        <div>2024</div>
 
         <div className={s.contacts}>
           <GitHubLogo height={40} />
