@@ -7,7 +7,7 @@ export default function ProjectBlock() {
   const { lang } = useContext(LangContext);
   return (
     <div className={s.project}>
-      <h2 className={s.header}>Our Project</h2>
+      <h2 className={s.header}>{title[lang]}</h2>
       <div className={s.projectItems}>
         {items.map((el, i) => {
           return (
@@ -23,6 +23,11 @@ export default function ProjectBlock() {
     </div>
   );
 }
+
+const title = {
+  en: 'Our Project',
+  ru: 'Наш проект',
+};
 
 const items = [
   {

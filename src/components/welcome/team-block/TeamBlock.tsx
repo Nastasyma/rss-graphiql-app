@@ -8,7 +8,7 @@ export default function TeamBlock() {
 
   return (
     <div className={s.team}>
-      <h2 className={s.teamHeader}>Development team</h2>
+      <h2 className={s.teamHeader}>{title[lang]}</h2>
       {team.map((el, i) => {
         return (
           <TeamMember
@@ -23,6 +23,11 @@ export default function TeamBlock() {
     </div>
   );
 }
+
+const title = {
+  en: 'Development team',
+  ru: 'Команда разработчиков',
+};
 
 const team = [
   {
