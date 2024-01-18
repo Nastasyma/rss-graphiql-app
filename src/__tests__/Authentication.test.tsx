@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthContext } from '@/providers/AuthProvider';
 import { LangContext } from '@/providers/LangProvider';
-import SighUp from '@/pages/SighUp/SighUp';
+import SignUp from '@/pages/SignUp/SignUp';
 import Login from '@/pages/Login/Login';
 import SignOut from '@/components/SignOut/SignOut';
 import { Auth } from 'firebase/auth';
@@ -28,7 +28,7 @@ vi.mock('firebase/auth', async () => {
   };
 });
 
-describe('SighUp component', () => {
+describe('SignUp component', () => {
   beforeEach(() => {
     useDispatchMock.mockReturnValue(mockDispatch);
   });
@@ -37,12 +37,12 @@ describe('SighUp component', () => {
     vi.clearAllMocks();
   });
 
-  it('renders SighUp component', () => {
+  it('renders SignUp component', () => {
     render(
       <Router>
         <AuthContext.Provider value={{ isAuth: false }}>
           <LangContext.Provider value={{ lang: 'en' }}>
-            <SighUp />
+            <SignUp />
           </LangContext.Provider>
         </AuthContext.Provider>
       </Router>
@@ -51,7 +51,7 @@ describe('SighUp component', () => {
     expect(screen.getByText('or sing in using')).toBeInTheDocument();
   });
 
-  it('renders error message if password does not contain special character in SighUp component', async () => {
+  it('renders error message if password does not contain special character in SignUp component', async () => {
     const email = 'test@example.com';
     const password = 'password123';
 
@@ -59,7 +59,7 @@ describe('SighUp component', () => {
       <Router>
         <AuthContext.Provider value={{ isAuth: false }}>
           <LangContext.Provider value={{ lang: 'en' }}>
-            <SighUp />
+            <SignUp />
           </LangContext.Provider>
         </AuthContext.Provider>
       </Router>
@@ -116,7 +116,7 @@ describe('SighUp component', () => {
   });
 });
 
-it('renders the button in SighUp component with the provided title', () => {
+it('renders the button in SignUp component with the provided title', () => {
   const title = 'Sign Out';
   render(
     <Router>

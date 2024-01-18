@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../pages/Main/Main';
-import SighUp from '../pages/SighUp/SighUp';
+import SignUp from '../pages/SignUp/SignUp';
 import Login from '../pages/Login/Login';
 import Layout from '../pages/Layout/Layout';
 import NotFound from '../pages/404/NotFound';
@@ -22,7 +22,7 @@ export const routes = [
       },
       {
         path: 'register',
-        element: <SighUp />,
+        element: <SignUp />,
       },
       {
         path: 'login',
