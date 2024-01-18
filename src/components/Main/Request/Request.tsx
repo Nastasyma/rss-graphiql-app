@@ -63,21 +63,27 @@ function Request() {
     dispatch(setIsMakingRequest(true));
     const { query, url, variables, headers } = request;
     const trimHeaders = headers?.trim();
-    const headersObj: HeadersInit = trimHeaders
-      ? JSON.parse(trimHeaders)
-      : undefined;
-    const res = await makeRequest({
-      url,
-      query,
-      variables,
-      headers: headersObj,
-    });
-    if (typeof res !== 'string') {
-      const resStr = JSON.stringify(res, null, 2);
-      dispatch(updateTabContent({ responseContent: resStr }));
-    } else {
-      dispatch(updateTabContent({ responseContent: res }));
+    try {
+      const headersObj: HeadersInit = trimHeaders
+        ? JSON.parse(trimHeaders)
+        : undefined;
+      const res = await makeRequest({
+        url,
+        query,
+        variables,
+        headers: headersObj,
+      });
+      if (typeof res !== 'string') {
+        const resStr = JSON.stringify(res, null, 2);
+        dispatch(updateTabContent({ responseContent: resStr }));
+      } else {
+        dispatch(updateTabContent({ responseContent: res }));
+      }
+    } catch (err) {
+      const errStr = `You have problem with headers in request:\n${err}`;
+      dispatch(updateTabContent({ responseContent: errStr }));
     }
+
     dispatch(setIsMakingRequest(false));
   };
 
