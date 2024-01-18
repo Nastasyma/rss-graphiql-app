@@ -4,10 +4,13 @@
 .cm-gutters {
   background-color: transparent !important;
 }
-#cm-ac-130ao li {
+.cm-tooltip-autocomplete.cm-tooltip.cm-tooltip-below ul li {
   background-color: #8160c9;
   color: white;
   border: 1px solid #45266d;
+  & :hover {
+    cursor: pointer;
+  }
 }
 
 .ͼo,
