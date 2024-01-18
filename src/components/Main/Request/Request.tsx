@@ -15,8 +15,9 @@ import Editor from '../Editor/Editor';
 import { LangContext } from '@/providers/LangProvider';
 import Preloader from '@/components/Preloader/Preloader';
 import { setIsMakingRequest } from '@/store/reducers/editorSlice';
+import { graphql } from 'cm6-graphql';
 import { GraphQLSchema } from 'graphql';
-import { fetchGraphQLSchema } from '@/utils/graphqlSchema';
+import { fetchGraphQLSchema } from '@/utils/fetchGraphQLSchema/fetchGraphQLSchema';
 
 function Request() {
   const dispatch = useAppDispatch();
@@ -29,7 +30,6 @@ function Request() {
   const [schema, setSchema] = useState<GraphQLSchema | undefined>(undefined);
   const url = tabs[activeTab].url;
 
-
   const handleNewTabContent = (content: string) => {
     dispatch(updateTabContent({ index: activeTab, requestContent: content }));
   };
@@ -41,13 +41,13 @@ function Request() {
   }, [tabs, handleNewTabContent]);
 
   useEffect(() => {
-    const getSchema = async (url:string) => {
+    const getSchema = async (url: string) => {
       if (url) {
         const newSchema = await fetchGraphQLSchema(url);
-        setSchema(newSchema)
+        setSchema(newSchema);
       }
-    }
-    getSchema(url)
+    };
+    getSchema(url);
   }, [url]);
 
   const prettifyAndDispatch = (
@@ -86,6 +86,7 @@ function Request() {
     [tabs, activeTab]
   );
 
+  const extensions = schema ? [graphql(schema)] : [];
   return (
     <div className={`${styles.requestContainer} ${styles.container}`}>
       <span className={styles.title}>
@@ -99,6 +100,7 @@ function Request() {
             value={requestContent}
             theme={bbedit}
             onChange={handleNewTabContent}
+            extensions={extensions}
           />
         </div>
         <div className={styles.requestButtons}>
