@@ -17,13 +17,13 @@ const Schema = React.memo(({ types }: ISchemaProps) => {
   const field = data[data.length - 1];
 
   const filteredTypes = types
-    .filter(
-      (item) =>
-        item.name === 'Query' ||
-        item.name === 'Root' ||
-        item.name === 'Mutation' ||
-        item.name === 'Subscription'
-    )
+  .filter((item) =>
+    item.name === 'Query' ||
+    item.name === 'Root' ||
+    item.name === 'Mutation' ||
+    item.name === 'Subscription' ||
+    /query/i.test(item.name)
+  )
     .sort((a, b) => {
       if (a.name === 'Query' || a.name === 'Root') return -1;
       if (b.name === 'Query' || b.name === 'Root') return 1;
