@@ -53,7 +53,7 @@ describe('testing context', () => {
   });
 
   it('switch lang', () => {
-    expect(screen.getByTestId('auth-title').textContent).toBe('Sigh up');
+    expect(screen.getByTestId('auth-title').textContent).toBe('Sign up');
 
     waitFor(() => {
       fireEvent.click(screen.getByTestId('select-lang'));
@@ -71,7 +71,7 @@ describe('testing context', () => {
       fireEvent.click(screen.getByTestId('selectLang-en'));
     });
 
-    expect(screen.getByTestId('auth-title').textContent).toBe('Sigh up');
+    expect(screen.getByTestId('auth-title').textContent).toBe('Sign up');
   });
 });
 

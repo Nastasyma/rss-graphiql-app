@@ -9,7 +9,7 @@ import { ErrorOption } from 'react-hook-form';
 import { LangContext } from '@/providers/LangProvider';
 import { AuthContext } from '@/providers/AuthProvider';
 
-export default function SighUp() {
+export default function SignUp() {
   const [errorAuthMessage, setErrorAuthMessage] = useState<
     | [
         name: 'email' | 'password' | 'root' | `root.${string}`,
@@ -22,7 +22,7 @@ export default function SighUp() {
 
   const { lang } = useContext(LangContext);
 
-  const sighUp = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setErrorAuthMessage(() => null);
@@ -60,10 +60,10 @@ export default function SighUp() {
     <Navigate to="/" replace />
   ) : (
     <AuthForm
-      title={lang === 'ru' ? 'Регистрация' : 'Sigh up'}
+      title={lang === 'ru' ? 'Регистрация' : 'Sign up'}
       otherFormTitle={lang === 'ru' ? 'или войти' : 'or sing in using'}
       otherFormLink="/login"
-      authFunk={sighUp}
+      authFunk={signUp}
       errorAuthMessage={errorAuthMessage}
       lang={lang}
     />
