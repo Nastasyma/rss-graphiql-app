@@ -17,4 +17,14 @@ export const apiExamples = [
   {
     url: 'https://api.react-finland.fi/graphql',
   },
+  {
+    url: 'https://snowtooth.moonhighway.com/'
+  },
+  {
+    url: 'https://beta.pokeapi.co/graphql/v1beta'
+  },
+  {
+    url: 'https://publicb6c3b42f10e2f1eb.stepzen.net/api/typicode/__graphql'
+  }
 ];
+
